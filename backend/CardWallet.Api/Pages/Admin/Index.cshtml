@@ -1,0 +1,122 @@
+@page
+@{
+    Layout = "_ModernAdminLayout";
+    ViewData["Title"] = "Tổng quan quản trị";
+}
+
+<div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+        <h1 class="text-2xl font-bold text-white tracking-tight">Tổng quan quản trị</h1>
+        <p class="text-slate-400 text-sm mt-1">Theo dõi dòng tiền điểm, người dùng, ví, giao dịch thẻ, KYC, rút điểm, nạp điểm, link REF và hoa hồng.</p>
+    </div>
+    <div class="flex items-center gap-2 text-sm text-slate-400 bg-cardbg border border-borderbg px-3 py-1.5 rounded-lg">
+        <i class="fas fa-clock text-cyan-500"></i>
+        <span>Cập nhật lúc: @DateTime.Now.ToString("HH:mm dd/MM/yyyy")</span>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+    <div class="bg-cardbg rounded-xl border border-borderbg p-5">
+        <p class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Tổng thành viên</p>
+        <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold text-white" id="stat-total-users">0</h3>
+            <i class="fas fa-users text-cyan-400 text-xl"></i>
+        </div>
+    </div>
+    <div class="bg-cardbg rounded-xl border border-borderbg p-5">
+        <p class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Tổng cung</p>
+        <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold text-white" id="stat-total-balance">50.000.000 điểm</h3>
+            <i class="fas fa-vault text-blue-400 text-xl"></i>
+        </div>
+    </div>
+    <div class="bg-cardbg rounded-xl border border-borderbg p-5">
+        <p class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Giao dịch thành công</p>
+        <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold text-emerald-400" id="stat-success-tx">0</h3>
+            <i class="fas fa-check-circle text-emerald-400 text-xl"></i>
+        </div>
+    </div>
+    <div class="bg-cardbg rounded-xl border border-borderbg p-5">
+        <p class="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Đang xử lý</p>
+        <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold text-amber-400" id="stat-pending-tx">0</h3>
+            <i class="fas fa-hourglass-half text-amber-400 text-xl"></i>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <section class="xl:col-span-2 bg-cardbg rounded-xl border border-borderbg overflow-hidden">
+        <div class="px-5 py-4 border-b border-borderbg flex justify-between items-center">
+            <h3 class="font-semibold text-white">Giao dịch gần đây <span class="text-slate-500 text-sm font-normal ml-2" id="stat-total-tx">(0 tổng)</span></h3>
+            <a href="/Admin/Transactions" class="text-sm text-cyan-400 hover:text-cyan-300">Xem tất cả <i class="fas fa-angle-right ml-1"></i></a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-borderbg text-left whitespace-nowrap">
+                <thead class="bg-darkbg text-slate-400 text-xs uppercase tracking-wider">
+                    <tr>
+                        <th class="px-5 py-3 font-medium">Mã GD</th>
+                        <th class="px-5 py-3 font-medium">Khách hàng</th>
+                        <th class="px-5 py-3 font-medium">Loại</th>
+                        <th class="px-5 py-3 font-medium">Số điểm</th>
+                        <th class="px-5 py-3 font-medium">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-transactions-body" class="divide-y divide-borderbg text-sm">
+                    <tr><td colspan="5" class="px-5 py-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i> Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="bg-cardbg rounded-xl border border-borderbg overflow-hidden">
+        <div class="px-5 py-4 border-b border-borderbg">
+            <h3 class="font-semibold text-white">Nguyên tắc dòng tiền</h3>
+        </div>
+        <div class="p-5 space-y-3">
+            <div class="p-3 rounded-lg bg-darkbg border border-borderbg text-sm text-slate-300">
+                Tổng cung cố định: <span class="font-bold text-cyan-300">50.000.000 điểm</span>.
+            </div>
+            <div class="p-3 rounded-lg bg-darkbg border border-borderbg text-sm text-slate-300">
+                Admin chuyển điểm: ví admin giảm, ví người nhận tăng, tổng toàn hệ thống không đổi.
+            </div>
+            <div class="p-3 rounded-lg bg-darkbg border border-borderbg text-sm text-slate-300">
+                Không mint thêm điểm nếu chưa có nghiệp vụ nạp vốn/đối soát hợp lệ.
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="mt-6 bg-cardbg rounded-xl border border-borderbg overflow-hidden">
+    <div class="px-5 py-4 border-b border-borderbg">
+        <h3 class="font-semibold text-white">Module admin cần phát triển tiếp</h3>
+        <p class="text-xs text-slate-500 mt-1">Các module có trang điều hướng riêng, phần API/backend cần phát triển tiếp được ghi chi tiết trong tài liệu roadmap.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-5">
+        <a href="/Admin/Kyc" class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-cyan-500/50 transition-colors">
+            <h4 class="font-bold text-white">KYC cấp 2</h4>
+            <p class="text-sm text-slate-400 mt-2">Duyệt CCCD mặt trước, mặt sau và ảnh khuôn mặt.</p>
+        </a>
+        <a href="/Admin/Withdrawals" class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-cyan-500/50 transition-colors">
+            <h4 class="font-bold text-white">Rút điểm</h4>
+            <p class="text-sm text-slate-400 mt-2">Duyệt thủ công, yêu cầu KYC trước khi rút.</p>
+        </a>
+        <a href="/Admin/Deposits" class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-cyan-500/50 transition-colors">
+            <h4 class="font-bold text-white">Nạp điểm</h4>
+            <p class="text-sm text-slate-400 mt-2">Nạp vốn phải tạo bút toán rõ nguồn tiền.</p>
+        </a>
+        <a href="/Admin/Referrals" class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-cyan-500/50 transition-colors">
+            <h4 class="font-bold text-white">Link REF</h4>
+            <p class="text-sm text-slate-400 mt-2">Quản lý mã mời, nhóm CTV và đối tác/tổ chức.</p>
+        </a>
+        <a href="/Admin/Commissions" class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-cyan-500/50 transition-colors">
+            <h4 class="font-bold text-white">Hoa hồng</h4>
+            <p class="text-sm text-slate-400 mt-2">Cấu hình % theo rank và doanh thu CTV.</p>
+        </a>
+        <a href="/Admin/CardRates" class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-cyan-500/50 transition-colors">
+            <h4 class="font-bold text-white">Bảng giá</h4>
+            <p class="text-sm text-slate-400 mt-2">Quản lý % chiết khấu thẻ cào đang hoạt động.</p>
+        </a>
+    </div>
+</section>

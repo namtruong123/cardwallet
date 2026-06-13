@@ -1,0 +1,25 @@
+@page
+@{
+    Layout = "_ModernAdminLayout";
+    ViewData["Title"] = "Nạp xu";
+}
+
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Nạp xu</h1>
+    <p class="text-slate-400 text-sm mt-1">Khi user ấn nạp tiền, hệ thống chuyển user đến giao diện liên hệ Telegram admin.</p>
+</div>
+
+<section class="bg-cardbg border border-borderbg rounded-xl p-5 mb-6">
+    <h2 class="font-semibold text-white">Quy tắc nạp xu</h2>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-400">
+        <div class="rounded-lg bg-darkbg border border-borderbg p-4">Admin cấu hình Telegram liên hệ chính thức.</div>
+        <div class="rounded-lg bg-darkbg border border-borderbg p-4">User gửi bằng chứng thanh toán, admin cộng xu thủ công hoặc qua request duyệt.</div>
+        <div class="rounded-lg bg-darkbg border border-borderbg p-4">Mọi lần cộng xu phải có lý do, người duyệt và audit log.</div>
+        <div class="rounded-lg bg-darkbg border border-borderbg p-4">Có thể mở rộng thanh toán Visa ở giai đoạn sau.</div>
+    </div>
+</section>
+
+<section class="bg-cardbg border border-borderbg rounded-xl p-5">
+    <h2 class="font-semibold text-white">Cấu hình cần phát triển</h2>
+    <p class="text-sm text-slate-500 mt-2">Cần thêm bảng cấu hình Telegram, API tạo yêu cầu nạp xu và màn admin duyệt/cộng xu.</p>
+</section>

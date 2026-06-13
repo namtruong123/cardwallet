@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>@ViewData["Title"] - Card Wallet Admin</title>
+    <link rel="icon" href="~/assets/images/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/font-awesome-all.css" />
+    <link rel="stylesheet" href="~/assets/css/flaticon.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link rel="stylesheet" href="~/assets/css/responsive.css" />
+</head>
+<body>
+    <div class="boxed_wrapper">
+        <header class="main-header">
+            <div class="header-lower">
+                <div class="outer-container">
+                    <div class="outer-box">
+                        <div class="logo-box">
+                            <figure class="logo"><a asp-page="/Admin/Index"><img src="~/assets/images/logo.png" alt="Card Wallet" /></a></figure>
+                        </div>
+                        <div class="menu-area clearfix">
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li><a asp-page="/Admin/Index">Dashboard</a></li>
+                                        <li><a asp-page="/Admin/Users">Users</a></li>
+                                        <li><a asp-page="/Admin/Wallets">Wallets</a></li>
+                                        <li><a asp-page="/Admin/CardRates">Card Rates</a></li>
+                                        <li><a asp-page="/Admin/Transactions">Transactions</a></li>
+                                        <li><a href="~/trangchu.html">Back Home</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+        <footer class="main-footer" style="background:#020d1f; padding:40px 0; color:#a6b8d8;">
+            <div class="auto-container text-center">
+                <p>© 2026 Card Wallet Admin.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="~/assets/js/jquery.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/wow.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/admin.js"></script>
+</body>
+</html>

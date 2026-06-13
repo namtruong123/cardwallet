@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CardWallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { darkbg: '#0F172A', cardbg: '#1E293B', borderbg: '#334155' }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="bg-darkbg text-slate-300 min-h-screen">
+    <header class="border-b border-borderbg bg-cardbg/90 backdrop-blur sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="font-bold text-white text-lg flex items-center gap-2">
+                <i class="fas fa-wallet text-cyan-400"></i>
+                CardWallet<span class="text-cyan-400">.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-2">
+                <a href="/CardRates" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Bảng giá</a>
+                <a href="/Guide" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Hướng dẫn</a>
+                <a href="/User/Exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Đổi thẻ</a>
+                <a href="/Login" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Đăng nhập</a>
+                <a href="/Register" class="px-4 py-2 ml-2 rounded-lg text-sm font-bold text-white bg-cyan-600 hover:bg-cyan-500 shadow-md transition-colors">Đăng ký</a>
+            </div>
+            <button id="public-dark-menu-button" type="button" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-borderbg text-slate-300">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <div id="public-dark-mobile-menu" class="hidden md:hidden border-t border-borderbg px-4 py-3">
+            <div class="max-w-7xl mx-auto flex flex-col gap-1">
+                <a href="/CardRates" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">Bảng giá</a>
+                <a href="/Guide" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">Hướng dẫn</a>
+                <a href="/User/Exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">Đổi thẻ</a>
+                <div class="mt-2 grid grid-cols-2 gap-2">
+                    <a href="/Login" class="text-center rounded-lg border border-borderbg px-3 py-2 text-sm font-semibold text-slate-200">Đăng nhập</a>
+                    <a href="/Register" class="text-center rounded-lg bg-cyan-600 px-3 py-2 text-sm font-bold text-white">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>@RenderBody()</main>
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+
+    <script src="~/assets/js/public-site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        document.getElementById('public-dark-menu-button')?.addEventListener('click', function () {
+            document.getElementById('public-dark-mobile-menu')?.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

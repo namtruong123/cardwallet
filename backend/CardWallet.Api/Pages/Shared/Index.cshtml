@@ -1,0 +1,63 @@
+@page
+@{
+    Layout = "_UserDashboardLayout";
+    ViewData["Title"] = "Tổng Quan";
+}
+
+<div class="mb-6">
+    <h2 class="text-2xl font-bold text-white">Xin chào, <span id="dash-name" class="text-cyan-400">...</span> 👋</h2>
+    <p class="text-slate-400 text-sm mt-1">Chào mừng bạn trở lại hệ thống quy đổi thẻ cào.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+    <div class="bg-gradient-to-br from-cyan-600 to-blue-700 rounded-[20px] p-6 text-white relative overflow-hidden shadow-lg shadow-cyan-500/20">
+        <div class="absolute right-[-10%] top-[-10%] text-white/10 text-8xl"><i class="fas fa-coins"></i></div>
+        <p class="text-cyan-100 text-xs font-bold uppercase tracking-wider mb-2 relative z-10">Tổng Số Dư (XU)</p>
+        <h3 class="text-3xl font-bold relative z-10" id="dash-balance-xu">0</h3>
+        <p class="text-cyan-200 text-sm mt-1 font-medium relative z-10" id="dash-balance-vnd">~ 0 VNĐ</p>
+    </div>
+    <div class="bg-cardbg rounded-[20px] border border-borderbg p-6 relative overflow-hidden">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Đã Nạp</p>
+        <h3 class="text-2xl font-bold text-white" id="dash-tx-total">0 thẻ</h3>
+        <div class="absolute right-5 bottom-5 w-10 h-10 rounded-xl bg-slate-800 text-slate-400 flex items-center justify-center text-lg"><i class="fas fa-list"></i></div>
+    </div>
+    <div class="bg-cardbg rounded-[20px] border border-borderbg p-6 relative overflow-hidden">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Thành Công</p>
+        <h3 class="text-2xl font-bold text-emerald-400" id="dash-tx-success">0 thẻ</h3>
+        <div class="absolute right-5 bottom-5 w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg"><i class="fas fa-check"></i></div>
+    </div>
+    <div class="bg-cardbg rounded-[20px] border border-borderbg p-6 relative overflow-hidden">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Đang Xử Lý</p>
+        <h3 class="text-2xl font-bold text-amber-400" id="dash-tx-pending">0 thẻ</h3>
+        <div class="absolute right-5 bottom-5 w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg"><i class="fas fa-spinner fa-spin"></i></div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2 bg-cardbg rounded-[20px] border border-borderbg overflow-hidden">
+        <div class="px-6 py-5 border-b border-borderbg flex justify-between items-center">
+            <h3 class="font-bold text-white">Giao Dịch Đổi Thẻ Gần Đây</h3>
+            <a href="/User/Transactions" class="text-sm text-cyan-400 hover:text-cyan-300">Xem tất cả <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+        </div>
+        <div class="overflow-x-auto p-2">
+            <table class="min-w-full text-left whitespace-nowrap">
+                <tbody id="dash-recent-txs" class="divide-y divide-borderbg/50 text-sm">
+                    <tr><td class="p-8 text-center text-slate-500">Đang tải...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <div class="bg-cardbg rounded-[20px] border border-borderbg p-6">
+            <h3 class="font-bold text-white mb-4">Thao tác nhanh</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <a href="/User/Exchange" class="flex flex-col items-center justify-center p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all group">
+                    <i class="fas fa-bolt text-2xl text-amber-400 mb-2 group-hover:scale-110 transition-transform"></i><span class="text-xs font-semibold text-slate-300">Đổi thẻ ngay</span>
+                </a>
+                <a href="/User/CardRates" class="flex flex-col items-center justify-center p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-pink-500/50 hover:bg-pink-500/5 transition-all group">
+                    <i class="fas fa-tags text-2xl text-pink-400 mb-2 group-hover:scale-110 transition-transform"></i><span class="text-xs font-semibold text-slate-300">Bảng giá</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+@page
+@{
+    Layout = "_PublicLayout";
+    ViewData["Title"] = "Liên Hệ";
+}
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="contact">Liên Hệ Với Chúng Tôi</h1>
+        <p class="text-slate-400 text-lg">Đội ngũ hỗ trợ 24/7 luôn sẵn sàng giải đáp thắc mắc của bạn.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-8">
+            <h3 class="text-xl font-bold text-white mb-6">Gửi tin nhắn</h3>
+            <form class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5">Họ và tên</label>
+                    <input type="text" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200" placeholder="Tên của bạn" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5">Email liên hệ</label>
+                    <input type="email" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200" placeholder="Email của bạn" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5">Nội dung</label>
+                    <textarea rows="4" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200 resize-none" placeholder="Bạn cần hỗ trợ gì?"></textarea>
+                </div>
+                <button type="button" onclick="alert('Tính năng đang phát triển!')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
+                    Gửi Tin Nhắn
+                </button>
+            </form>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-cardbg border border-borderbg rounded-2xl p-6 flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl shrink-0"><i class="fas fa-envelope"></i></div>
+                <div><h4 class="text-white font-bold text-lg mb-1">Email Hỗ Trợ</h4><p class="text-slate-400">support@cardwallet.com</p></div>
+            </div>
+            <div class="bg-cardbg border border-borderbg rounded-2xl p-6 flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl shrink-0"><i class="fab fa-telegram-plane"></i></div>
+                <div><h4 class="text-white font-bold text-lg mb-1">Telegram (Phản hồi nhanh)</h4><p class="text-slate-400">@@CardWallet_Support</p></div>
+            </div>
+            <div class="bg-darkbg border border-borderbg rounded-2xl p-6 mt-4 opacity-70">
+                <p class="text-sm text-slate-400 leading-relaxed">Chúng tôi cam kết phản hồi các yêu cầu kiểm tra thẻ lỗi, đối soát điểm trong vòng tối đa 24 giờ làm việc.</p>
+            </div>
+        </div>
+    </div>
+</div>

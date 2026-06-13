@@ -1,0 +1,36 @@
+@page
+@{
+    Layout = "_ModernAdminLayout";
+    ViewData["Title"] = "Duyệt rút xu";
+}
+
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Duyệt rút xu</h1>
+    <p class="text-slate-400 text-sm mt-1">Người dùng gửi đơn rút xu, admin duyệt thủ công và chuyển tiền sau khi kiểm tra KYC.</p>
+</div>
+
+<section class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
+        <p class="text-xs uppercase tracking-wider text-slate-500">Điều kiện</p>
+        <h3 class="mt-2 font-bold text-white">Phải hoàn thành KYC</h3>
+        <p class="text-sm text-slate-400 mt-2">Tài khoản chưa KYC không được tạo đơn rút xu.</p>
+    </div>
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
+        <p class="text-xs uppercase tracking-wider text-slate-500">Số tiền</p>
+        <h3 class="mt-2 font-bold text-white">Tối thiểu 100.000 VND</h3>
+        <p class="text-sm text-slate-400 mt-2">Tương ứng 100 xu nếu cấu hình 1.000 VND = 1 xu.</p>
+    </div>
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
+        <p class="text-xs uppercase tracking-wider text-slate-500">Tần suất</p>
+        <h3 class="mt-2 font-bold text-white">Tối đa 2 lần/tháng</h3>
+        <p class="text-sm text-slate-400 mt-2">Cần kiểm tra số đơn thành công trong tháng trước khi cho gửi đơn mới.</p>
+    </div>
+</section>
+
+<section class="bg-cardbg border border-borderbg rounded-xl overflow-hidden">
+    <div class="px-5 py-4 border-b border-borderbg">
+        <h2 class="font-semibold text-white">Danh sách đơn rút xu</h2>
+        <p class="text-xs text-slate-500 mt-1">Chưa có workflow rút xu có khóa số dư và duyệt thủ công.</p>
+    </div>
+    <div class="px-5 py-10 text-center text-slate-500">Cần bổ sung API `/api/admin/withdrawals` và entity WithdrawalRequest.</div>
+</section>

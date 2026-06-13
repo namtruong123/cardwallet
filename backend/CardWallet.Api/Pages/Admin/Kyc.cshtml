@@ -1,0 +1,54 @@
+@page
+@{
+    Layout = "_ModernAdminLayout";
+    ViewData["Title"] = "Duyệt KYC";
+}
+
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Duyệt KYC cấp 2</h1>
+    <p class="text-slate-400 text-sm mt-1">Tất cả tài khoản phải xác thực KYC trước khi được rút xu.</p>
+</div>
+
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
+        <h3 class="font-bold text-white">Luồng mobile KYC</h3>
+        <p class="text-sm text-slate-400 mt-2">Admin/user tạo link, người dùng mở trên điện thoại, upload CCCD mặt trước, mặt sau và chụp khuôn mặt trực tiếp.</p>
+    </div>
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
+        <h3 class="font-bold text-white">Dữ liệu gửi về admin</h3>
+        <p class="text-sm text-slate-400 mt-2">3 trường bắt buộc: ảnh mặt trước CCCD, ảnh mặt sau CCCD, ảnh khuôn mặt người dùng.</p>
+    </div>
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
+        <h3 class="font-bold text-white">Duyệt thủ công</h3>
+        <p class="text-sm text-slate-400 mt-2">Admin kiểm tra ảnh, thông tin tài khoản và cập nhật trạng thái Approved hoặc Rejected kèm lý do.</p>
+    </div>
+</section>
+
+<section class="bg-cardbg border border-borderbg rounded-xl overflow-hidden">
+    <div class="px-5 py-4 border-b border-borderbg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+            <h2 class="font-semibold text-white">Danh sách hồ sơ KYC</h2>
+            <p class="text-xs text-slate-500 mt-1">Chưa có API KYC thật. Cần phát triển các endpoint trong tài liệu tổng hợp.</p>
+        </div>
+        <button class="px-4 py-2 rounded-lg bg-slate-800 text-slate-400 text-sm cursor-not-allowed" disabled>Tạo link KYC</button>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full text-left whitespace-nowrap">
+            <thead class="bg-darkbg text-xs uppercase tracking-wider text-slate-400">
+                <tr>
+                    <th class="px-5 py-3">Người dùng</th>
+                    <th class="px-5 py-3">CCCD mặt trước</th>
+                    <th class="px-5 py-3">CCCD mặt sau</th>
+                    <th class="px-5 py-3">Khuôn mặt</th>
+                    <th class="px-5 py-3">Trạng thái</th>
+                    <th class="px-5 py-3 text-right">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="6" class="px-5 py-10 text-center text-slate-500">Chưa triển khai API lưu và duyệt hồ sơ KYC.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

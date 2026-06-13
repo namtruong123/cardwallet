@@ -1,0 +1,187 @@
+@page
+@{
+    Layout = "_ModernAdminLayout";
+    ViewData["Title"] = "Quản lý người dùng";
+}
+
+<div class="mb-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div>
+        <h1 class="text-2xl font-bold text-white tracking-tight">Quản lý người dùng</h1>
+        <p class="text-slate-400 text-sm mt-1">Tạo tài khoản, phân nhóm quyền, khóa/mở khóa và quản lý trạng thái xác minh.</p>
+    </div>
+    <button onclick="openUserModal()" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium py-2 px-4 rounded-lg transition-all flex items-center shadow-lg shadow-cyan-500/20 text-sm">
+        <i class="fas fa-plus mr-2"></i> Thêm tài khoản
+    </button>
+</div>
+
+<div class="bg-cardbg rounded-xl border border-borderbg p-4 mb-5">
+    <form id="user-filter-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div class="lg:col-span-2 relative">
+            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
+            <input type="text" name="keyword" placeholder="Tìm tên, email, số điện thoại..." class="w-full pl-9 pr-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+        </div>
+        <select name="status" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+            <option value="">Trạng thái (Tất cả)</option>
+            <option value="Active">Đang hoạt động</option>
+            <option value="Inactive">Tạm ngưng</option>
+            <option value="Locked">Đã khóa</option>
+            <option value="Deleted">Đã vô hiệu hóa</option>
+        </select>
+        <select name="isPhoneVerified" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+            <option value="">SĐT (Tất cả)</option>
+            <option value="true">Đã xác minh</option>
+            <option value="false">Chưa xác minh</option>
+        </select>
+        <select name="isEmailVerified" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+            <option value="">Email (Tất cả)</option>
+            <option value="true">Đã xác minh</option>
+            <option value="false">Chưa xác minh</option>
+        </select>
+        <div class="flex gap-2">
+            <select name="pageSize" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+                <option value="10">10 dòng</option>
+                <option value="20" selected>20 dòng</option>
+                <option value="50">50 dòng</option>
+            </select>
+            <button type="submit" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors border border-borderbg" title="Lọc"><i class="fas fa-filter"></i></button>
+        </div>
+    </form>
+</div>
+
+<div class="bg-cardbg rounded-xl border border-borderbg overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-borderbg text-left whitespace-nowrap">
+            <thead class="bg-darkbg text-slate-400 text-xs uppercase tracking-wider">
+                <tr>
+                    <th class="px-5 py-4 font-medium">Username</th>
+                    <th class="px-5 py-4 font-medium">Liên hệ & xác minh</th>
+                    <th class="px-5 py-4 font-medium">Nhóm quyền</th>
+                    <th class="px-5 py-4 font-medium text-right">Số dư ví</th>
+                    <th class="px-5 py-4 font-medium text-center">Trạng thái</th>
+                    <th class="px-5 py-4 font-medium">Ngày tạo</th>
+                    <th class="px-5 py-4 font-medium text-right">Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="users-table-body" class="divide-y divide-borderbg text-sm">
+                <tr><td colspan="7" class="px-5 py-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i> Đang tải dữ liệu...</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="px-5 py-3 border-t border-borderbg bg-darkbg flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+        <span class="text-sm text-slate-400" id="user-pagination-info">Hiển thị 0 - 0 của 0</span>
+        <div class="flex gap-1" id="user-pagination-controls"></div>
+    </div>
+</div>
+
+<div id="user-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-cardbg border border-borderbg rounded-2xl w-full max-w-3xl shadow-2xl relative my-8">
+        <div class="p-5 border-b border-borderbg flex justify-between items-center">
+            <h3 class="text-lg font-bold text-white" id="user-modal-title">Thêm tài khoản</h3>
+            <button type="button" onclick="closeModal('user-modal')" class="text-slate-400 hover:text-white transition-colors"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        <div class="p-5">
+            <form id="admin-user-form" class="space-y-5">
+                <input type="hidden" name="id" id="user-form-id" />
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Họ và tên <span class="text-rose-500">*</span></label>
+                        <input type="text" name="fullName" required class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm" placeholder="Nguyễn Văn A" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Email <span class="text-rose-500">*</span></label>
+                        <input type="email" name="email" required class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm" placeholder="email@example.com" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Số điện thoại <span class="text-rose-500">*</span></label>
+                        <input type="text" name="phoneNumber" required class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm" placeholder="0987654321" />
+                    </div>
+                    <div id="password-group">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Mật khẩu <span class="text-rose-500">*</span></label>
+                        <input type="password" name="password" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm" placeholder="Tối thiểu 6 ký tự" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Trạng thái</label>
+                        <select name="status" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+                            <option value="Active">Đang hoạt động</option>
+                            <option value="Inactive">Tạm ngưng</option>
+                            <option value="Locked">Đã khóa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Nhóm quyền</label>
+                        <select name="role" id="user-role" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+                            <option value="Customer">CTV</option>
+                            <option value="Admin">ADMIN - full quyền</option>
+                            <option value="CentralManager">Nhóm 1 - QL tập trung</option>
+                            <option value="PartnerOrg">Nhóm 2 - Đối tác/Tổ chức</option>
+                            <option value="Collaborator">Nhóm 3 - CTV</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Người quản lý trực tiếp</label>
+                        <input type="text" name="parentUserId" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm" placeholder="User ID quản lý/ref, có thể để trống" />
+                    </div>
+                </div>
+
+                <div class="bg-darkbg border border-borderbg rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-white">Quyền theo sơ đồ phân quyền</h4>
+                    <p class="text-xs text-slate-500 mt-1 mb-3">Chọn nhóm quyền sẽ tự bật quyền mặc định. Có thể bật thêm quyền chi tiết nếu cần.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canManageUsers" class="permission-checkbox"> Thêm/Xóa/QL đối tác, tổ chức, CTV</label>
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canManageTasks" class="permission-checkbox"> Thêm/Xóa/Sửa task nhiệm vụ</label>
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canApproveTasks" class="permission-checkbox"> Duyệt task hoàn thành</label>
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canApproveKycWithdraw" class="permission-checkbox"> Duyệt KYC/Rút/Nạp</label>
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canTransferPoints" class="permission-checkbox"> Thêm/Chuyển xu</label>
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canManageBlog" class="permission-checkbox"> Thêm/Xóa/Sửa Blog/Camp</label>
+                        <label class="flex items-center gap-2 text-xs text-slate-300"><input type="checkbox" name="canExportReports" class="permission-checkbox"> Xuất report/log/database</label>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 sm:items-center bg-darkbg p-3 rounded-lg border border-borderbg">
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" name="isPhoneVerified" class="form-checkbox h-4 w-4 text-cyan-500 rounded border-slate-600 bg-slate-800 focus:ring-cyan-500">
+                        <span class="ml-2 text-xs text-slate-300">Đã xác minh SĐT</span>
+                    </label>
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" name="isEmailVerified" class="form-checkbox h-4 w-4 text-cyan-500 rounded border-slate-600 bg-slate-800 focus:ring-cyan-500">
+                        <span class="ml-2 text-xs text-slate-300">Đã xác minh Email</span>
+                    </label>
+                </div>
+                <div class="pt-3 flex flex-col sm:flex-row gap-3">
+                    <button type="button" onclick="closeModal('user-modal')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium py-2 rounded-lg transition-colors border border-borderbg">Hủy</button>
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-sm font-medium py-2 rounded-lg transition-all shadow-lg shadow-cyan-500/20">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="reset-pwd-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-cardbg border border-borderbg rounded-xl w-full max-w-sm shadow-2xl relative">
+        <div class="p-4 border-b border-borderbg flex justify-between items-center">
+            <h3 class="font-bold text-white text-sm"><i class="fas fa-key text-amber-500 mr-2"></i> Cấp lại mật khẩu</h3>
+            <button type="button" onclick="closeModal('reset-pwd-modal')" class="text-slate-400 hover:text-white transition-colors"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="p-4">
+            <p class="text-xs text-slate-400 mb-4">Nhập mật khẩu mới cho user <strong id="reset-pwd-username" class="text-white"></strong>.</p>
+            <form id="reset-pwd-form" class="space-y-4">
+                <input type="hidden" id="reset-pwd-userid" />
+                <input type="password" id="new-password" required minlength="6" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200 text-sm" placeholder="Mật khẩu mới..." />
+                <div class="flex gap-2">
+                    <button type="button" onclick="closeModal('reset-pwd-modal')" class="flex-1 bg-slate-800 text-slate-300 text-sm py-2 rounded-lg transition-colors">Hủy</button>
+                    <button type="submit" class="flex-1 bg-amber-600 hover:bg-amber-500 text-white text-sm py-2 rounded-lg transition-colors">Đổi mật khẩu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="detail-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    <div class="bg-cardbg border border-borderbg rounded-xl w-full max-w-lg shadow-2xl relative">
+        <div class="p-4 border-b border-borderbg flex justify-between items-center">
+            <h3 class="font-bold text-white text-sm">Chi tiết tài khoản</h3>
+            <button type="button" onclick="closeModal('detail-modal')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="p-5 text-sm" id="detail-modal-content"></div>
+    </div>
+</div>

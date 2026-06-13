@@ -1,0 +1,48 @@
+@page
+@{
+    Layout = "_UserDashboardLayout";
+    ViewData["Title"] = "Chương Trình Giới Thiệu";
+}
+
+<div class="mb-6">
+    <h2 class="text-2xl font-bold text-white">Giới Thiệu Bạn Bè (Affiliate)</h2>
+    <p class="text-slate-400 text-sm mt-1">Mời bạn bè tham gia đổi điểm và nhận hoa hồng hấp dẫn trọn đời.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+    <div class="bg-gradient-to-br from-violet-600 to-fuchsia-700 rounded-2xl p-6 text-white shadow-lg shadow-violet-500/20">
+        <p class="text-violet-200 text-xs font-bold uppercase tracking-wider mb-2">Tổng Hoa Hồng (Điểm)</p>
+        <h3 class="text-3xl font-bold mb-1">0 <span class="text-sm font-normal">điểm</span></h3>
+    </div>
+    <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Đã Giới Thiệu</p>
+        <h3 class="text-2xl font-bold text-cyan-400 mb-1">0 <span class="text-sm text-slate-500">người</span></h3>
+    </div>
+    <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Trạng Thái Affiliate</p>
+        <h3 class="text-2xl font-bold text-rose-400 mb-1">Chưa Mở Khóa</h3>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
+        <h3 class="font-bold text-white mb-4">Link Giới Thiệu Của Bạn</h3>
+        <div class="flex items-center gap-2">
+            <input type="text" readonly value="https://cardwallet.vn/Account/Register?ref=LOCKED" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none text-slate-400 text-sm font-mono opacity-60" />
+            <button class="bg-slate-800 text-slate-400 hover:text-white px-4 py-3 rounded-xl border border-borderbg transition-colors"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="mt-4 p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl">
+            <p class="text-xs text-amber-400 font-medium"><i class="fas fa-exclamation-triangle mr-1"></i> Bạn cần hoàn thành KYC Cấp 2 và có tổng giao dịch tối thiểu 500,000 điểm để mở khóa Link Giới Thiệu.</p>
+        </div>
+    </div>
+    <div class="bg-cardbg rounded-2xl border border-borderbg overflow-hidden">
+        <div class="px-6 py-5 border-b border-borderbg"><h3 class="font-bold text-white">Danh Sách F1</h3></div>
+        <div class="overflow-x-auto p-2">
+            <table class="min-w-full text-left whitespace-nowrap">
+                <tbody class="text-sm">
+                    <tr><td class="p-8 text-center text-slate-500">Chưa có người dùng nào được giới thiệu</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

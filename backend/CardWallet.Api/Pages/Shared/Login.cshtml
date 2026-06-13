@@ -1,0 +1,52 @@
+@page
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập - CardWallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{darkbg:'#0B0F19',cardbg:'#151C2C',borderbg:'#252D40'}}}}</script>
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-darkbg min-h-screen flex items-center justify-center relative overflow-hidden text-slate-300">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-violet-600/20 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="relative bg-cardbg/80 backdrop-blur-xl border border-borderbg rounded-[24px] shadow-2xl p-8 sm:p-10 w-full max-w-md z-10 m-4">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-[20px] bg-gradient-to-br from-cyan-500 to-blue-600 text-white mb-5 shadow-lg shadow-cyan-500/30">
+                <i class="fas fa-wallet text-3xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-white mb-2">Mừng Trở Lại!</h1>
+            <p class="text-slate-400 text-sm">Đăng nhập để tiếp tục giao dịch thẻ cào</p>
+        </div>
+        <form id="user-login-form" class="space-y-5">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5">Tài khoản (Email / SĐT)</label>
+                <input type="text" name="login" required class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all text-slate-200 placeholder-slate-600" placeholder="Nhập email hoặc sđt" />
+            </div>
+            <div>
+                <div class="flex justify-between items-center mb-1.5">
+                    <label class="block text-sm font-medium text-slate-300">Mật khẩu</label>
+                    <a href="#" class="text-xs text-cyan-400 hover:text-cyan-300">Quên mật khẩu?</a>
+                </div>
+                <input type="password" name="password" required class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all text-slate-200 placeholder-slate-600" placeholder="••••••••" />
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20 mt-2">
+                Đăng Nhập Ngay
+            </button>
+        </form>
+        <p class="mt-8 text-center text-sm text-slate-400">Chưa có tài khoản? <a href="/Account/Register" class="text-cyan-400 font-medium hover:text-cyan-300 transition-colors">Đăng ký ngay</a></p>
+    </div>
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+    <script src="/assets/js/user-dashboard.js"></script>
+</body>
+</html>

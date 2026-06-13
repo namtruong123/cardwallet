@@ -1,0 +1,72 @@
+@page
+@{
+    Layout = "_ModernAdminLayout";
+    ViewData["Title"] = "Cấu hình bảng giá";
+}
+
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Cấu hình bảng giá thẻ</h1>
+    <p class="text-slate-400 text-sm mt-1">Cài đặt tỷ lệ chiết khấu theo nhà mạng, mệnh giá và trạng thái hoạt động.</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="bg-cardbg rounded-xl border border-borderbg overflow-hidden h-fit">
+        <div class="px-5 py-4 border-b border-borderbg">
+            <h4 class="font-semibold text-white"><i class="fas fa-edit text-cyan-500 mr-2"></i> Soạn thảo bảng giá</h4>
+        </div>
+        <div class="p-5">
+            <form id="cardrate-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Nhà cung cấp</label>
+                    <select name="provider" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200" required>
+                        <option value="">-- Chọn nhà mạng --</option>
+                        <option value="Viettel">Viettel</option>
+                        <option value="Mobifone">Mobifone</option>
+                        <option value="Vinaphone">Vinaphone</option>
+                        <option value="Zing">Zing</option>
+                        <option value="Garena">Garena</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Mệnh giá (VND)</label>
+                    <input type="number" name="faceValue" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200" placeholder="VD: 100000" required />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Chiết khấu (%)</label>
+                    <input type="number" step="0.01" name="discountPercent" class="w-full px-3 py-2 bg-darkbg border border-borderbg rounded-lg focus:outline-none focus:border-cyan-500 text-slate-200" placeholder="VD: 20.5" required />
+                </div>
+                <div class="bg-darkbg border border-borderbg p-3 rounded-lg flex justify-between items-center">
+                    <span class="text-sm text-slate-400">Thực nhận dự kiến:</span>
+                    <span class="text-sm font-bold text-emerald-400" id="expected-receive-amount">0 đ</span>
+                </div>
+                <div class="flex items-center space-x-2 pt-1">
+                    <input type="checkbox" name="isActive" id="cardrate-active" class="w-4 h-4 text-cyan-500 bg-darkbg border-borderbg rounded focus:ring-cyan-500" checked />
+                    <label for="cardrate-active" class="text-sm font-medium text-slate-300 cursor-pointer">Hoạt động</label>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-borderbg">
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-medium py-2 rounded-lg transition-all shadow-lg shadow-cyan-500/20"><span>Lưu bảng giá</span></button>
+                    <button type="button" id="cardrate-cancel" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium py-2 rounded-lg transition-colors hidden"><span>Hủy</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="lg:col-span-2 bg-cardbg rounded-xl border border-borderbg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-borderbg text-left whitespace-nowrap">
+                <thead class="bg-darkbg text-slate-400 text-xs uppercase tracking-wider">
+                    <tr>
+                        <th class="px-5 py-4 font-medium">Nhà mạng</th>
+                        <th class="px-5 py-4 font-medium text-right">Mệnh giá</th>
+                        <th class="px-5 py-4 font-medium text-right">Chiết khấu</th>
+                        <th class="px-5 py-4 font-medium text-center">Trạng thái</th>
+                        <th class="px-5 py-4 font-medium text-right">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="cardrates-table-body" class="divide-y divide-borderbg text-sm">
+                    <tr><td colspan="5" class="px-5 py-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i> Đang tải dữ liệu...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

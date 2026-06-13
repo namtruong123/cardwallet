@@ -1,0 +1,71 @@
+@page
+@{
+    Layout = "_PublicLayout";
+    ViewData["Title"] = "Đăng ký";
+}
+
+<section class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-2xl">
+        <div class="mb-8 text-center">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">CardWallet</p>
+            <h1 class="mt-3 text-3xl font-bold text-white">Tạo tài khoản CardWallet</h1>
+            <p class="mt-3 text-sm text-slate-400">Điền thông tin bên dưới để tạo mới tài khoản trên hệ thống.</p>
+        </div>
+
+        <form id="user-register-form" class="rounded-2xl border border-borderbg bg-cardbg p-6 shadow-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="md:col-span-2">
+                    <label for="fullName" class="block text-sm font-semibold text-slate-300 mb-2">Họ và tên</label>
+                    <input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="150" required
+                           class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 transition-colors"
+                           placeholder="Nguyễn Văn A" />
+                </div>
+
+                <div>
+                    <label for="phoneNumber" class="block text-sm font-semibold text-slate-300 mb-2">Số điện thoại</label>
+                    <input id="phoneNumber" name="phoneNumber" type="tel" autocomplete="tel" pattern="[0-9]{9,11}" required
+                           class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 transition-colors"
+                           placeholder="0901234567" />
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-slate-300 mb-2">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required
+                           class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 transition-colors"
+                           placeholder="email@gmail.com" />
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-semibold text-slate-300 mb-2">Mật khẩu</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required
+                           class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 transition-colors"
+                           placeholder="Tối thiểu 8 ký tự" />
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-semibold text-slate-300 mb-2">Nhập lại mật khẩu</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required
+                           class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 transition-colors"
+                           placeholder="Nhập lại mật khẩu" />
+                </div>
+            </div>
+
+            <div class="mt-6 rounded-xl border border-slate-700 bg-slate-800/50 p-4 text-sm text-slate-300">
+                Sau khi đăng ký, hệ thống sẽ tạo ví xu mặc định cho tài khoản của bạn.
+            </div>
+
+            <button type="submit" class="mt-6 w-full rounded-xl bg-cyan-500 py-3 font-bold text-slate-900 hover:bg-cyan-400 transition-colors">
+                Tạo tài khoản
+            </button>
+
+            <p class="mt-5 text-center text-sm text-slate-400">
+                Đã có tài khoản?
+                <a href="/Login" class="font-semibold text-cyan-300 hover:text-cyan-200">Đăng nhập</a>
+            </p>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/assets/js/user-dashboard.js" asp-append-version="true"></script>
+}

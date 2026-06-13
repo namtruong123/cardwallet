@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CardWallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+        (function () {
+            var raw = localStorage.getItem('authData') || localStorage.getItem('token') || localStorage.getItem('accessToken');
+            if (!raw && window.location.pathname.toLowerCase().startsWith('/user')) {
+                window.location.replace('/Login');
+            }
+        })();
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: {
+                        darkbg: '#0B0F19',
+                        cardbg: '#151C2C',
+                        borderbg: '#252D40'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .glass-panel { background: rgba(21, 28, 44, 0.82); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="bg-darkbg text-slate-300 flex h-screen overflow-hidden selection:bg-cyan-500/30">
+    <div id="user-mobile-overlay" class="fixed inset-0 z-30 hidden bg-black/60 md:hidden"></div>
+
+    <aside id="user-sidebar" class="fixed md:static inset-y-0 left-0 z-40 hidden md:flex w-64 flex-col border-r border-borderbg bg-cardbg shadow-xl">
+        <div class="h-16 sm:h-20 flex items-center px-5 sm:px-6 border-b border-borderbg">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mr-3 shadow-lg shadow-cyan-500/20">
+                <i class="fas fa-wallet text-white text-lg"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white tracking-wide">CardWallet<span class="text-cyan-500">.</span></h2>
+        </div>
+
+        <nav id="user-sidebar-menu" class="flex-1 px-4 py-5 space-y-1.5 overflow-y-auto">
+            <p class="px-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 mt-2">Dịch vụ</p>
+            <a href="/User" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-border-all w-5 mr-3 text-slate-500 group-hover:text-cyan-400"></i> Tổng quan
+            </a>
+            <a href="/User/Exchange" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-bolt w-5 mr-3 text-slate-500 group-hover:text-amber-400"></i> Đổi thẻ cào
+            </a>
+            <a href="/User/CardRates" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-tags w-5 mr-3 text-slate-500 group-hover:text-pink-400"></i> Bảng giá chiết khấu
+            </a>
+
+            <p class="px-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 mt-6">Tài sản</p>
+            <a href="/User/Wallet" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-coins w-5 mr-3 text-slate-500 group-hover:text-emerald-400"></i> Ví xu của tôi
+            </a>
+            <a href="/User/Transactions" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-history w-5 mr-3 text-slate-500 group-hover:text-blue-400"></i> Lịch sử giao dịch
+            </a>
+            <a href="/User/Withdraw" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-money-bill-transfer w-5 mr-3 text-slate-500 group-hover:text-violet-400"></i> Rút tiền
+            </a>
+
+            <p class="px-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 mt-6">Cá nhân</p>
+            <a href="/User/Profile" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-user-circle w-5 mr-3 text-slate-500 group-hover:text-violet-400"></i> Hồ sơ & KYC
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-slate-500 rounded-xl opacity-60 cursor-not-allowed">
+                <i class="fas fa-users w-5 mr-3 text-slate-500"></i> Affiliate
+            </a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+        <header class="h-16 sm:h-20 glass-panel border-b border-borderbg flex items-center justify-between px-4 sm:px-6 z-10 sticky top-0">
+            <div class="flex min-w-0 items-center gap-3 sm:gap-4">
+                <button id="user-menu-button" type="button" class="md:hidden shrink-0 text-slate-400 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 class="truncate text-base sm:text-xl font-bold text-white tracking-tight">@ViewData["Title"]</h1>
+            </div>
+
+            <div class="flex shrink-0 items-center gap-2 sm:gap-5">
+                <div class="hidden md:flex items-center bg-darkbg border border-borderbg rounded-xl px-4 py-2">
+                    <div class="w-8 h-8 rounded-full bg-cyan-500/10 text-cyan-400 flex items-center justify-center mr-3">
+                        <i class="fas fa-coins text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Số dư khả dụng</p>
+                        <p class="text-sm font-bold text-white"><span id="layout-balance">0</span> <span class="text-cyan-400 text-xs">XU</span></p>
+                    </div>
+                </div>
+
+                <div class="relative group hidden sm:block">
+                    <button class="p-2 text-slate-400 hover:text-white transition-colors" type="button">
+                        <i class="fas fa-globe"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-36 bg-cardbg border border-borderbg rounded-lg shadow-xl z-50 hidden group-hover:block overflow-hidden">
+                        <a href="#" onclick="setLanguage('vi')" class="block px-3 py-2 text-xs text-slate-300 hover:bg-slate-800">Tiếng Việt</a>
+                        <a href="#" onclick="setLanguage('en')" class="block px-3 py-2 text-xs text-slate-300 hover:bg-slate-800">English</a>
+                        <a href="#" onclick="setLanguage('zh')" class="block px-3 py-2 text-xs text-slate-300 hover:bg-slate-800">中文</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center border-l border-borderbg pl-3 sm:pl-5">
+                    <div class="text-right mr-3 hidden sm:block">
+                        <p class="text-sm font-bold text-white truncate max-w-36" id="layout-username">Loading...</p>
+                        <p class="text-xs text-slate-500" id="layout-status">User Member</p>
+                    </div>
+                    <img src="https://ui-avatars.com/api/?name=User&background=0f172a&color=06b6d4" id="layout-avatar" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-slate-700 cursor-pointer" alt="Avatar">
+                    <button id="user-logout-btn" class="ml-3 sm:ml-4 text-slate-400 hover:text-rose-400 transition-colors" title="Đăng xuất" type="button">
+                        <i class="fas fa-sign-out-alt text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-darkbg p-3 sm:p-6 lg:p-8">
+            <div class="max-w-7xl mx-auto pb-10">@RenderBody()</div>
+        </main>
+    </div>
+
+    <div id="toast-container" class="fixed bottom-4 right-4 z-[99] flex flex-col gap-2"></div>
+    <script src="/assets/js/i18n.js" asp-append-version="true"></script>
+    <script src="/assets/js/user-dashboard.js" asp-append-version="true"></script>
+    <script>
+        (function () {
+            const sidebar = document.getElementById('user-sidebar');
+            const overlay = document.getElementById('user-mobile-overlay');
+            const button = document.getElementById('user-menu-button');
+
+            function closeMenu() {
+                sidebar?.classList.add('hidden');
+                sidebar?.classList.remove('flex');
+                overlay?.classList.add('hidden');
+            }
+
+            function openMenu() {
+                sidebar?.classList.remove('hidden');
+                sidebar?.classList.add('flex');
+                overlay?.classList.remove('hidden');
+            }
+
+            button?.addEventListener('click', openMenu);
+            overlay?.addEventListener('click', closeMenu);
+            sidebar?.querySelectorAll('a[href]').forEach(link => link.addEventListener('click', closeMenu));
+        })();
+    </script>
+</body>
+</html>

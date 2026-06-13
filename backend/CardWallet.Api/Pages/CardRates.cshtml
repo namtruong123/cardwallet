@@ -1,0 +1,36 @@
+@page
+@{
+    Layout = "_PublicLayout";
+    ViewData["Title"] = "Bảng giá chiết khấu";
+}
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Thông tin chiết khấu</p>
+        <h1 class="mt-3 text-3xl font-bold text-white mb-2">Bảng giá thẻ cào</h1>
+        <p class="text-slate-400">Bảng giá được cập nhật theo cấu hình hiện tại của hệ thống.</p>
+    </div>
+
+    <div class="bg-cardbg rounded-2xl border border-borderbg overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-left whitespace-nowrap">
+                <thead class="bg-darkbg text-slate-400 text-xs uppercase tracking-wider border-b border-borderbg">
+                    <tr>
+                        <th class="px-6 py-4 font-bold">Nhà mạng</th>
+                        <th class="px-6 py-4 font-bold text-right">Mệnh giá</th>
+                        <th class="px-6 py-4 font-bold text-right">Chiết khấu</th>
+                        <th class="px-6 py-4 font-bold text-right text-cyan-400">Thực nhận</th>
+                    </tr>
+                </thead>
+                <tbody id="public-rates-body" class="divide-y divide-borderbg/50 text-sm">
+                    <tr>
+                        <td colspan="4" class="px-6 py-12 text-center">
+                            <p class="text-slate-300 font-medium mb-1">Đang tải dữ liệu bảng giá...</p>
+                            <p class="text-slate-500 text-xs">Vui lòng đợi trong giây lát.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

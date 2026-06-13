@@ -1,0 +1,57 @@
+<section class="bg-white py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <p class="text-sm font-bold uppercase tracking-widest text-cyan-600">Chức năng chính</p>
+            <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Luồng người dùng và quản trị được tách rõ</h2>
+            <p class="mt-3 text-slate-600">Các chức năng dưới đây là chuẩn nghiệp vụ cần bám theo khi triển khai UI, API và worker đồng bộ.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-percent text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Bảng giá chiết khấu</h3>
+                <p class="mt-2 text-sm text-slate-600">Hiển thị từng loại thẻ, mệnh giá, % chiết khấu và số xu nhận được. Dữ liệu đồng bộ từ trang mẹ theo thời gian gần thực.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-user-shield text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Đăng ký có xác thực</h3>
+                <p class="mt-2 text-sm text-slate-600">Bắt buộc số điện thoại và email. SĐT xác thực bằng OTP, email xác thực bằng mã hoặc link click.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-right-to-bracket text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Đăng nhập linh hoạt</h3>
+                <p class="mt-2 text-sm text-slate-600">Người dùng đăng nhập bằng số điện thoại hoặc Gmail đã đăng ký, dùng JWT và refresh token.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-id-card text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">KYC cấp 2</h3>
+                <p class="mt-2 text-sm text-slate-600">Upload 2 mặt CCCD và ảnh khuôn mặt. Có thể thực hiện trên web hoặc chuyển tiếp link sang điện thoại. Admin duyệt thủ công.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-sim-card text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Nhập thẻ cào</h3>
+                <p class="mt-2 text-sm text-slate-600">Người dùng chọn loại thẻ, mệnh giá, nhập mã thẻ và serial. API trang mẹ xác thực, số tiền thực nhận được cộng chính xác vào ví trang con.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-building-columns text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Rút tiền về bank</h3>
+                <p class="mt-2 text-sm text-slate-600">Tên tài khoản ngân hàng phải trùng tên đăng ký/KYC. Đơn rút tiền nằm trong danh sách admin duyệt thủ công.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-credit-card text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Nạp tiền Visa</h3>
+                <p class="mt-2 text-sm text-slate-600">Tính năng mở rộng để người dùng nạp tiền bằng thẻ Visa và mua thẻ chiết khấu trong hệ thống.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-network-wired text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Affiliate / Referral</h3>
+                <p class="mt-2 text-sm text-slate-600">Mỗi người dùng có link ref. Người mới đăng ký qua link sẽ ghi nhận người giới thiệu và tính hoa hồng theo cấu hình.</p>
+            </article>
+            <article class="rounded-xl border border-slate-200 p-5">
+                <i class="fas fa-user-gear text-cyan-600 text-xl"></i>
+                <h3 class="mt-3 font-bold text-slate-900">Admin vận hành</h3>
+                <p class="mt-2 text-sm text-slate-600">Admin quản lý user, ví, bảng giá, KYC, rút tiền, giao dịch thẻ, log đồng bộ API trang mẹ và hoa hồng affiliate.</p>
+            </article>
+        </div>
+    </div>
+</section>

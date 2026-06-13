@@ -1,0 +1,63 @@
+@page
+@{
+    Layout = "_PublicLayout";
+    ViewData["Title"] = "Hướng dẫn sử dụng";
+}
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Hướng dẫn</p>
+        <h1 class="mt-3 text-3xl md:text-4xl font-bold text-white mb-4">Hướng dẫn đổi thẻ cào</h1>
+        <p class="text-slate-400 text-lg">Dễ dàng thao tác qua các bước cơ bản để gửi thẻ cào và nhận xu vào ví.</p>
+    </div>
+
+    <div class="space-y-6">
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl font-bold shrink-0">1</div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Tạo tài khoản</h3>
+                <p class="text-slate-400 leading-relaxed">Vào trang <a href="/Register" class="text-cyan-400 hover:underline">Đăng ký</a>, nhập họ tên, email, số điện thoại và mật khẩu để tạo tài khoản CardWallet của bạn.</p>
+            </div>
+        </div>
+
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl font-bold shrink-0">2</div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Đăng nhập vào hệ thống</h3>
+                <p class="text-slate-400 leading-relaxed">Sử dụng thông tin vừa đăng ký để <a href="/Login" class="text-cyan-400 hover:underline">Đăng nhập</a> vào hệ thống và truy cập bảng điều khiển người dùng.</p>
+            </div>
+        </div>
+
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl font-bold shrink-0">3</div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Chọn nhà mạng và mệnh giá</h3>
+                <p class="text-slate-400 leading-relaxed">Tại mục Đổi thẻ, hãy chọn nhà cung cấp và mệnh giá thẻ cào một cách cẩn thận. Bảng giá được hiển thị rõ ràng để bạn kiểm tra chiết khấu.</p>
+            </div>
+        </div>
+
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl font-bold shrink-0">4</div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Nhập mã thẻ và số serial</h3>
+                <p class="text-slate-400 leading-relaxed">Nhập chính xác mã thẻ và số serial in trên thẻ cào, sau đó nhấn nút Gửi yêu cầu. Lưu ý kiểm tra kỹ thông tin trước khi gửi.</p>
+            </div>
+        </div>
+
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl font-bold shrink-0">5</div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Theo dõi trạng thái giao dịch</h3>
+                <p class="text-slate-400 leading-relaxed">Sau khi gửi thẻ, bạn có thể xem lại lịch sử và theo dõi trạng thái giao dịch (Đang xử lý, Thành công, hoặc Thất bại) tại trang Lịch sử đổi thẻ.</p>
+            </div>
+        </div>
+
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-3xl font-bold shrink-0">6</div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Nhận xu vào ví khi giao dịch thành công</h3>
+                <p class="text-slate-400 leading-relaxed">Khi đối tác xử lý xác nhận thẻ cào hợp lệ, hệ thống sẽ tự động cộng Số xu nhận được tương ứng vào số dư ví của bạn.</p>
+            </div>
+        </div>
+    </div>
+</div>

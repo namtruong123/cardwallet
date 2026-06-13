@@ -1,0 +1,43 @@
+@page
+@{
+    Layout = "_UserDashboardLayout";
+    ViewData["Title"] = "Vi cua toi";
+}
+
+<div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <h2 class="text-2xl font-bold text-white">Quan ly so du</h2>
+    <a href="/User/Withdraw" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold py-2 px-4 rounded-xl shadow-lg shadow-violet-500/20 text-sm">
+        <i class="fas fa-building-columns mr-1"></i> Rut tien
+    </a>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+    <div class="bg-gradient-to-br from-cyan-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg shadow-cyan-500/20">
+        <p class="text-cyan-100 text-xs font-bold uppercase tracking-wider mb-2">So du kha dung</p>
+        <h3 class="text-3xl font-bold"><span id="wallet-avail">0</span> XU</h3>
+    </div>
+    <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">So du khoa</p>
+        <h3 class="text-2xl font-bold text-amber-400"><span id="wallet-locked">0</span> XU</h3>
+    </div>
+    <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Tong so du</p>
+        <h3 class="text-2xl font-bold text-white"><span id="wallet-total">0</span> XU</h3>
+    </div>
+</div>
+
+<section class="bg-cardbg rounded-2xl border border-borderbg overflow-hidden shadow-lg">
+    <div class="px-6 py-5 border-b border-borderbg">
+        <h3 class="font-bold text-white">Lich su bien dong vi</h3>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full text-left whitespace-nowrap">
+            <thead class="bg-darkbg text-slate-400 text-xs uppercase tracking-wider border-b border-borderbg">
+                <tr><th class="px-6 py-4">Ma GD</th><th class="px-6 py-4">Loai</th><th class="px-6 py-4 text-right">So tien</th><th class="px-6 py-4">Noi dung</th><th class="px-6 py-4 text-right">Thoi gian</th></tr>
+            </thead>
+            <tbody id="wallet-txs-body" class="divide-y divide-borderbg/50 text-sm">
+                <tr><td colspan="5" class="p-8 text-center text-slate-500">Dang tai...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
