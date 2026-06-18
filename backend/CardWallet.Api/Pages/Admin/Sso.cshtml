@@ -61,6 +61,8 @@
             const role = params.get("role") || "Admin";
 
             if (token) {
+                const secure = window.location.protocol === "https:" ? "; Secure" : "";
+                document.cookie = `adminAccessToken=${encodeURIComponent(token)}; Path=/; SameSite=Lax${secure}`;
                 localStorage.setItem("adminToken", token);
                 localStorage.setItem("adminUser", JSON.stringify({
                     userId: userId,

@@ -143,6 +143,9 @@
             button?.addEventListener('click', openMenu);
             overlay?.addEventListener('click', closeMenu);
             sidebar?.querySelectorAll('a[href]').forEach(link => link.addEventListener('click', closeMenu));
+            document.getElementById('admin-logout-btn')?.addEventListener('click', () => {
+                document.cookie = 'adminAccessToken=; Path=/; Max-Age=0; SameSite=Lax';
+            });
         })();
     </script>
     @await RenderSectionAsync("Scripts", required: false)

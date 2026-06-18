@@ -47,6 +47,85 @@
             </button>
         </form>
     </div>
-    <script src="/assets/js/admin.js" asp-append-version="true"></script>
+    <script>
+        (function () {
+            const form = document.getElementById('admin-login-form');
+            const message = document.getElementById('login-message');
+
+            function setAdminSessionCookie(token) {
+                const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+                document.cookie = `adminAccessToken=${encodeURIComponent(token)}; Path=/; SameSite=Lax${secure}`;
+            }
+
+            function clearAdminSession() {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                document.cookie = 'adminAccessToken=; Path=/; Max-Age=0; SameSite=Lax';
+            }
+
+            clearAdminSession();
+
+            form?.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                message?.classList.add('hidden');
+
+                const button = form.querySelector('button[type="submit"]');
+                if (button) button.disabled = true;
+
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            login: form.login.value.trim(),
+                            password: form.password.value
+                        })
+                    });
+
+                    if (!response.ok) {
+                        let errorMessage = 'Thong tin dang nhap khong chinh xac.';
+                        try {
+                            const error = await response.json();
+                            errorMessage = error?.message || error?.title || errorMessage;
+                        } catch {
+                            // Keep generic message.
+                        }
+                        if (message) {
+                            message.textContent = errorMessage;
+                            message.classList.remove('hidden');
+                        }
+                        return;
+                    }
+
+                    const data = await response.json();
+                    if (data.role !== 'Admin') {
+                        if (message) {
+                            message.textContent = 'Tai khoan khong co quyen truy cap quan tri.';
+                            message.classList.remove('hidden');
+                        }
+                        return;
+                    }
+
+                    localStorage.setItem('adminToken', data.accessToken);
+                    localStorage.setItem('adminUser', JSON.stringify({
+                        userId: data.userId,
+                        fullName: data.fullName,
+                        email: data.email,
+                        phoneNumber: data.phoneNumber,
+                        role: data.role
+                    }));
+                    setAdminSessionCookie(data.accessToken);
+                    window.location.href = '/';
+                } catch {
+                    if (message) {
+                        message.textContent = 'Khong the ket noi may chu.';
+                        message.classList.remove('hidden');
+                    }
+                } finally {
+                    if (button) button.disabled = false;
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

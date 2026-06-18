@@ -41,3 +41,7 @@ C:\tmp\cardwallet-build-check\CardWallet.Infrastructure.runtimeconfig.json
 C:\tmp\cardwallet-build-check\CardWallet.Infrastructure.dll
 C:\tmp\cardwallet-build-check\CardWallet.Infrastructure.pdb
 D:\card-wallet-platform\backend\CardWallet.Infrastructure\obj\Debug\net8.0\CardWallet.Infrastructure.sourcelink.json
+D:\card-wallet-platform\tmp-build\api\CardWallet.Infrastructure.deps.json
+D:\card-wallet-platform\tmp-build\api\CardWallet.Infrastructure.runtimeconfig.json
+D:\card-wallet-platform\tmp-build\api\CardWallet.Infrastructure.dll
+D:\card-wallet-platform\tmp-build\api\CardWallet.Infrastructure.pdb

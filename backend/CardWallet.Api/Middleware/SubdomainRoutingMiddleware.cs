@@ -1,6 +1,11 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace CardWallet.Api.Middleware;
 
@@ -8,11 +13,25 @@ public class SubdomainRoutingMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<SubdomainRoutingMiddleware> _logger;
+    private readonly JwtSecurityTokenHandler _tokenHandler = new();
+    private readonly TokenValidationParameters _tokenValidationParameters;
 
-    public SubdomainRoutingMiddleware(RequestDelegate next, ILogger<SubdomainRoutingMiddleware> logger)
+    public SubdomainRoutingMiddleware(RequestDelegate next, ILogger<SubdomainRoutingMiddleware> logger, IConfiguration configuration)
     {
         _next = next;
         _logger = logger;
+        var jwt = configuration.GetSection("Jwt");
+        _tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ValidIssuer = jwt["Issuer"],
+            ValidAudience = jwt["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!)),
+            ClockSkew = TimeSpan.Zero
+        };
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -45,6 +64,12 @@ public class SubdomainRoutingMiddleware
                 {
                     context.Request.Path = "/admin/login";
                 }
+                else if (!HasValidAdminSession(context))
+                {
+                    _logger.LogWarning("Blocked unauthenticated admin page access. Host: {Host}, Path: {Path}", host, path);
+                    context.Response.Redirect("/login");
+                    return;
+                }
                 else
                 {
                     // Rewrite / -> /admin, /users -> /admin/users, etc.
@@ -69,5 +94,27 @@ public class SubdomainRoutingMiddleware
         }
 
         await _next(context);
+    }
+
+    private bool HasValidAdminSession(HttpContext context)
+    {
+        var token = context.Request.Cookies["adminAccessToken"];
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            return false;
+        }
+
+        try
+        {
+            var principal = _tokenHandler.ValidateToken(token, _tokenValidationParameters, out _);
+            return principal.IsInRole("Admin") ||
+                   principal.HasClaim(ClaimTypes.Role, "Admin") ||
+                   principal.HasClaim("role", "Admin");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogInformation(ex, "Invalid admin session cookie.");
+            return false;
+        }
     }
 }

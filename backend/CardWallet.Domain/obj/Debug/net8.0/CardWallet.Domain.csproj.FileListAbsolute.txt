@@ -24,3 +24,6 @@ C:\tmp\cardwallet-build-check\CardWallet.Domain.deps.json
 C:\tmp\cardwallet-build-check\CardWallet.Domain.dll
 C:\tmp\cardwallet-build-check\CardWallet.Domain.pdb
 D:\card-wallet-platform\backend\CardWallet.Domain\obj\Debug\net8.0\CardWallet.Domain.sourcelink.json
+D:\card-wallet-platform\tmp-build\api\CardWallet.Domain.deps.json
+D:\card-wallet-platform\tmp-build\api\CardWallet.Domain.dll
+D:\card-wallet-platform\tmp-build\api\CardWallet.Domain.pdb
