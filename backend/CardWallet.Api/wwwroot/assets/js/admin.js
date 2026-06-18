@@ -26,6 +26,17 @@
         }, 3000);
     }
 
+    function redirectToMainLogin() {
+        const host = window.location.host;
+        let loginUrl = "";
+        if (host.includes("localhost") || host.includes("127.0.0.1")) {
+            loginUrl = `${window.location.protocol}//localhost:${window.location.port}/login`;
+        } else {
+            loginUrl = `${window.location.protocol}//mmohub.xyz/login`;
+        }
+        window.location.href = loginUrl;
+    }
+
     async function apiFetch(url, options = {}) {
         const token = localStorage.getItem('adminToken');
         if (!options.headers) options.headers = {};
@@ -37,7 +48,7 @@
             const response = await fetch(url, options);
             if (response.status === 401 && !url.includes('/api/auth/login')) {
                 localStorage.removeItem('adminToken');
-                window.location.href = '/Admin/Login';
+                redirectToMainLogin();
                 return null;
             }
             return response;
@@ -150,7 +161,7 @@
         document.querySelectorAll('#sidebar-menu a').forEach(link => {
             const href = link.getAttribute('href').toLowerCase();
             link.classList.remove('bg-slate-800/80', 'text-cyan-400', 'border-r-2', 'border-cyan-400');
-            if (path === href || (href !== '/admin' && path.startsWith(href))) {
+            if (path === href || (href !== '/' && href !== '/admin' && path.startsWith(href))) {
                 link.classList.add('bg-slate-800/80', 'text-cyan-400', 'border-r-2', 'border-cyan-400');
                 link.classList.remove('text-slate-400');
                 const icon = link.querySelector('i');
@@ -734,6 +745,204 @@
         }
     }
 
+    // KYC Manual Review
+    let kycActiveStatus = "Pending";
+    let kycRequests = [];
+
+    async function fetchKycRequests() {
+        const tableBody = document.getElementById('kyc-table-body');
+        if (!tableBody) return;
+        
+        tableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i> Đang tải dữ liệu hồ sơ KYC...</td></tr>';
+        
+        const response = await apiFetch(`${apiBase}/kyc/requests?status=${kycActiveStatus}`);
+        if (response && response.ok) {
+            kycRequests = await response.json();
+            renderKycTable(kycRequests);
+            updateKycStats();
+        } else {
+            tableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-rose-400">Lỗi khi tải danh sách hồ sơ KYC.</td></tr>';
+        }
+    }
+
+    function renderKycTable(requests) {
+        const tableBody = document.getElementById('kyc-table-body');
+        if (!tableBody) return;
+
+        if (!requests || requests.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-12 text-center text-slate-500">Không có hồ sơ nào phù hợp.</td></tr>';
+            return;
+        }
+
+        tableBody.innerHTML = requests.map(r => {
+            let statusBadge = '';
+            if (r.status === 'Approved') {
+                statusBadge = '<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Approved</span>';
+            } else if (r.status === 'Rejected') {
+                statusBadge = '<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Rejected</span>';
+            } else {
+                statusBadge = '<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Pending</span>';
+            }
+
+            return `
+            <tr class="hover:bg-slate-800/30 transition-colors border-b border-borderbg/50 last:border-0">
+                <td class="px-6 py-3.5">
+                    <div class="font-medium text-slate-200 text-sm">${escapeHtml(r.userName || r.email)}</div>
+                    <div class="font-mono text-[11px] text-slate-500 mt-0.5" title="${r.userId}">${r.userId.substring(0,8)}...</div>
+                </td>
+                <td class="px-6 py-3.5 text-sm text-slate-400">
+                    <div>SĐT: ${escapeHtml(r.phoneNumber || 'N/A')}</div>
+                    <div class="text-xs text-slate-500 mt-0.5">${escapeHtml(r.email)}</div>
+                </td>
+                <td class="px-6 py-3.5 text-xs text-slate-400">
+                    ${formatShortDate(r.createdAt)}
+                </td>
+                <td class="px-6 py-3.5">
+                    ${statusBadge}
+                </td>
+                <td class="px-6 py-3.5 text-right">
+                    <button type="button" onclick="openKycReviewModal('${r.id}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg text-xs font-semibold border border-borderbg transition-colors">
+                        Chi Tiết & Duyệt
+                    </button>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    function updateKycStats() {
+        apiFetch(`${apiBase}/kyc/requests?status=All`).then(async res => {
+            if (res && res.ok) {
+                const all = await res.json();
+                const pending = all.filter(x => x.status === 'Pending').length;
+                const approved = all.filter(x => x.status === 'Approved').length;
+                const rejected = all.filter(x => x.status === 'Rejected').length;
+                
+                setText('stat-kyc-pending', String(pending));
+                setText('stat-kyc-approved', String(approved));
+                setText('stat-kyc-rejected', String(rejected));
+            }
+        }).catch(err => console.error(err));
+    }
+
+    let activeReviewKycId = null;
+
+    window.openKycReviewModal = function(id) {
+        const r = kycRequests.find(x => x.id === id);
+        if (!r) return;
+
+        activeReviewKycId = id;
+        
+        setText('kyc-modal-name', r.userName || 'N/A');
+        setText('kyc-modal-phone', r.phoneNumber || 'N/A');
+        setText('kyc-modal-email', r.email || 'N/A');
+        setText('kyc-modal-date', new Date(r.createdAt).toLocaleString('vi-VN'));
+
+        document.getElementById('kyc-img-front').src = r.frontIdImagePath || '';
+        document.getElementById('kyc-img-back').src = r.backIdImagePath || '';
+        document.getElementById('kyc-img-selfie').src = r.selfieImagePath || '';
+
+        document.getElementById('reject-reason-container').classList.add('hidden');
+        document.getElementById('reject-reason').value = '';
+        document.getElementById('btn-kyc-reject-mode').classList.remove('hidden');
+        document.getElementById('btn-kyc-confirm-reject').classList.add('hidden');
+
+        const actionBtns = document.getElementById('kyc-action-buttons');
+        const reviewerInfo = document.getElementById('kyc-modal-reviewer-info');
+        
+        if (r.status === 'Pending') {
+            actionBtns.classList.remove('hidden');
+            reviewerInfo.textContent = '';
+        } else {
+            actionBtns.classList.add('hidden');
+            let reviewTxt = `Trạng thái: <b>${r.status}</b>`;
+            if (r.reviewedAt) {
+                reviewTxt += ` vào lúc ${new Date(r.reviewedAt).toLocaleString('vi-VN')}`;
+            }
+            if (r.rejectReason) {
+                reviewTxt += `<br>Lý do từ chối: <span class="text-rose-400 font-medium">${escapeHtml(r.rejectReason)}</span>`;
+            }
+            reviewerInfo.innerHTML = reviewTxt;
+        }
+
+        document.getElementById('kyc-modal').classList.remove('hidden');
+    };
+
+    async function submitKycApprove() {
+        if (!activeReviewKycId) return;
+        if (!confirm("Xác nhận phê duyệt hồ sơ KYC này?")) return;
+
+        const res = await apiFetch(`${apiBase}/kyc/requests/${activeReviewKycId}/approve`, {
+            method: 'POST'
+        });
+
+        if (res && res.ok) {
+            showToast("Đã phê duyệt hồ sơ KYC thành công.");
+            document.getElementById('kyc-modal').classList.add('hidden');
+            fetchKycRequests();
+        } else {
+            showToast("Thao tác thất bại.", "error");
+        }
+    }
+
+    async function submitKycReject() {
+        if (!activeReviewKycId) return;
+        const reason = document.getElementById('reject-reason').value.trim();
+        if (!reason) {
+            showToast("Vui lòng nhập lý do từ chối.", "error");
+            return;
+        }
+
+        const res = await apiFetch(`${apiBase}/kyc/requests/${activeReviewKycId}/reject`, {
+            method: 'POST',
+            body: JSON.stringify({ reason })
+        });
+
+        if (res && res.ok) {
+            showToast("Đã từ chối hồ sơ KYC.");
+            document.getElementById('kyc-modal').classList.add('hidden');
+            fetchKycRequests();
+        } else {
+            showToast("Thao tác thất bại.", "error");
+        }
+    }
+
+    function initKycPage() {
+        const tabButtons = document.querySelectorAll('#kyc-tabs button');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => {
+                    b.className = 'px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:bg-slate-800 transition-colors';
+                });
+                btn.className = 'px-4 py-2 text-xs font-bold rounded-lg bg-cyan-600 text-white transition-colors';
+                kycActiveStatus = btn.getAttribute('data-status');
+                fetchKycRequests();
+            });
+        });
+
+        document.getElementById('btn-kyc-approve')?.addEventListener('click', submitKycApprove);
+        
+        document.getElementById('btn-kyc-reject-mode')?.addEventListener('click', () => {
+            document.getElementById('reject-reason-container').classList.remove('hidden');
+            document.getElementById('btn-kyc-reject-mode').classList.add('hidden');
+            document.getElementById('btn-kyc-confirm-reject').classList.remove('hidden');
+        });
+        
+        document.getElementById('btn-kyc-confirm-reject')?.addEventListener('click', submitKycReject);
+
+        document.querySelectorAll('.img-lightbox-trigger').forEach(img => {
+            img.addEventListener('click', () => {
+                const lightbox = document.getElementById('lightbox-modal');
+                const lightboxImg = document.getElementById('lightbox-img');
+                if (lightbox && lightboxImg) {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.remove('hidden');
+                }
+            });
+        });
+
+        fetchKycRequests();
+    }
+
     // Login
     async function initLoginPage() {
         const form = document.getElementById('admin-login-form');
@@ -760,7 +969,7 @@
                         phoneNumber: data.phoneNumber,
                         role: 'Admin'
                     }));
-                    window.location.href = '/Admin';
+                    window.location.href = '/';
                 } else {
                     let errorMessage = 'Thông tin đăng nhập không chính xác.';
                     try {
@@ -780,9 +989,11 @@
     const path = window.location.pathname.toLowerCase();
     const token = localStorage.getItem('adminToken');
     
-    if (!token && !path.includes('/login')) {
-        window.location.href = '/Admin/Login'; return;
+    if (!token && !path.includes('/login') && !path.includes('/auth-sso')) {
+        redirectToMainLogin(); return;
     }
+
+    window.fetchKycRequests = fetchKycRequests;
 
     document.addEventListener('DOMContentLoaded', () => {
         setActiveMenu();
@@ -793,6 +1004,7 @@
         else if (path.includes('/cardrates')) initCardRatesPage();
         else if (path.includes('/transactions')) initTransactionsPage();
         else if (path.includes('/settings')) initSettingsPage();
+        else if (path.includes('/kyc')) initKycPage();
         else initDashboard();
     });
 
@@ -801,7 +1013,7 @@
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('adminToken');
             localStorage.removeItem('adminUser');
-            window.location.href = '/Admin/Login';
+            redirectToMainLogin();
         });
     }
 })();

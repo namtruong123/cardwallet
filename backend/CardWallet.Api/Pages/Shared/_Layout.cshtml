@@ -1,3 +1,8 @@
+@{
+    var host = Context.Request.Host.Host.ToLowerInvariant();
+    var port = Context.Request.Host.Port.HasValue ? $":{Context.Request.Host.Port}" : "";
+    var adminUrl = (host.Contains("localhost") || host.Contains("lvh.me") || host.Equals("127.0.0.1")) ? $"{Context.Request.Scheme}://app.lvh.me{port}" : $"{Context.Request.Scheme}://app.mmohub.xyz";
+}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -21,14 +26,14 @@
                     <span>CardWallet</span>
                 </a>
                 <div class="hidden md:flex items-center gap-2">
-                    <a href="/CardRates" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Bảng giá</a>
-                    <a href="/Guide" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Hướng dẫn</a>
-                    <a href="/User/Exchange" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Đổi thẻ</a>
-                    <a href="/Admin" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Quản trị</a>
+                    <a href="/cardrates" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Bảng giá</a>
+                    <a href="/guide" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Hướng dẫn</a>
+                    <a href="/user/exchange" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Đổi thẻ</a>
+                    <a href="@adminUrl" class="text-gray-600 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Quản trị</a>
                 </div>
                 <div class="hidden md:flex items-center">
-                    <a href="/Login" class="text-gray-600 hover:text-gray-900 font-medium mr-4">Đăng nhập</a>
-                    <a href="/Register" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition-colors">Đăng ký ngay</a>
+                    <a href="/login" class="text-gray-600 hover:text-gray-900 font-medium mr-4">Đăng nhập</a>
+                    <a href="/register" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition-colors">Đăng ký ngay</a>
                 </div>
                 <button id="public-menu-button" type="button" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-700">
                     <i class="fas fa-bars"></i>
@@ -36,13 +41,13 @@
             </div>
             <div id="public-mobile-menu" class="hidden md:hidden border-t border-gray-100 py-3">
                 <div class="flex flex-col gap-1">
-                    <a href="/CardRates" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Bảng giá</a>
-                    <a href="/Guide" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Hướng dẫn</a>
-                    <a href="/User/Exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Đổi thẻ</a>
-                    <a href="/Admin" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Quản trị</a>
+                    <a href="/cardrates" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Bảng giá</a>
+                    <a href="/guide" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Hướng dẫn</a>
+                    <a href="/user/exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Đổi thẻ</a>
+                    <a href="@adminUrl" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Quản trị</a>
                     <div class="mt-2 grid grid-cols-2 gap-2">
-                        <a href="/Login" class="text-center rounded-lg border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700">Đăng nhập</a>
-                        <a href="/Register" class="text-center rounded-lg bg-cyan-500 px-3 py-2 text-sm font-semibold text-white">Đăng ký</a>
+                        <a href="/login" class="text-center rounded-lg border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700">Đăng nhập</a>
+                        <a href="/register" class="text-center rounded-lg bg-cyan-500 px-3 py-2 text-sm font-semibold text-white">Đăng ký</a>
                     </div>
                 </div>
             </div>

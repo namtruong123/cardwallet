@@ -11,7 +11,7 @@
         (function () {
             var raw = localStorage.getItem('authData') || localStorage.getItem('token') || localStorage.getItem('accessToken');
             if (!raw && window.location.pathname.toLowerCase().startsWith('/user')) {
-                window.location.replace('/Login');
+                window.location.replace('/login');
             }
         })();
 
@@ -51,33 +51,36 @@
 
         <nav id="user-sidebar-menu" class="flex-1 px-4 py-5 space-y-1.5 overflow-y-auto">
             <p class="px-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 mt-2">Dịch vụ</p>
-            <a href="/User" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-border-all w-5 mr-3 text-slate-500 group-hover:text-cyan-400"></i> Tổng quan
             </a>
-            <a href="/User/Exchange" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user/exchange" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-bolt w-5 mr-3 text-slate-500 group-hover:text-amber-400"></i> Đổi thẻ cào
             </a>
-            <a href="/User/CardRates" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user/cardrates" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-tags w-5 mr-3 text-slate-500 group-hover:text-pink-400"></i> Bảng giá chiết khấu
             </a>
-
+            <a href="/user/tasks" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-tasks w-5 mr-3 text-slate-500 group-hover:text-indigo-400"></i> Nhiệm vụ CTV
+            </a>
+ 
             <p class="px-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 mt-6">Tài sản</p>
-            <a href="/User/Wallet" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user/wallet" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-coins w-5 mr-3 text-slate-500 group-hover:text-emerald-400"></i> Ví xu của tôi
             </a>
-            <a href="/User/Transactions" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user/transactions" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-history w-5 mr-3 text-slate-500 group-hover:text-blue-400"></i> Lịch sử giao dịch
             </a>
-            <a href="/User/Withdraw" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user/withdraw" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-money-bill-transfer w-5 mr-3 text-slate-500 group-hover:text-violet-400"></i> Rút tiền
             </a>
-
+ 
             <p class="px-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-3 mt-6">Cá nhân</p>
-            <a href="/User/Profile" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+            <a href="/user/profile" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
                 <i class="fas fa-user-circle w-5 mr-3 text-slate-500 group-hover:text-violet-400"></i> Hồ sơ & KYC
             </a>
-            <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-slate-500 rounded-xl opacity-60 cursor-not-allowed">
-                <i class="fas fa-users w-5 mr-3 text-slate-500"></i> Affiliate
+            <a href="/user/referrals" class="flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all group">
+                <i class="fas fa-link w-5 mr-3 text-slate-500 group-hover:text-teal-400"></i> Liên kết giới thiệu (REF)
             </a>
         </nav>
     </aside>

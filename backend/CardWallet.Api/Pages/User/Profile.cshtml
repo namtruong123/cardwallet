@@ -1,11 +1,11 @@
 @page
 @{
     Layout = "_UserDashboardLayout";
-    ViewData["Title"] = "Ho so";
+    ViewData["Title"] = "Hồ sơ";
 }
 
 <div class="mb-6">
-    <h2 class="text-2xl font-bold text-white">Ho so nguoi dung</h2>
+    <h2 class="text-2xl font-bold text-white">Hồ sơ người dùng</h2>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -18,15 +18,31 @@
             </div>
         </div>
         <div class="space-y-4 border-t border-borderbg pt-6">
-            <div><p class="text-xs text-slate-500 font-bold uppercase mb-1">Ho ten</p><p class="text-white font-medium" id="field-name">...</p></div>
+            <div><p class="text-xs text-slate-500 font-bold uppercase mb-1">Họ tên</p><p class="text-white font-medium" id="field-name">...</p></div>
             <div><p class="text-xs text-slate-500 font-bold uppercase mb-1">Email</p><div class="flex justify-between gap-3"><p class="text-white font-medium break-all" id="field-email">...</p><span id="badge-email"></span></div></div>
-            <div><p class="text-xs text-slate-500 font-bold uppercase mb-1">So dien thoai</p><div class="flex justify-between gap-3"><p class="text-white font-medium" id="field-phone">...</p><span id="badge-phone"></span></div></div>
+            <div><p class="text-xs text-slate-500 font-bold uppercase mb-1">Số điện thoại</p><div class="flex justify-between gap-3"><p class="text-white font-medium" id="field-phone">...</p><span id="badge-phone"></span></div></div>
         </div>
     </section>
-    <section class="bg-cardbg rounded-2xl border border-borderbg p-6">
-        <h3 class="font-bold text-white mb-4">Trang thai tai khoan</h3>
-        <div id="prof-status" class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
-            Active
+    <section class="bg-cardbg rounded-2xl border border-borderbg p-6 flex flex-col gap-6">
+        <div>
+            <h3 class="font-bold text-white mb-3">Trạng thái tài khoản</h3>
+            <div id="prof-status" class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+                Hoạt động
+            </div>
+        </div>
+        
+        <div class="border-t border-borderbg pt-6">
+            <h3 class="font-bold text-white mb-3">Xác minh danh tính (KYC)</h3>
+            <div id="kyc-profile-card" class="bg-darkbg border border-borderbg rounded-xl p-4 flex flex-col items-center justify-center text-center">
+                <div class="w-12 h-12 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xl mb-3" id="kyc-profile-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <p class="text-white font-bold text-sm mb-1" id="kyc-profile-status">Chưa Xác Minh Cấp 2</p>
+                <p class="text-xs text-slate-500 mb-4 max-w-xs" id="kyc-profile-desc">Xác minh danh tính để mở khóa chức năng rút xu và nhận ưu đãi affiliate.</p>
+                <a href="/user/kyc" id="kyc-profile-btn" class="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-5 rounded-lg text-xs transition-colors">
+                    Bắt Đầu Xác Minh
+                </a>
+            </div>
         </div>
     </section>
 </div>

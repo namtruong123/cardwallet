@@ -1,25 +1,25 @@
 @page
 @{
     Layout = "_UserDashboardLayout";
-    ViewData["Title"] = "Tong quan";
+    ViewData["Title"] = "Tổng quan";
 }
 
 <div class="mb-6">
-    <h2 class="text-2xl font-bold text-white"><span id="dash-name">Xin chao!</span></h2>
-    <p class="text-slate-400 text-sm mt-1">Theo doi so du, giao dich gan day va thao tac nhanh.</p>
+    <h2 class="text-2xl font-bold text-white"><span id="dash-name">Xin chào!</span></h2>
+    <p class="text-slate-400 text-sm mt-1">Theo dõi số dư, giao dịch gần đây và thao tác nhanh.</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
     <div class="bg-gradient-to-br from-cyan-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg shadow-cyan-500/20">
-        <p class="text-cyan-100 text-xs font-bold uppercase tracking-wider mb-2">So du kha dung</p>
-        <h3 class="text-3xl font-bold"><span id="dash-balance-avail">0</span> XU</h3>
+        <p class="text-cyan-100 text-xs font-bold uppercase tracking-wider mb-2 relative z-10">Số dư khả dụng</p>
+        <h3 class="text-3xl font-bold relative z-10"><span id="dash-balance-avail">0</span> XU</h3>
     </div>
     <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
-        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">So du khoa</p>
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Số dư khóa</p>
         <h3 class="text-2xl font-bold text-amber-400"><span id="dash-balance-locked">0</span> XU</h3>
     </div>
     <div class="bg-cardbg rounded-2xl border border-borderbg p-6">
-        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Tong so du</p>
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Tổng số dư</p>
         <h3 class="text-2xl font-bold text-white"><span id="dash-balance-total">0</span> XU</h3>
     </div>
 </div>
@@ -27,36 +27,36 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <section class="lg:col-span-2 bg-cardbg rounded-2xl border border-borderbg overflow-hidden">
         <div class="px-6 py-5 border-b border-borderbg flex justify-between items-center">
-            <h3 class="font-bold text-white">Giao dich doi the gan day</h3>
-            <a href="/User/Transactions" class="text-sm text-cyan-400 hover:text-cyan-300">Xem tat ca</a>
+            <h3 class="font-bold text-white">Giao dịch đổi thẻ gần đây</h3>
+            <a href="/user/transactions" class="text-sm text-cyan-400 hover:text-cyan-300">Xem tất cả</a>
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full text-left whitespace-nowrap">
                 <tbody id="dash-recent-txs" class="divide-y divide-borderbg/50 text-sm">
-                    <tr><td class="p-8 text-center text-slate-500">Dang tai...</td></tr>
+                    <tr><td class="p-8 text-center text-slate-500">Đang tải...</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section class="bg-cardbg rounded-2xl border border-borderbg p-6">
-        <h3 class="font-bold text-white mb-4">Thao tac nhanh</h3>
+        <h3 class="font-bold text-white mb-4">Thao tác nhanh</h3>
         <div class="grid grid-cols-2 gap-3">
-            <a href="/User/Exchange" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-cyan-500/50 text-center transition-colors">
+            <a href="/user/exchange" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-cyan-500/50 text-center transition-colors">
                 <i class="fas fa-bolt text-2xl text-amber-400 mb-2"></i>
-                <span class="block text-xs font-semibold text-slate-300">Doi the</span>
+                <span class="block text-xs font-semibold text-slate-300">Đổi thẻ</span>
             </a>
-            <a href="/User/Withdraw" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-violet-500/50 text-center transition-colors">
+            <a href="/user/withdraw" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-violet-500/50 text-center transition-colors">
                 <i class="fas fa-money-bill-transfer text-2xl text-violet-400 mb-2"></i>
-                <span class="block text-xs font-semibold text-slate-300">Rut tien</span>
+                <span class="block text-xs font-semibold text-slate-300">Rút tiền</span>
             </a>
-            <a href="/User/Wallet" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-emerald-500/50 text-center transition-colors">
+            <a href="/user/wallet" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-emerald-500/50 text-center transition-colors">
                 <i class="fas fa-wallet text-2xl text-emerald-400 mb-2"></i>
-                <span class="block text-xs font-semibold text-slate-300">Vi</span>
+                <span class="block text-xs font-semibold text-slate-300">Ví xu</span>
             </a>
-            <a href="/User/Profile" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-blue-500/50 text-center transition-colors">
+            <a href="/user/profile" class="p-4 bg-darkbg border border-borderbg rounded-2xl hover:border-blue-500/50 text-center transition-colors">
                 <i class="fas fa-user-circle text-2xl text-blue-400 mb-2"></i>
-                <span class="block text-xs font-semibold text-slate-300">Ho so</span>
+                <span class="block text-xs font-semibold text-slate-300">Hồ sơ</span>
             </a>
         </div>
     </section>

@@ -17,14 +17,14 @@ namespace CardWallet.Infrastructure.Migrations
                 name: "kyc_requests",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
-                    UserId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     FrontIdImagePath = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
                     BackIdImagePath = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
                     SelfieImagePath = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
                     Status = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
                     RejectReason = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
-                    ReviewedByUserId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    ReviewedByUserId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     ReviewedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true)
@@ -44,7 +44,7 @@ namespace CardWallet.Infrastructure.Migrations
                 name: "system_settings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Key = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Value = table.Column<string>(type: "longtext", nullable: false),
                     Description = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
@@ -60,15 +60,15 @@ namespace CardWallet.Infrastructure.Migrations
                 name: "withdrawal_requests",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
-                    UserId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Amount = table.Column<long>(type: "bigint", nullable: false),
                     BankName = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     BankAccountNumber = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
                     BankAccountName = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false),
                     Status = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
                     RejectReason = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
-                    ReviewedByUserId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    ReviewedByUserId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     ReviewedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true)

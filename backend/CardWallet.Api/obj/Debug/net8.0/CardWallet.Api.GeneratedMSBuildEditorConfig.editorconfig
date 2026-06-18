@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2V0dGluZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/card-wallet-platform/backend/CardWallet.Api/Pages/Admin/Sso.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3NvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/card-wallet-platform/backend/CardWallet.Api/Pages/Admin/Transactions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVHJhbnNhY3Rpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -94,12 +98,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/card-wallet-platform/backend/CardWallet.Api/Pages/Kyc.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS3ljLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/card-wallet-platform/backend/CardWallet.Api/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/card-wallet-platform/backend/CardWallet.Api/Pages/Manager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/card-wallet-platform/backend/CardWallet.Api/Pages/Partnership/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydG5lcnNoaXBcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/card-wallet-platform/backend/CardWallet.Api/Pages/Policy.cshtml]
@@ -190,8 +198,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/card-wallet-platform/backend/CardWallet.Api/Pages/User/Kyc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxLeWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/card-wallet-platform/backend/CardWallet.Api/Pages/User/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/card-wallet-platform/backend/CardWallet.Api/Pages/User/Referrals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxSZWZlcnJhbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/card-wallet-platform/backend/CardWallet.Api/Pages/User/Tasks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxUYXNrcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/card-wallet-platform/backend/CardWallet.Api/Pages/User/Transactions.cshtml]

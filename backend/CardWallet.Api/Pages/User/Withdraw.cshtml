@@ -1,28 +1,28 @@
 @page
 @{
     Layout = "_UserDashboardLayout";
-    ViewData["Title"] = "Rut tien";
+    ViewData["Title"] = "Rút tiền";
 }
 
 <div class="mb-6">
-    <h2 class="text-2xl font-bold text-white">Rut tien</h2>
-    <p class="text-slate-400 text-sm mt-1">Giao dien tao yeu cau rut tien. Khong goi API duyet rut tien khi backend chua co luong approval.</p>
+    <h2 class="text-2xl font-bold text-white">Rút tiền</h2>
+    <p class="text-slate-400 text-sm mt-1">Giao diện tạo yêu cầu rút tiền. Không gọi API duyệt rút tiền khi backend chưa có luồng duyệt (approval).</p>
 </div>
 
 <section class="max-w-2xl bg-cardbg rounded-2xl border border-borderbg p-6 sm:p-8">
     <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-6">
-        <p class="text-amber-300 text-sm font-semibold">Dang phat trien</p>
-        <p class="text-amber-400/80 text-xs mt-1">Backend hien chi co API withdraw truc tiep, chua co API tao yeu cau/approval rut tien rieng. Trang nay khong fake API.</p>
+        <p class="text-amber-300 text-sm font-semibold">Đang phát triển</p>
+        <p class="text-amber-400/80 text-xs mt-1">Backend hiện chỉ có API withdraw trực tiếp, chưa có API tạo yêu cầu/duyệt rút tiền riêng. Trang này không giả lập (fake) API.</p>
     </div>
     <form class="space-y-5 opacity-60 pointer-events-none">
         <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">So xu muon rut</label>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Số xu muốn rút</label>
             <input type="number" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl text-slate-200" placeholder="0" />
         </div>
         <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Tai khoan ngan hang</label>
-            <input type="text" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl text-slate-200" placeholder="Dang phat trien" />
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Tài khoản ngân hàng</label>
+            <input type="text" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl text-slate-200" placeholder="Đang phát triển" />
         </div>
-        <button type="button" class="w-full bg-slate-700 text-slate-300 font-bold py-4 rounded-xl">Dang phat trien</button>
+        <button type="button" class="w-full bg-slate-700 text-slate-300 font-bold py-4 rounded-xl">Đang phát triển</button>
     </form>
 </section>

@@ -45,7 +45,13 @@ public class AuthService : IAuthService
             PhoneNumber = phone,
             PasswordHash = _passwordHasher.Hash(request.Password),
             Status = "Active",
-            Wallet = new Wallet() // Tự động tạo Ví (mặc định Balance = 0) cùng lúc với User
+            Role = "Customer",
+            Wallet = new Wallet
+            {
+                Balance = 0,
+                LockedBalance = 0,
+                CreatedAt = DateTime.UtcNow
+            }
         };
 
         await _userRepository.AddAsync(user);
@@ -61,6 +67,7 @@ public class AuthService : IAuthService
             FullName = user.FullName,
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
+            Role = user.Role,
             AccessToken = _jwtTokenService.GenerateAccessToken(user),
             RefreshToken = refreshToken.Token
         };
@@ -106,6 +113,7 @@ public class AuthService : IAuthService
             FullName = user.FullName,
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
+            Role = user.Role,
             AccessToken = _jwtTokenService.GenerateAccessToken(user),
             RefreshToken = refreshToken.Token
         };
@@ -138,6 +146,7 @@ public class AuthService : IAuthService
             FullName = user.FullName,
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
+            Role = user.Role,
             AccessToken = _jwtTokenService.GenerateAccessToken(user),
             RefreshToken = newRefreshToken.Token
         };

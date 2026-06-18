@@ -1,45 +1,45 @@
 @page
 @{
     Layout = "_UserDashboardLayout";
-    ViewData["Title"] = "Giao dich";
+    ViewData["Title"] = "Giao dịch";
 }
 
 <div class="mb-6">
-    <h2 class="text-2xl font-bold text-white">Lich su giao dich</h2>
-    <p class="text-slate-400 text-sm mt-1">Bao gom giao dich vi va lich su doi the.</p>
+    <h2 class="text-2xl font-bold text-white">Lịch sử giao dịch</h2>
+    <p class="text-slate-400 text-sm mt-1">Bao gồm giao dịch ví và lịch sử đổi thẻ.</p>
 </div>
 
 <section class="bg-cardbg rounded-2xl border border-borderbg p-5 mb-6 flex flex-col sm:flex-row gap-4">
     <div class="flex-1 relative">
         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-        <input id="tx-search" type="text" placeholder="Tim ma the, serial, nha mang" class="w-full pl-11 pr-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
+        <input id="tx-search" type="text" placeholder="Tìm mã thẻ, serial, nhà mạng" class="w-full pl-11 pr-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
     </div>
     <select id="tx-status" class="w-full sm:w-48 px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 text-sm">
-        <option value="">Tat ca trang thai</option>
-        <option value="Pending">Pending</option>
-        <option value="Processing">Processing</option>
-        <option value="Success">Success</option>
-        <option value="Failed">Failed</option>
+        <option value="">Tất cả trạng thái</option>
+        <option value="Pending">Đang xử lý (Pending)</option>
+        <option value="Processing">Đang đối soát (Processing)</option>
+        <option value="Success">Thành công (Success)</option>
+        <option value="Failed">Thất bại (Failed)</option>
     </select>
 </section>
 
 <section class="bg-cardbg rounded-2xl border border-borderbg overflow-hidden shadow-lg mb-6">
-    <div class="px-6 py-5 border-b border-borderbg"><h3 class="font-bold text-white">Lich su doi the</h3></div>
+    <div class="px-6 py-5 border-b border-borderbg"><h3 class="font-bold text-white">Lịch sử đổi thẻ</h3></div>
     <div class="overflow-x-auto">
         <table class="min-w-full text-left whitespace-nowrap">
             <tbody id="card-txs-body" class="divide-y divide-borderbg/50 text-sm">
-                <tr><td class="p-8 text-center text-slate-500">Dang tai...</td></tr>
+                <tr><td class="p-8 text-center text-slate-500">Đang tải...</td></tr>
             </tbody>
         </table>
     </div>
 </section>
 
 <section class="bg-cardbg rounded-2xl border border-borderbg overflow-hidden shadow-lg">
-    <div class="px-6 py-5 border-b border-borderbg"><h3 class="font-bold text-white">Lich su vi</h3></div>
+    <div class="px-6 py-5 border-b border-borderbg"><h3 class="font-bold text-white">Lịch sử ví</h3></div>
     <div class="overflow-x-auto">
         <table class="min-w-full text-left whitespace-nowrap">
             <tbody id="wallet-txs-body" class="divide-y divide-borderbg/50 text-sm">
-                <tr><td class="p-8 text-center text-slate-500">Dang tai...</td></tr>
+                <tr><td class="p-8 text-center text-slate-500">Đang tải...</td></tr>
             </tbody>
         </table>
     </div>

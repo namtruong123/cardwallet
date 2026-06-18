@@ -23,6 +23,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -131,10 +135,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<SubdomainRoutingMiddleware>();
 
-// UseDefaultFiles is removed to prioritize Razor Pages for the root path.
+app.UseRouting();
+
 app.UseStaticFiles();
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

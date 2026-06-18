@@ -1,0 +1,173 @@
+@page
+@model CardWallet.Api.Pages.User.TasksModel
+@{
+    Layout = "_UserDashboardLayout";
+    ViewData["Title"] = "Nhiệm vụ CTV";
+}
+
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Nhiệm vụ cộng tác viên</h1>
+    <p class="text-slate-400 text-sm mt-1">Xem danh sách nhiệm vụ chung của Web và nhiệm vụ riêng từ Đối tác/Tổ chức quản lý của bạn.</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Tasks list area -->
+    <div class="lg:col-span-2 space-y-6">
+        <!-- Tabs headers -->
+        <div class="border-b border-borderbg flex gap-6 text-sm font-semibold">
+            <button class="border-b-2 border-cyan-400 text-white pb-3 px-1" id="tab-system-btn">Nhiệm vụ chung của Web</button>
+            <button class="text-slate-400 hover:text-white pb-3 px-1" id="tab-partner-btn">Nhiệm vụ của Đối tác/Tổ chức</button>
+        </div>
+
+        <!-- System Tasks List -->
+        <div class="space-y-4" id="system-tasks-list">
+            <!-- Task Item 1 -->
+            <div class="bg-cardbg border border-borderbg rounded-xl p-5 hover:border-cyan-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Hệ thống</span>
+                        <h3 class="text-white font-bold text-base">Chia sẻ ứng dụng lên mạng xã hội</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">Chia sẻ liên kết giới thiệu của bạn lên Facebook, Zalo hoặc Telegram ở chế độ công khai kèm hashtag #CardWallet.</p>
+                    <div class="flex gap-4 text-xs text-slate-500">
+                        <span><i class="fas fa-coins mr-1 text-cyan-400"></i> Thưởng: 1,000 XU</span>
+                        <span><i class="fas fa-clock mr-1"></i> Hạn: Không giới hạn</span>
+                    </div>
+                </div>
+                <button onclick="acceptTask('task-sys-1', 'Chia sẻ ứng dụng')" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition-colors shrink-0">
+                    Nhận Task
+                </button>
+            </div>
+
+            <!-- Task Item 2 -->
+            <div class="bg-cardbg border border-borderbg rounded-xl p-5 hover:border-cyan-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Hệ thống</span>
+                        <h3 class="text-white font-bold text-base">Hoàn thành 3 giao dịch đổi thẻ cào</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">Thực hiện đổi thành công tối thiểu 3 thẻ cào (mệnh giá từ 50,000đ trở lên) trên hệ thống.</p>
+                    <div class="flex gap-4 text-xs text-slate-500">
+                        <span><i class="fas fa-coins mr-1 text-cyan-400"></i> Thưởng: 3,000 XU</span>
+                        <span><i class="fas fa-clock mr-1"></i> Hạn: Hết ngày 30/06</span>
+                    </div>
+                </div>
+                <button onclick="acceptTask('task-sys-2', 'Hoàn thành 3 GD')" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition-colors shrink-0">
+                    Nhận Task
+                </button>
+            </div>
+        </div>
+
+        <!-- Partner Tasks List (Hidden by default) -->
+        <div class="space-y-4 hidden" id="partner-tasks-list">
+            <!-- Partner Task Item 1 -->
+            <div class="bg-cardbg border border-borderbg rounded-xl p-5 hover:border-teal-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">Tổ chức</span>
+                        <h3 class="text-white font-bold text-base">Tuyển dụng 5 CTV con cho nhóm</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">Giới thiệu thành công 5 thành viên mới đăng ký tài khoản qua liên kết giới thiệu trực thuộc nhóm của tổ chức.</p>
+                    <div class="flex gap-4 text-xs text-slate-500">
+                        <span><i class="fas fa-coins mr-1 text-teal-400"></i> Thưởng: 5,000 XU</span>
+                        <span><i class="fas fa-clock mr-1"></i> Hạn: Theo chiến dịch</span>
+                    </div>
+                </div>
+                <button onclick="acceptTask('task-part-1', 'Tuyển dụng 5 CTV')" class="bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition-colors shrink-0">
+                    Nhận Task
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Report Area -->
+    <div class="space-y-6">
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 shadow-xl space-y-4">
+            <h3 class="text-white font-bold text-lg">Báo cáo hoàn thành nhiệm vụ</h3>
+            <p class="text-xs text-slate-400">Nếu bạn đã hoàn thành nhiệm vụ được giao, vui lòng gửi đơn kèm bằng chứng hình ảnh/đường dẫn chứng minh bên dưới để được phê duyệt.</p>
+            
+            <form id="submit-task-form" class="space-y-4">
+                <div>
+                    <label for="task-select" class="block text-xs font-semibold text-slate-300 mb-2">Chọn nhiệm vụ đã nhận</label>
+                    <select id="task-select" required class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 text-sm">
+                        <option value="">-- Chưa nhận nhiệm vụ nào --</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="proof-link" class="block text-xs font-semibold text-slate-300 mb-2">Đường dẫn bằng chứng (URL)</label>
+                    <input id="proof-link" type="url" placeholder="https://facebook.com/..." class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 text-sm" />
+                </div>
+                <div>
+                    <label for="proof-note" class="block text-xs font-semibold text-slate-300 mb-2">Mô tả / Ghi chú</label>
+                    <textarea id="proof-note" rows="3" placeholder="Ghi chú thêm..." class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 text-sm"></textarea>
+                </div>
+                <button type="submit" class="w-full rounded-xl bg-cyan-500 py-3 font-bold text-slate-900 hover:bg-cyan-400 transition-colors text-sm">
+                    Nộp đơn hoàn thành
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const systemTab = document.getElementById('tab-system-btn');
+            const partnerTab = document.getElementById('tab-partner-btn');
+            const systemList = document.getElementById('system-tasks-list');
+            const partnerList = document.getElementById('partner-tasks-list');
+            const taskSelect = document.getElementById('task-select');
+
+            systemTab?.addEventListener('click', () => {
+                systemTab.className = "border-b-2 border-cyan-400 text-white pb-3 px-1";
+                partnerTab.className = "text-slate-400 hover:text-white pb-3 px-1";
+                systemList.classList.remove('hidden');
+                partnerList.classList.add('hidden');
+            });
+
+            partnerTab?.addEventListener('click', () => {
+                partnerTab.className = "border-b-2 border-teal-400 text-white pb-3 px-1";
+                systemTab.className = "text-slate-400 hover:text-white pb-3 px-1";
+                partnerList.classList.remove('hidden');
+                systemList.classList.add('hidden');
+            });
+
+            const acceptedTasks = [];
+
+            window.acceptTask = function(id, name) {
+                if (acceptedTasks.some(t => t.id === id)) {
+                    alert("Bạn đã nhận nhiệm vụ này rồi!");
+                    return;
+                }
+                acceptedTasks.push({ id, name });
+                updateTaskSelect();
+                alert(`Đã nhận nhiệm vụ: ${name}. Hãy thực hiện và nộp báo cáo hoàn thành.`);
+            };
+
+            function updateTaskSelect() {
+                if (acceptedTasks.length === 0) {
+                    taskSelect.innerHTML = '<option value="">-- Chưa nhận nhiệm vụ nào --</option>';
+                    return;
+                }
+                taskSelect.innerHTML = '<option value="">-- Chọn nhiệm vụ để báo cáo --</option>' + 
+                    acceptedTasks.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+            }
+
+            document.getElementById('submit-task-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const selectedId = taskSelect.value;
+                if (!selectedId) {
+                    alert("Vui lòng chọn nhiệm vụ cần báo cáo!");
+                    return;
+                }
+                alert("Nộp đơn hoàn thành nhiệm vụ thành công! Đang chờ Quản lý duyệt.");
+                document.getElementById('submit-task-form').reset();
+                
+                // Remove from accepted list
+                const idx = acceptedTasks.findIndex(t => t.id === selectedId);
+                if (idx > -1) acceptedTasks.splice(idx, 1);
+                updateTaskSelect();
+            });
+        });
+    </script>
+}

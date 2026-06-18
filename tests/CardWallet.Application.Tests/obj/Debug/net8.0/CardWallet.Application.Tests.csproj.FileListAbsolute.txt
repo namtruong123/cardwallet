@@ -117,3 +117,4 @@ d:\card-wallet-platform\tests\CardWallet.Application.Tests\obj\Debug\net8.0\refi
 d:\card-wallet-platform\tests\CardWallet.Application.Tests\obj\Debug\net8.0\CardWallet.Application.Tests.pdb
 d:\card-wallet-platform\tests\CardWallet.Application.Tests\obj\Debug\net8.0\CardWallet.Application.Tests.genruntimeconfig.cache
 d:\card-wallet-platform\tests\CardWallet.Application.Tests\obj\Debug\net8.0\ref\CardWallet.Application.Tests.dll
+D:\card-wallet-platform\tests\CardWallet.Application.Tests\obj\Debug\net8.0\CardWallet.Application.Tests.sourcelink.json

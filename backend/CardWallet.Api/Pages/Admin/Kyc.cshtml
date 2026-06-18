@@ -5,50 +5,174 @@
 }
 
 <div class="mb-6">
-    <h1 class="text-2xl font-bold text-white tracking-tight">Duyệt KYC cấp 2</h1>
-    <p class="text-slate-400 text-sm mt-1">Tất cả tài khoản phải xác thực KYC trước khi được rút xu.</p>
+    <h1 class="text-2xl font-bold text-white tracking-tight">Duyệt Hồ Sơ KYC Cấp 2</h1>
+    <p class="text-slate-400 text-sm mt-1">Quản lý và xét duyệt thủ công các yêu cầu xác minh danh tính của người dùng trước khi rút xu.</p>
 </div>
 
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
-    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
-        <h3 class="font-bold text-white">Luồng mobile KYC</h3>
-        <p class="text-sm text-slate-400 mt-2">Admin/user tạo link, người dùng mở trên điện thoại, upload CCCD mặt trước, mặt sau và chụp khuôn mặt trực tiếp.</p>
+<!-- Quick stats cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5 flex items-center justify-between">
+        <div>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Hồ sơ chờ duyệt</p>
+            <h3 class="text-2xl font-extrabold text-amber-400 mt-1" id="stat-kyc-pending">0</h3>
+        </div>
+        <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg">
+            <i class="fas fa-clock"></i>
+        </div>
     </div>
-    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
-        <h3 class="font-bold text-white">Dữ liệu gửi về admin</h3>
-        <p class="text-sm text-slate-400 mt-2">3 trường bắt buộc: ảnh mặt trước CCCD, ảnh mặt sau CCCD, ảnh khuôn mặt người dùng.</p>
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5 flex items-center justify-between">
+        <div>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Đã phê duyệt</p>
+            <h3 class="text-2xl font-extrabold text-emerald-400 mt-1" id="stat-kyc-approved">0</h3>
+        </div>
+        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg">
+            <i class="fas fa-check-double"></i>
+        </div>
     </div>
-    <div class="bg-cardbg border border-borderbg rounded-xl p-5">
-        <h3 class="font-bold text-white">Duyệt thủ công</h3>
-        <p class="text-sm text-slate-400 mt-2">Admin kiểm tra ảnh, thông tin tài khoản và cập nhật trạng thái Approved hoặc Rejected kèm lý do.</p>
+    <div class="bg-cardbg border border-borderbg rounded-xl p-5 flex items-center justify-between">
+        <div>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Đã từ chối</p>
+            <h3 class="text-2xl font-extrabold text-rose-400 mt-1" id="stat-kyc-rejected">0</h3>
+        </div>
+        <div class="w-10 h-10 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-lg">
+            <i class="fas fa-ban"></i>
+        </div>
     </div>
 </section>
 
+<!-- Filter tabs & list -->
 <section class="bg-cardbg border border-borderbg rounded-xl overflow-hidden">
-    <div class="px-5 py-4 border-b border-borderbg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <div>
-            <h2 class="font-semibold text-white">Danh sách hồ sơ KYC</h2>
-            <p class="text-xs text-slate-500 mt-1">Chưa có API KYC thật. Cần phát triển các endpoint trong tài liệu tổng hợp.</p>
+    <div class="px-5 py-4 border-b border-borderbg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="flex flex-wrap gap-2" id="kyc-tabs">
+            <button class="px-4 py-2 text-xs font-bold rounded-lg bg-cyan-600 text-white transition-colors" data-status="Pending">Chờ Phê Duyệt</button>
+            <button class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:bg-slate-800 transition-colors" data-status="Approved">Đã Phê Duyệt</button>
+            <button class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:bg-slate-800 transition-colors" data-status="Rejected">Đã Từ Chối</button>
+            <button class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:bg-slate-800 transition-colors" data-status="All">Tất Cả</button>
         </div>
-        <button class="px-4 py-2 rounded-lg bg-slate-800 text-slate-400 text-sm cursor-not-allowed" disabled>Tạo link KYC</button>
+        <div>
+            <button type="button" onclick="fetchKycRequests()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold border border-borderbg transition-colors">
+                <i class="fas fa-sync-alt mr-1"></i> Làm mới
+            </button>
+        </div>
     </div>
+    
     <div class="overflow-x-auto">
         <table class="min-w-full text-left whitespace-nowrap">
-            <thead class="bg-darkbg text-xs uppercase tracking-wider text-slate-400">
+            <thead class="bg-darkbg text-[10px] uppercase tracking-wider text-slate-500 font-bold">
                 <tr>
-                    <th class="px-5 py-3">Người dùng</th>
-                    <th class="px-5 py-3">CCCD mặt trước</th>
-                    <th class="px-5 py-3">CCCD mặt sau</th>
-                    <th class="px-5 py-3">Khuôn mặt</th>
-                    <th class="px-5 py-3">Trạng thái</th>
-                    <th class="px-5 py-3 text-right">Hành động</th>
+                    <th class="px-6 py-3.5">Người dùng</th>
+                    <th class="px-6 py-3.5">Số điện thoại / Email</th>
+                    <th class="px-6 py-3.5">Ngày yêu cầu</th>
+                    <th class="px-6 py-3.5">Trạng thái</th>
+                    <th class="px-6 py-3.5 text-right">Thao tác</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="kyc-table-body" class="divide-y divide-borderbg/50">
                 <tr>
-                    <td colspan="6" class="px-5 py-10 text-center text-slate-500">Chưa triển khai API lưu và duyệt hồ sơ KYC.</td>
+                    <td colspan="5" class="px-6 py-12 text-center text-slate-500">
+                        <i class="fas fa-spinner fa-spin mr-2"></i> Đang tải dữ liệu hồ sơ KYC...
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </section>
+
+<!-- Review Request Modal -->
+<div id="kyc-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div class="bg-cardbg border border-borderbg rounded-2xl max-w-4xl w-full flex flex-col max-h-[90vh] shadow-2xl relative">
+        <div class="px-6 py-4 border-b border-borderbg flex items-center justify-between">
+            <h3 class="text-white font-bold text-lg">Chi Tiết Hồ Sơ Xác Minh KYC</h3>
+            <button type="button" class="text-slate-400 hover:text-white transition-colors" onclick="document.getElementById('kyc-modal').classList.add('hidden')">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
+        
+        <div class="flex-1 p-6 overflow-y-auto space-y-6">
+            <!-- User info panel -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-darkbg/50 border border-borderbg p-4 rounded-xl">
+                <div>
+                    <span class="text-slate-500 text-[10px] font-bold uppercase">Họ và tên</span>
+                    <p class="text-white font-bold text-sm mt-0.5" id="kyc-modal-name">...</p>
+                </div>
+                <div>
+                    <span class="text-slate-500 text-[10px] font-bold uppercase">Số điện thoại</span>
+                    <p class="text-slate-300 font-medium text-sm mt-0.5" id="kyc-modal-phone">...</p>
+                </div>
+                <div>
+                    <span class="text-slate-500 text-[10px] font-bold uppercase">Địa chỉ Email</span>
+                    <p class="text-slate-300 font-medium text-sm mt-0.5 break-all" id="kyc-modal-email">...</p>
+                </div>
+                <div>
+                    <span class="text-slate-500 text-[10px] font-bold uppercase">Thời gian gửi</span>
+                    <p class="text-slate-400 text-xs mt-0.5" id="kyc-modal-date">...</p>
+                </div>
+            </div>
+
+            <!-- Documents Image Gallery -->
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Hình ảnh tài liệu đã tải lên (Bấm để xem ảnh phóng lớn)</h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- Front ID Card -->
+                    <div class="flex flex-col">
+                        <span class="text-xs text-slate-400 mb-2 font-medium">CCCD Mặt Trước</span>
+                        <div class="w-full h-48 border border-borderbg rounded-xl overflow-hidden bg-darkbg cursor-zoom-in hover:border-cyan-500/50 transition-colors">
+                            <img id="kyc-img-front" src="" alt="Mặt trước CCCD" class="w-full h-full object-cover rounded-xl img-lightbox-trigger">
+                        </div>
+                    </div>
+                    
+                    <!-- Back ID Card -->
+                    <div class="flex flex-col">
+                        <span class="text-xs text-slate-400 mb-2 font-medium">CCCD Mặt Sau</span>
+                        <div class="w-full h-48 border border-borderbg rounded-xl overflow-hidden bg-darkbg cursor-zoom-in hover:border-cyan-500/50 transition-colors">
+                            <img id="kyc-img-back" src="" alt="Mặt sau CCCD" class="w-full h-full object-cover rounded-xl img-lightbox-trigger">
+                        </div>
+                    </div>
+                    
+                    <!-- Face Selfie -->
+                    <div class="flex flex-col">
+                        <span class="text-xs text-slate-400 mb-2 font-medium">Ảnh Khuôn Mặt / Chân Dung</span>
+                        <div class="w-full h-48 border border-borderbg rounded-xl overflow-hidden bg-darkbg cursor-zoom-in hover:border-cyan-500/50 transition-colors">
+                            <img id="kyc-img-selfie" src="" alt="Selfie khuôn mặt" class="w-full h-full object-cover rounded-xl img-lightbox-trigger">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reject reason input (Hidden by default, shown when clicking reject) -->
+            <div id="reject-reason-container" class="hidden space-y-2 border-t border-borderbg pt-4">
+                <label class="block text-xs font-bold text-rose-400 uppercase">Lý do từ chối xác thực <span class="text-rose-500">*</span></label>
+                <textarea id="reject-reason" rows="3" placeholder="Nhập lý do từ chối cụ thể để người dùng biết cách sửa..." class="w-full bg-darkbg border border-borderbg rounded-lg p-3 text-sm text-slate-200 focus:outline-none focus:border-rose-500 transition-colors"></textarea>
+            </div>
+        </div>
+        
+        <div class="px-6 py-4 border-t border-borderbg bg-darkbg flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div id="kyc-modal-reviewer-info" class="text-xs text-slate-500">
+                <!-- Will be populated for approved/rejected requests -->
+            </div>
+            
+            <div class="flex gap-3 w-full sm:w-auto" id="kyc-action-buttons">
+                <button type="button" id="btn-kyc-reject-mode" class="flex-1 sm:flex-none px-5 py-2.5 bg-rose-600/10 hover:bg-rose-600 text-rose-400 hover:text-white font-bold text-xs rounded-xl border border-rose-500/20 transition-all">
+                    Từ Chối Hồ Sơ
+                </button>
+                <button type="button" id="btn-kyc-confirm-reject" class="hidden flex-1 sm:flex-none px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl transition-all">
+                    Xác Nhận Từ Chối
+                </button>
+                <button type="button" id="btn-kyc-approve" class="flex-1 sm:flex-none px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-cyan-600/10">
+                    Phê Duyệt KYC
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Lightbox Overlay -->
+<div id="lightbox-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/95 p-4 cursor-zoom-out" onclick="this.classList.add('hidden')">
+    <button type="button" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+        <i class="fas fa-times text-2xl"></i>
+    </button>
+    <div class="max-w-4xl max-h-[90vh] overflow-hidden flex items-center justify-center rounded-lg shadow-2xl">
+        <img id="lightbox-img" src="" alt="Ảnh phóng lớn" class="max-w-full max-h-[90vh] object-contain">
+    </div>
+</div>

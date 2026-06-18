@@ -275,3 +275,4 @@ C:\tmp\cardwallet-build-check\CardWallet.Api.deps.json
 C:\tmp\cardwallet-build-check\CardWallet.Api.runtimeconfig.json
 C:\tmp\cardwallet-build-check\CardWallet.Api.dll
 C:\tmp\cardwallet-build-check\CardWallet.Api.pdb
+D:\card-wallet-platform\backend\CardWallet.Api\obj\Debug\net8.0\CardWallet.Api.sourcelink.json

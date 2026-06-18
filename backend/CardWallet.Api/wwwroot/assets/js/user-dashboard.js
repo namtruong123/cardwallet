@@ -3,6 +3,8 @@
     let cardRates = [];
     let cardTransactions = [];
     let pollInterval = null;
+    let selfieBlob = null;
+    let cameraStream = null;
 
     function getUserToken() {
         const raw = localStorage.getItem('authData');
@@ -40,7 +42,7 @@
             const response = await fetch(url, { ...options, headers });
             if (response.status === 401) {
                 clearUserToken();
-                window.location.href = '/Login';
+                window.location.href = '/login';
                 return null;
             }
 
@@ -129,7 +131,7 @@
         }
 
         clearUserToken();
-        window.location.href = '/Login';
+        window.location.href = '/login';
     }
 
     function setupAuthForms() {
@@ -152,7 +154,24 @@
                 accessToken: auth.accessToken,
                 refreshToken: auth.refreshToken
             }));
-            window.location.href = '/User/Exchange';
+            
+            const role = auth.role || 'Customer';
+            if (role === 'Admin') {
+                const host = window.location.host;
+                let ssoUrl = "";
+                if (host.includes("localhost") || host.includes("127.0.0.1") || host.includes("lvh.me")) {
+                    ssoUrl = `${window.location.protocol}//app.lvh.me:${window.location.port}/auth-sso`;
+                } else {
+                    ssoUrl = `${window.location.protocol}//app.mmohub.xyz/auth-sso`;
+                }
+                window.location.href = `${ssoUrl}?token=${encodeURIComponent(auth.accessToken)}&refreshToken=${encodeURIComponent(auth.refreshToken)}&userId=${encodeURIComponent(auth.userId)}&fullName=${encodeURIComponent(auth.fullName)}&email=${encodeURIComponent(auth.email)}&phoneNumber=${encodeURIComponent(auth.phoneNumber)}&role=Admin`;
+            } else if (role === 'CentralManager') {
+                window.location.href = '/manager';
+            } else if (role === 'PartnerOrg') {
+                window.location.href = '/partnership';
+            } else {
+                window.location.href = '/user';
+            }
         });
 
         document.getElementById('user-register-form')?.addEventListener('submit', async event => {
@@ -184,7 +203,7 @@
                 accessToken: auth.accessToken,
                 refreshToken: auth.refreshToken
             }));
-            window.location.href = '/User/Exchange';
+            window.location.href = '/user';
         });
     }
 
@@ -437,6 +456,252 @@
         if (element) element.innerHTML = value;
     }
 
+    async function loadUserKycStatus() {
+        const response = await userApiFetch(`${apiBase}/kyc/me`);
+        if (!response) return null;
+        
+        let status = null;
+        let rejectReason = "";
+        
+        if (response.status === 200) {
+            const data = await readJson(response, {});
+            if (data) {
+                status = data.status;
+                rejectReason = data.rejectReason || "";
+            }
+        }
+        
+        const kycStatusEl = document.getElementById('kyc-profile-status');
+        const kycDescEl = document.getElementById('kyc-profile-desc');
+        const kycIconEl = document.getElementById('kyc-profile-icon');
+        const kycBtnEl = document.getElementById('kyc-profile-btn');
+        
+        if (kycStatusEl) {
+            if (status === 'Approved') {
+                kycStatusEl.textContent = 'Đã Xác Minh (Approved)';
+                kycStatusEl.className = 'text-emerald-400 font-bold text-sm mb-1';
+                if (kycDescEl) kycDescEl.textContent = 'Tài khoản của bạn đã được xác thực thành công. Bạn đã mở khóa chức năng rút xu.';
+                if (kycIconEl) {
+                    kycIconEl.className = 'w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-3';
+                    kycIconEl.innerHTML = '<i class="fas fa-user-check"></i>';
+                }
+                if (kycBtnEl) kycBtnEl.classList.add('hidden');
+            } else if (status === 'Pending') {
+                kycStatusEl.textContent = 'Đang Chờ Duyệt (Pending)';
+                kycStatusEl.className = 'text-amber-400 font-bold text-sm mb-1';
+                if (kycDescEl) kycDescEl.textContent = 'Hồ sơ KYC của bạn đã được gửi và đang chờ quản trị viên phê duyệt.';
+                if (kycIconEl) {
+                    kycIconEl.className = 'w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-3';
+                    kycIconEl.innerHTML = '<i class="fas fa-hourglass-half"></i>';
+                }
+                if (kycBtnEl) {
+                    kycBtnEl.textContent = 'Xem Chi Tiết';
+                    kycBtnEl.className = 'bg-slate-800 text-slate-300 hover:text-white font-semibold py-2 px-5 rounded-lg text-xs transition-colors';
+                }
+            } else if (status === 'Rejected') {
+                kycStatusEl.textContent = 'Bị Từ Chối (Rejected)';
+                kycStatusEl.className = 'text-rose-400 font-bold text-sm mb-1';
+                if (kycDescEl) kycDescEl.textContent = `Hồ sơ bị từ chối: ${rejectReason || 'Vui lòng cung cấp hình ảnh rõ nét hơn.'}`;
+                if (kycIconEl) {
+                    kycIconEl.className = 'w-12 h-12 rounded-full bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl mb-3';
+                    kycIconEl.innerHTML = '<i class="fas fa-user-xmark"></i>';
+                }
+                if (kycBtnEl) {
+                    kycBtnEl.textContent = 'Gửi Lại Xác Minh';
+                    kycBtnEl.className = 'bg-rose-600 hover:bg-rose-500 text-white font-semibold py-2 px-5 rounded-lg text-xs transition-colors';
+                }
+            } else {
+                kycStatusEl.textContent = 'Chưa Xác Minh Cấp 2';
+                kycStatusEl.className = 'text-white font-bold text-sm mb-1';
+                if (kycDescEl) kycDescEl.textContent = 'Xác minh danh tính để mở khóa chức năng rút xu và nhận ưu đãi affiliate.';
+                if (kycIconEl) {
+                    kycIconEl.className = 'w-12 h-12 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xl mb-3';
+                    kycIconEl.innerHTML = '<i class="fas fa-id-card"></i>';
+                }
+                if (kycBtnEl) kycBtnEl.classList.remove('hidden');
+            }
+        }
+        
+        return { status, rejectReason };
+    }
+
+    async function initUserKycPage() {
+        const kycForm = document.getElementById('kyc-submit-form');
+        if (!kycForm) return;
+
+        const kycInfo = await loadUserKycStatus();
+        const status = kycInfo ? kycInfo.status : null;
+        const rejectReason = kycInfo ? kycInfo.rejectReason : "";
+
+        const banner = document.getElementById('kyc-status-banner');
+        const bannerTitle = document.getElementById('kyc-status-title');
+        const bannerDesc = document.getElementById('kyc-status-desc');
+        const bannerIcon = document.getElementById('kyc-status-icon');
+        const formContainer = document.getElementById('kyc-form-container');
+
+        if (status === 'Approved' || status === 'Pending') {
+            banner.classList.remove('hidden');
+            formContainer.classList.add('hidden');
+            if (status === 'Approved') {
+                banner.className = 'mb-6 rounded-2xl border bg-emerald-500/10 border-emerald-500/20 text-emerald-300 p-4 sm:p-5 flex items-start gap-4';
+                bannerIcon.className = 'w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg shrink-0';
+                bannerIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                bannerTitle.textContent = 'Tài Khoản Đã Xác Minh';
+                bannerDesc.textContent = 'Bạn đã hoàn thành xác minh danh tính KYC cấp 2. Chức năng rút xu đã được mở khóa.';
+            } else {
+                banner.className = 'mb-6 rounded-2xl border bg-amber-500/10 border-amber-500/20 text-amber-300 p-4 sm:p-5 flex items-start gap-4';
+                bannerIcon.className = 'w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg shrink-0';
+                bannerIcon.innerHTML = '<i class="fas fa-hourglass-half"></i>';
+                bannerTitle.textContent = 'Hồ Sơ Đang Chờ Duyệt';
+                bannerDesc.textContent = 'Hồ sơ xác thực KYC của bạn đã được gửi lên hệ thống và đang trong quá trình xét duyệt thủ công. Vui lòng quay lại sau.';
+            }
+        } else if (status === 'Rejected') {
+            banner.classList.remove('hidden');
+            banner.className = 'mb-6 rounded-2xl border bg-rose-500/10 border-rose-500/20 text-rose-300 p-4 sm:p-5 flex items-start gap-4';
+            bannerIcon.className = 'w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg shrink-0';
+            bannerIcon.innerHTML = '<i class="fas fa-times-circle"></i>';
+            bannerTitle.textContent = 'Yêu Cầu Xác Minh Bị Từ Chối';
+            bannerDesc.textContent = `Lý do: ${rejectReason || 'Thông tin hình ảnh không hợp lệ hoặc không rõ chữ.'} Vui lòng cập nhật hình ảnh chuẩn xác dưới đây và gửi lại yêu cầu.`;
+        }
+
+        document.getElementById('btn-show-qr')?.addEventListener('click', () => {
+            const modal = document.getElementById('qr-modal');
+            const qrImg = document.getElementById('qr-img');
+            const qrLink = document.getElementById('qr-link');
+            
+            const currentUrl = window.location.href;
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}`;
+            qrLink.textContent = currentUrl;
+            modal.classList.remove('hidden');
+        });
+
+        setupImagePreview('front-file', 'front-preview', '<i class="fas fa-id-card text-3xl mb-2"></i><span class="text-xs font-semibold text-center">Bấm để chọn file hoặc chụp hình mặt trước</span>');
+        setupImagePreview('back-file', 'back-preview', '<i class="fas fa-id-card text-3xl mb-2"></i><span class="text-xs font-semibold text-center">Bấm để chọn file hoặc chụp hình mặt sau</span>');
+        setupImagePreview('selfie-file', 'selfie-preview', '<i class="fas fa-user-astronaut text-3xl mb-2"></i><span class="text-xs font-semibold text-center">Bấm để chọn file hoặc chụp chân dung</span>', (file) => {
+            selfieBlob = file;
+        });
+
+        const btnOpenCamera = document.getElementById('btn-open-camera');
+        const btnCloseCamera = document.getElementById('btn-close-camera');
+        const btnCaptureSnap = document.getElementById('btn-capture-snap');
+        const cameraModal = document.getElementById('camera-modal');
+        const video = document.getElementById('camera-video');
+
+        btnOpenCamera?.addEventListener('click', async () => {
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } } 
+                });
+                video.srcObject = cameraStream;
+                cameraModal.classList.remove('hidden');
+            } catch (err) {
+                console.error("Camera access error:", err);
+                showToast("Không thể kết nối webcam. Vui lòng chọn tệp ảnh có sẵn.", "error");
+            }
+        });
+
+        const stopCamera = () => {
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+            cameraModal.classList.add('hidden');
+        };
+
+        btnCloseCamera?.addEventListener('click', stopCamera);
+
+        btnCaptureSnap?.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.translate(canvas.width, 0);
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            canvas.toBlob((blob) => {
+                selfieBlob = blob;
+                const imgUrl = URL.createObjectURL(blob);
+                const preview = document.getElementById('selfie-preview');
+                if (preview) {
+                    preview.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover rounded-xl" alt="Selfie Preview">`;
+                }
+                showToast("Chụp ảnh khuôn mặt thành công.");
+                stopCamera();
+            }, 'image/jpeg', 0.9);
+        });
+
+        kycForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const frontInput = document.getElementById('front-file');
+            const backInput = document.getElementById('back-file');
+            const frontFile = frontInput.files[0];
+            const backFile = backInput.files[0];
+
+            if (!frontFile) {
+                showToast("Vui lòng tải lên ảnh CCCD mặt trước.", "error");
+                return;
+            }
+            if (!backFile) {
+                showToast("Vui lòng tải lên ảnh CCCD mặt sau.", "error");
+                return;
+            }
+            if (!selfieBlob) {
+                showToast("Vui lòng chụp ảnh khuôn mặt hoặc tải lên ảnh chân dung.", "error");
+                return;
+            }
+
+            const submitBtn = document.getElementById('btn-kyc-submit');
+            if (submitBtn) submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('frontId', frontFile);
+            formData.append('backId', backFile);
+            
+            const selfieFile = selfieBlob instanceof File ? selfieBlob : new File([selfieBlob], "selfie.jpg", { type: "image/jpeg" });
+            formData.append('selfie', selfieFile);
+
+            const response = await userApiFetch(`${apiBase}/kyc/submit`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (submitBtn) submitBtn.disabled = false;
+
+            if (response && response.ok) {
+                showToast("Gửi hồ sơ KYC thành công! Vui lòng chờ phê duyệt.");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            } else {
+                const errorText = await response.text();
+                showToast(errorText || "Gửi hồ sơ thất bại. Vui lòng thử lại.", "error");
+            }
+        });
+    }
+
+    function setupImagePreview(inputId, previewId, fallbackHtml, callback) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        
+        input?.addEventListener('change', () => {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover rounded-xl" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+                if (callback) callback(file);
+            } else {
+                preview.innerHTML = fallbackHtml;
+                if (callback) callback(null);
+            }
+        });
+    }
+
     function wirePage() {
         const path = window.location.pathname.toLowerCase();
         document.querySelectorAll('#user-sidebar-menu a[href]').forEach(link => {
@@ -477,6 +742,10 @@
             loadWalletTransactions();
             document.getElementById('tx-search')?.addEventListener('input', renderCardTransactions);
             document.getElementById('tx-status')?.addEventListener('change', renderCardTransactions);
+        } else if (path.includes('/profile')) {
+            loadUserKycStatus();
+        } else if (path.includes('/kyc')) {
+            initUserKycPage();
         }
     }
 

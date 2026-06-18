@@ -1,0 +1,271 @@
+@page
+@model CardWallet.Api.Pages.Manager.IndexModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý hệ thống - CardWallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { darkbg: '#020617', cardbg: '#0f172a', borderbg: '#1e293b' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-darkbg text-slate-300 flex h-screen overflow-hidden selection:bg-indigo-500/30">
+    <!-- Mobile Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/60 md:hidden"></div>
+
+    <!-- Sidebar -->
+    <aside id="manager-sidebar" class="fixed md:static inset-y-0 left-0 z-40 hidden md:flex w-64 bg-cardbg border-r border-borderbg flex-col shadow-xl">
+        <div class="h-16 flex items-center px-6 border-b border-borderbg">
+            <div class="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mr-3 shadow-lg shadow-indigo-500/20">
+                <i class="fas fa-user-shield text-white text-sm"></i>
+            </div>
+            <h2 class="text-lg font-bold text-white tracking-wide">Manager<span class="text-indigo-400">Hub</span></h2>
+        </div>
+
+        <nav class="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-semibold text-indigo-400 bg-slate-800/80 rounded-lg group">
+                <i class="fas fa-home w-5 mr-3 text-indigo-400"></i> Dashboard
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                <i class="fas fa-users w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Quản lý CTV
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                <i class="fas fa-tasks w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Duyệt nhiệm vụ
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                <i class="fas fa-right-left w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Chuyển điểm
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                <i class="fas fa-blog w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Quản lý Blog
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-borderbg">
+            <button id="logout-btn" class="w-full flex items-center justify-center px-4 py-2.5 bg-slate-800/50 hover:bg-rose-500/10 text-slate-400 hover:text-rose-500 rounded-lg transition-colors text-sm font-medium border border-transparent hover:border-rose-500/20">
+                <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+        <header class="h-16 bg-cardbg/80 backdrop-blur-md border-b border-borderbg flex items-center justify-between px-4 sm:px-6 z-10">
+            <div class="flex min-w-0 items-center">
+                <button id="menu-button" type="button" class="md:hidden shrink-0 text-slate-400 hover:text-white mr-4">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-base sm:text-lg font-semibold text-white truncate">Tổng quan Quản lý</h1>
+            </div>
+            
+            <div class="flex shrink-0 items-center space-x-3 sm:space-x-4">
+                <div class="flex items-center border-l border-borderbg pl-3 sm:pl-4">
+                    <img id="user-avatar" src="https://ui-avatars.com/api/?name=Manager&background=6366F1&color=fff" alt="Manager" class="w-8 h-8 rounded-full border border-slate-700">
+                    <div class="ml-2 hidden sm:block leading-tight text-left">
+                        <span id="manager-name" class="block text-sm font-medium text-slate-200">Quản lý</span>
+                        <span class="block text-[10px] uppercase tracking-wide text-indigo-400">Central Manager</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-darkbg p-3 sm:p-6 lg:p-8">
+            <div class="max-w-7xl mx-auto space-y-6">
+                <!-- Welcome Section -->
+                <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/20 to-transparent rounded-2xl border border-indigo-500/20 p-6 shadow-xl">
+                    <h2 class="text-xl font-bold text-white tracking-tight">Chào mừng quay trở lại, <span id="welcome-name" class="text-indigo-400">Quản lý</span>!</h2>
+                    <p class="text-slate-400 text-sm mt-1">Dưới đây là bảng quản lý dành riêng cho điều hành viên. Bạn có thể sử dụng các chức năng được cấp phép bên dưới.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-cardbg rounded-xl border border-borderbg p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Quyền hạn</p>
+                            <h3 class="text-lg font-bold text-white">QL tập trung (Nhóm 1)</h3>
+                        </div>
+                        <i class="fas fa-user-shield text-indigo-400 text-2xl"></i>
+                    </div>
+                    <div class="bg-cardbg rounded-xl border border-borderbg p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Trạng thái tài khoản</p>
+                            <h3 class="text-lg font-bold text-emerald-400">Đang hoạt động</h3>
+                        </div>
+                        <i class="fas fa-check-circle text-emerald-400 text-2xl"></i>
+                    </div>
+                    <div class="bg-cardbg rounded-xl border border-borderbg p-5 flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Dòng tiền chuyển điểm</p>
+                            <h3 class="text-lg font-bold text-indigo-400">Được phép chuyển</h3>
+                        </div>
+                        <i class="fas fa-right-left text-indigo-400 text-2xl"></i>
+                    </div>
+                </div>
+
+                <!-- Detailed Features Container -->
+                <section class="bg-cardbg rounded-xl border border-borderbg overflow-hidden p-6">
+                    <h3 class="font-bold text-white text-lg border-b border-borderbg pb-3">Các phân hệ quản lý của bạn</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
+                            <h4 class="font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-users text-indigo-400"></i> Quản lý thành viên CTV
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-2">Duyệt thông tin, theo dõi danh sách cộng tác viên trực thuộc và lịch sử.</p>
+                        </div>
+                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
+                            <h4 class="font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-tasks text-indigo-400"></i> Quản lý nhiệm vụ
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-2">Theo dõi, tạo lập và phân phối nhiệm vụ cho các cộng tác viên.</p>
+                        </div>
+                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
+                            <h4 class="font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-check-double text-indigo-400"></i> Duyệt hoàn thành nhiệm vụ
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-2">Phê duyệt hoặc bác bỏ các yêu cầu hoàn thành nhiệm vụ của cộng tác viên.</p>
+                        </div>
+                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
+                            <h4 class="font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-right-left text-indigo-400"></i> Chuyển điểm
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-2">Thực hiện phân phối, chuyển quỹ điểm cho các cộng tác viên trực thuộc hệ thống quản lý.</p>
+                        </div>
+                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
+                            <h4 class="font-bold text-white flex items-center gap-2">
+                                <i class="fas fa-blog text-indigo-400"></i> Viết bài / Quản lý Blog
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-2">Cập nhật tin tức, viết bài hướng dẫn và thông tin chính sách trên trang tin của CardWallet.</p>
+                        </div>
+                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 opacity-50 border-dashed">
+                            <h4 class="font-bold text-slate-500 flex items-center gap-2">
+                                <i class="fas fa-ban"></i> Module Admin (Bị khóa)
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-2">Các tính năng Admin cấp cao như cài đặt hệ thống, duyệt KYC và rút xu chỉ hiển thị trên app.mmohub.xyz.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script for validation, menu toggle, logout -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const apiBase = '/api';
+
+            // Sidebar toggling
+            const sidebar = document.getElementById('manager-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const menuBtn = document.getElementById('menu-button');
+
+            function toggleMenu() {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('flex');
+                overlay.classList.toggle('hidden');
+            }
+
+            menuBtn?.addEventListener('click', toggleMenu);
+            overlay?.addEventListener('click', toggleMenu);
+
+            // Fetch Token helper
+            function getToken() {
+                const raw = localStorage.getItem('authData');
+                if (raw) {
+                    try {
+                        const auth = JSON.parse(raw);
+                        return auth.accessToken || auth.token || null;
+                    } catch {
+                        return null;
+                    }
+                }
+                return null;
+            }
+
+            const token = getToken();
+            if (!token) {
+                redirectToLogin();
+                return;
+            }
+
+            // Verify role via API call to /users/me
+            try {
+                const response = await fetch(`${apiBase}/users/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!response.ok) {
+                    redirectToLogin();
+                    return;
+                }
+
+                const user = await response.json();
+                if (user.role !== 'CentralManager') {
+                    redirectToLogin();
+                    return;
+                }
+
+                // Hydrate Profile Details
+                const displayName = user.fullName || user.email || 'Quản lý';
+                document.getElementById('manager-name').textContent = displayName;
+                document.getElementById('welcome-name').textContent = displayName;
+                document.getElementById('user-avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=6366F1&color=fff`;
+
+            } catch (err) {
+                console.error("Lỗi xác thực quản lý:", err);
+                redirectToLogin();
+            }
+
+            // Logout action
+            document.getElementById('logout-btn')?.addEventListener('click', async () => {
+                const raw = localStorage.getItem('authData');
+                if (raw) {
+                    try {
+                        const auth = JSON.parse(raw);
+                        if (auth.refreshToken) {
+                            await fetch(`${apiBase}/auth/logout`, {
+                                method: 'POST',
+                                headers: { 
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify({ refreshToken: auth.refreshToken })
+                            });
+                        }
+                    } catch (e) {}
+                }
+                localStorage.removeItem('authData');
+                redirectToLogin();
+            });
+
+            function redirectToLogin() {
+                const host = window.location.host;
+                let loginUrl = "";
+                if (host.includes("localhost") || host.includes("127.0.0.1")) {
+                    loginUrl = window.location.protocol + "//localhost:" + window.location.port + "/login";
+                } else {
+                    loginUrl = window.location.protocol + "//mmohub.xyz/login";
+                }
+                window.location.href = loginUrl;
+            }
+        });
+    </script>
+</body>
+</html>
