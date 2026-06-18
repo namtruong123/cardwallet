@@ -1,0 +1,12 @@
+D:\card-wallet-platform\backend\CardWallet.Domain\bin\Release\net8.0\CardWallet.Domain.deps.json
+D:\card-wallet-platform\backend\CardWallet.Domain\bin\Release\net8.0\CardWallet.Domain.dll
+D:\card-wallet-platform\backend\CardWallet.Domain\bin\Release\net8.0\CardWallet.Domain.pdb
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.AssemblyInfoInputs.cache
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.AssemblyInfo.cs
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.csproj.CoreCompileInputs.cache
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.sourcelink.json
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.dll
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\refint\CardWallet.Domain.dll
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\CardWallet.Domain.pdb
+D:\card-wallet-platform\backend\CardWallet.Domain\obj\Release\net8.0\ref\CardWallet.Domain.dll

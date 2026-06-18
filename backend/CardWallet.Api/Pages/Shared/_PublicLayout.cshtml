@@ -6,47 +6,55 @@
     <title>@ViewData["Title"] - CardWallet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
-                    colors: { darkbg: '#0F172A', cardbg: '#1E293B', borderbg: '#334155' }
+                    fontFamily: { sans: ['"DM Sans"', '"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { darkbg: '#060606', cardbg: '#0D0D0D', borderbg: '#1A1A2E' }
                 }
             }
         }
     </script>
-    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+    <style>
+        body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif; }
+    </style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
-<body class="bg-darkbg text-slate-300 min-h-screen">
-    <header class="border-b border-borderbg bg-cardbg/90 backdrop-blur sticky top-0 z-50">
+<body class="bg-[#060606] text-gray-300 min-h-screen">
+    <header class="bg-[#060606]/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/40">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" class="font-bold text-white text-lg flex items-center gap-2">
-                <i class="fas fa-wallet text-cyan-400"></i>
-                CardWallet<span class="text-cyan-400">.</span>
+                <i class="fas fa-wallet text-emerald-400"></i>
+                CardWallet<span class="text-emerald-400">.</span>
             </a>
-            <div class="hidden md:flex items-center gap-2">
-                <a href="/cardrates" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Bảng giá</a>
-                <a href="/guide" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Hướng dẫn</a>
-                <a href="/user/exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Đổi thẻ</a>
-                <a href="/login" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Đăng nhập</a>
-                <a href="/register" class="px-4 py-2 ml-2 rounded-lg text-sm font-bold text-white bg-cyan-600 hover:bg-cyan-500 shadow-md transition-colors">Đăng ký</a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-colors">Trang chủ</a>
+                <a href="/cardrates" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-colors">Bảng giá</a>
+                <a href="/guide" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-colors">Hướng dẫn</a>
+                <a href="/user/exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-colors">Đổi thẻ</a>
+                <a href="/contact" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-colors">Liên hệ</a>
+                <div class="ml-4 flex items-center gap-2">
+                    <a href="/login" class="px-4 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white border border-gray-700 hover:border-gray-500 transition-all">Đăng nhập</a>
+                    <a href="/register" class="px-5 py-2 rounded-full text-sm font-bold text-black bg-emerald-400 hover:bg-emerald-300 shadow-md transition-all">Đăng ký</a>
+                </div>
             </div>
-            <button id="public-dark-menu-button" type="button" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-borderbg text-slate-300">
+            <button id="public-dark-menu-button" type="button" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gray-700 text-gray-300">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
-        <div id="public-dark-mobile-menu" class="hidden md:hidden border-t border-borderbg px-4 py-3">
+        <div id="public-dark-mobile-menu" class="hidden md:hidden border-t border-gray-800/40 px-4 py-3 bg-[#060606]">
             <div class="max-w-7xl mx-auto flex flex-col gap-1">
-                <a href="/cardrates" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">Bảng giá</a>
-                <a href="/guide" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">Hướng dẫn</a>
-                <a href="/user/exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">Đổi thẻ</a>
+                <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800/50">Trang chủ</a>
+                <a href="/cardrates" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800/50">Bảng giá</a>
+                <a href="/guide" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800/50">Hướng dẫn</a>
+                <a href="/user/exchange" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800/50">Đổi thẻ</a>
+                <a href="/contact" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800/50">Liên hệ</a>
                 <div class="mt-2 grid grid-cols-2 gap-2">
-                    <a href="/login" class="text-center rounded-lg border border-borderbg px-3 py-2 text-sm font-semibold text-slate-200">Đăng nhập</a>
-                    <a href="/register" class="text-center rounded-lg bg-cyan-600 px-3 py-2 text-sm font-bold text-white">Đăng ký</a>
+                    <a href="/login" class="text-center rounded-full border border-gray-700 px-3 py-2 text-sm font-semibold text-gray-200">Đăng nhập</a>
+                    <a href="/register" class="text-center rounded-full bg-emerald-400 px-3 py-2 text-sm font-bold text-black">Đăng ký</a>
                 </div>
             </div>
         </div>

@@ -1,0 +1,1521 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\admin\\cardrates.html",
+      "PackagePath": "staticwebassets\\admin\\cardrates.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\admin\\index.html",
+      "PackagePath": "staticwebassets\\admin\\index.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\admin\\transactions.html",
+      "PackagePath": "staticwebassets\\admin\\transactions.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\admin\\users.html",
+      "PackagePath": "staticwebassets\\admin\\users.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\admin\\wallets.html",
+      "PackagePath": "staticwebassets\\admin\\wallets.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\animate.css",
+      "PackagePath": "staticwebassets\\assets\\css\\animate.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\color.css",
+      "PackagePath": "staticwebassets\\assets\\css\\color.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\color2.css",
+      "PackagePath": "staticwebassets\\assets\\css\\color2.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\color3.css",
+      "PackagePath": "staticwebassets\\assets\\css\\color3.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\color4.css",
+      "PackagePath": "staticwebassets\\assets\\css\\color4.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\color5.css",
+      "PackagePath": "staticwebassets\\assets\\css\\color5.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\flaticon.css",
+      "PackagePath": "staticwebassets\\assets\\css\\flaticon.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\font-awesome-all.css",
+      "PackagePath": "staticwebassets\\assets\\css\\font-awesome-all.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\jquery.fancybox.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\jquery.fancybox.min.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\nice-select.css",
+      "PackagePath": "staticwebassets\\assets\\css\\nice-select.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\owl.css",
+      "PackagePath": "staticwebassets\\assets\\css\\owl.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\owl.video.play.html",
+      "PackagePath": "staticwebassets\\assets\\css\\owl.video.play.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\responsive.css",
+      "PackagePath": "staticwebassets\\assets\\css\\responsive.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\flaticon_mycollection8839.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flaticon_mycollection8839.eot"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\flaticon_mycollection8839.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flaticon_mycollection8839.svg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\flaticon_mycollection8839.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flaticon_mycollection8839.ttf"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\flaticon_mycollection8839.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flaticon_mycollection8839.woff"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\fonts\\flaticon_mycollection8839.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\flaticon_mycollection8839.woff2"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\about-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\about-bg.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\error-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\error-bg.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\feature-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\feature-bg.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\funding-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\funding-bg.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\page-title-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\page-title-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\page-title.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\page-title.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\subscribe-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\subscribe-bg.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\video-bg-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\video-bg-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\video-bg-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\video-bg-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\background\\video-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\background\\video-bg.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-5.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-6.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-img-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-img-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-img-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-img-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-img-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-img-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\banner\\banner-img-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\banner\\banner-img-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-10.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-11.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-12.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-13.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-13.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-14.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-14.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-15.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-15.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-16.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-16.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-17.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-17.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-18.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-18.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-19.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-19.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-6.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-6.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-7.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-7.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-8.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\clients\\clients-9.png",
+      "PackagePath": "staticwebassets\\assets\\images\\clients\\clients-9.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\favicon-2.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon-2.ico"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\favicon-3.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon-3.ico"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\favicon-4.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon-4.ico"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\favicon-5.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon-5.ico"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon.ico"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\badge-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\badge-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\badge-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\badge-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\bar-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\bar-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\bar-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\bar-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\bar-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\bar-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\bar-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\bar-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\card-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\card-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\card-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\card-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\card-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\card-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\card-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\card-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\chart-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\chart-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-6.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-6.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-7.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-7.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\flag-8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\flag-8.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\graph-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\graph-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\graph-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\graph-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\graph-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\graph-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-10.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-11.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-12.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-13.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-13.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-14.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-14.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-15.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-15.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-16.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-16.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-18.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-18.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-19.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-19.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-20.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-20.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-21.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-21.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-22.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-22.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-23.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-23.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-24.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-24.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-25.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-25.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-26.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-26.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-27.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-27.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-28.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-28.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-29.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-29.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-30.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-30.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-31.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-31.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-32.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-32.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-33.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-33.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-34.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-34.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-35.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-35.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-36.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-36.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-37.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-37.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-38.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-38.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-39.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-39.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-40.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-40.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-41.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-41.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-42.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-42.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-43.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-43.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-44.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-44.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-45.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-45.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-46.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-46.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-47.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-47.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-48.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-48.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-49.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-49.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-50.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-50.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-51.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-51.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-52.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-52.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-53.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-53.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-54.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-54.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-55.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-55.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-56.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-56.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-57.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-57.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-58.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-58.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-59.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-59.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-6.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-6.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-60.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-60.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-61.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-61.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-62.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-62.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-63.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-63.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-65.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-65.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-66.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-66.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-67.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-67.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-68.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-68.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-69.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-69.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-7.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-7.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-70.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-70.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-71.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-71.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-72.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-72.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-73.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-73.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-74.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-74.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-75.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-75.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-76.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-76.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-77.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-77.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-78.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-78.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-79.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-79.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-8.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-80.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-80.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-81.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-81.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-82.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-82.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-83.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-83.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-84.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-84.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-85.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-85.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-86.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-86.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-87.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-87.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-88.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-88.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-89.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-89.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-9.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-9.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-90.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-90.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-91.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-91.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-92.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-92.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-93.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-93.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-94.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-94.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-95.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-95.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-96.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-96.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\icon-97.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\icon-97.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\line-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\line-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\line-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\line-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\logo-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\logo-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\logo-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\logo-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\icons\\signature-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\signature-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-6.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-6.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-7.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-7.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-8.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo-9.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-9.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\author-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\author-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\comment-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\comment-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\comment-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\comment-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-10.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-10.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-11.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-11.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-12.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-12.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-13.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-13.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-18.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-18.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-19.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-19.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-20.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-20.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-21.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-21.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-22.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-22.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-23.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-23.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-5.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-6.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-7.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-8.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-8.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\news\\news-9.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\news\\news-9.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\about-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\about-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\about-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\about-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\about-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\about-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-10.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-10.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-5.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-6.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-7.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-8.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-8.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\account-9.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\account-9.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\card-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\card-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\card-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\card-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\card-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\card-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\card-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\card-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\card-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\card-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\chat-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\chat-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\chat-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\chat-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\chooseus-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\chooseus-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\clients-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\clients-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\clients-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\clients-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\clients-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\clients-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\comment-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\comment-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\comment-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\comment-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\contact-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\contact-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\course-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\course-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\dashboard-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\dashboard-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\dashboard-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\dashboard-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\faq-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\faq-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\faq-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\faq-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\history-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\history-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\history-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\history-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\history-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\history-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\history-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\history-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\history-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\history-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\history-6.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\history-6.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\lesson-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\lesson-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\lesson-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\lesson-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\lesson-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\lesson-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\lesson-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\lesson-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\men-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\men-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\mockup-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\mockup-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\mockup-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\mockup-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\offer-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\offer-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\offers-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\offers-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\sidebar-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\sidebar-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\statement-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\statement-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\statement-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\statement-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\support-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\support-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\testimonial-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\testimonial-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\testimonial-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\testimonial-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\testimonial-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\testimonial-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\testimonial-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\testimonial-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\testimonial-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\testimonial-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\thumb-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\thumb-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\thumb-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\thumb-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\vector-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\vector-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\vector-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\vector-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\vector-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\vector-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\vector-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\vector-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\resource\\vector-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\resource\\vector-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-5.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-6.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\service\\service-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\service\\service-7.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-1.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-10.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-11.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-12.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-13.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-13.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-14.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-14.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-15.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-15.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-16.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-16.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-17.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-17.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-18.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-18.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-19.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-19.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-2.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-2.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-20.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-20.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-21.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-21.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-22.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-22.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-23.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-23.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-24.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-24.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-25.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-25.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-26.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-26.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-27.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-27.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-28.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-28.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-29.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-29.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-3.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-30.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-30.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-31.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-31.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-32.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-32.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-33.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-33.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-34.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-34.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-35.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-35.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-36.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-36.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-37.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-37.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-39.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-39.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-4.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-4.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-40.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-40.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-41.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-41.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-42.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-42.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-43.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-43.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-44.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-44.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-45.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-45.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-46.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-46.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-47.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-47.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-48.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-48.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-5.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-5.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-6.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-6.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-7.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-7.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-8.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\shape\\shape-9.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shape\\shape-9.png"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-1.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-2.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-3.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-4.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-5.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-6.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-7.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\images\\team\\team-8.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\team\\team-8.jpg"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\admin.js",
+      "PackagePath": "staticwebassets\\assets\\js\\admin.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\appear.js",
+      "PackagePath": "staticwebassets\\assets\\js\\appear.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\bxslider.js",
+      "PackagePath": "staticwebassets\\assets\\js\\bxslider.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\i18n.js",
+      "PackagePath": "staticwebassets\\assets\\js\\i18n.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\isotope.js",
+      "PackagePath": "staticwebassets\\assets\\js\\isotope.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\jquery.circleType.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.circleType.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\jquery.fancybox.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.fancybox.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\jquery.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\jquery.lettering.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.lettering.min.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\jquery.nice-select.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.nice-select.min.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\owl.js",
+      "PackagePath": "staticwebassets\\assets\\js\\owl.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\popper.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\popper.min.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\profit-calculator.js",
+      "PackagePath": "staticwebassets\\assets\\js\\profit-calculator.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\public-site.js",
+      "PackagePath": "staticwebassets\\assets\\js\\public-site.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\script.js",
+      "PackagePath": "staticwebassets\\assets\\js\\script.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\scrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\scrollbar.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\user-dashboard.js",
+      "PackagePath": "staticwebassets\\assets\\js\\user-dashboard.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\validation.js",
+      "PackagePath": "staticwebassets\\assets\\js\\validation.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\js\\wow.js",
+      "PackagePath": "staticwebassets\\assets\\js\\wow.js"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\webfonts\\fa-brands-400.html",
+      "PackagePath": "staticwebassets\\assets\\webfonts\\fa-brands-400.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\webfonts\\fa-regular-400.html",
+      "PackagePath": "staticwebassets\\assets\\webfonts\\fa-regular-400.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\webfonts\\fa-solid-900.html",
+      "PackagePath": "staticwebassets\\assets\\webfonts\\fa-solid-900.html"
+    },
+    {
+      "Id": "D:\\card-wallet-platform\\backend\\CardWallet.Api\\wwwroot\\assets\\webfonts\\fa-v4compatibility.html",
+      "PackagePath": "staticwebassets\\assets\\webfonts\\fa-v4compatibility.html"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.CardWallet.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.CardWallet.Api.props",
+      "PackagePath": "build\\CardWallet.Api.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.CardWallet.Api.props",
+      "PackagePath": "buildMultiTargeting\\CardWallet.Api.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.CardWallet.Api.props",
+      "PackagePath": "buildTransitive\\CardWallet.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

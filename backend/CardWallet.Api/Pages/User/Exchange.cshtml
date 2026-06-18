@@ -4,47 +4,155 @@
     ViewData["Title"] = "Đổi thẻ cào";
 }
 
-<div class="mb-6">
-    <h2 class="text-2xl font-bold text-white">Gửi thẻ cào lên hệ thống</h2>
-    <p class="text-slate-400 text-sm mt-1">Chọn đúng nhà mạng và mệnh giá để tính số xu nhận được.</p>
-</div>
+@section Styles {
+    <style>
+        @@keyframes shine {
+            100% {
+                transform: translateX(250%);
+            }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.5);
+        }
+    </style>
+}
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    <section class="bg-cardbg rounded-2xl border border-borderbg p-6 sm:p-8">
-        <form id="exchange-form" class="space-y-5">
-            <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3.5 flex items-start gap-3">
-                <i class="fas fa-exclamation-triangle text-amber-500 mt-0.5"></i>
-                <p class="text-xs text-amber-400 leading-relaxed font-medium">Vui lòng chọn đúng mệnh giá. Chọn sai mệnh giá có thể làm giao dịch thất bại.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Nhà mạng</label>
-                    <select id="ex-provider" required class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 text-sm"></select>
+<div class="relative overflow-hidden">
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+        <!-- Form Đổi Thẻ (7 Cột ở desktop) -->
+        <div class="lg:col-span-7 bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-slate-800/80 p-6 sm:p-8 relative shadow-2xl shadow-black/50 overflow-hidden group hover:border-cyan-500/30 transition-all duration-300">
+            <!-- Background Glow Effect -->
+            <div class="absolute top-[-20%] right-[-20%] w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none group-hover:bg-cyan-500/10 transition-colors duration-500"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg border border-cyan-500/20 shadow-md shadow-cyan-500/5">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Gửi Thẻ Cào Lên Hệ Thống</h2>
+                        <p class="text-xs text-slate-400 mt-0.5">Xử lý tự động trong 5 giây - 1 phút</p>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mệnh giá</label>
-                    <select id="ex-facevalue" required disabled class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 text-sm disabled:opacity-50"></select>
+
+                <form id="exchange-form" class="space-y-5">
+                    <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-4 flex items-start gap-3">
+                        <i class="fas fa-exclamation-triangle text-amber-500 mt-0.5 shrink-0 text-sm"></i>
+                        <p class="text-xs text-amber-400 leading-relaxed font-medium">
+                            Lưu ý: Quý khách vui lòng chọn <strong>ĐÚNG MỆNH GIÁ</strong>. Chọn sai mệnh giá thẻ có thể bị phạt hoặc mất thẻ 100%.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Nhà Mạng</label>
+                            <div class="relative">
+                                <select id="ex-provider" required class="w-full px-4 py-3.5 bg-slate-950/60 border border-slate-800/80 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 text-slate-200 text-sm font-medium appearance-none cursor-pointer transition-all duration-200 hover:border-slate-700">
+                                </select>
+                                <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mệnh Giá</label>
+                            <div class="relative">
+                                <select id="ex-facevalue" required disabled class="w-full px-4 py-3.5 bg-slate-950/60 border border-slate-800/80 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 text-slate-200 text-sm font-medium appearance-none disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all duration-200 hover:border-slate-700">
+                                </select>
+                                <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Số Serial</label>
+                            <input type="text" id="ex-serial" required class="w-full px-4 py-3.5 bg-slate-950/60 border border-slate-800/80 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 text-slate-200 font-mono tracking-wider placeholder-slate-700 transition-all duration-200 hover:border-slate-700" placeholder="Nhập số seri..." />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mã Thẻ (Mã PIN)</label>
+                            <input type="text" id="ex-code" required class="w-full px-4 py-3.5 bg-slate-950/60 border border-slate-800/80 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 text-slate-200 font-mono tracking-wider placeholder-slate-700 transition-all duration-200 hover:border-slate-700" placeholder="Nhập mã nạp thẻ..." />
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-slate-950/40 border border-slate-800/80 rounded-2xl flex justify-between items-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-transparent pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <p class="text-xs text-slate-400 font-medium mb-1">Chiết khấu áp dụng</p>
+                            <span id="ex-discount" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20">0%</span>
+                        </div>
+                        <div class="text-right relative z-10">
+                            <p class="text-xs text-slate-400 font-medium mb-1">Số xu thực nhận</p>
+                            <p class="text-2xl font-extrabold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.25)]" id="ex-receive">0 <span class="text-sm font-bold uppercase text-cyan-400">XU</span></p>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="ex-submit-btn" class="w-full relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 flex items-center justify-center gap-2 group/btn active:scale-[0.98]">
+                        <!-- Shine Effect -->
+                        <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-[-25deg] -translate-x-full group-hover/btn:animate-[shine_0.75s_ease-in-out]"></div>
+                        <i class="fas fa-paper-plane group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-200"></i> GỬI THỂ CÀO NGAY
+                    </button>
+                </form>
+
+                <div id="exchange-result" class="hidden mt-6"></div>
+            </div>
+        </div>
+
+        <!-- Bảng Giá Chiết Khấu (5 Cột ở desktop) -->
+        <div class="lg:col-span-5 bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-slate-800/80 p-6 sm:p-8 shadow-2xl shadow-black/50 relative overflow-hidden group hover:border-violet-500/30 transition-all duration-300">
+            <!-- Glow Effect for Rates Card -->
+            <div class="absolute top-[-20%] left-[-20%] w-64 h-64 bg-violet-500/5 rounded-full blur-3xl pointer-events-none group-hover:bg-violet-500/10 transition-colors duration-500"></div>
+
+            <div class="flex items-center justify-between mb-6 relative z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-lg shadow-md shadow-pink-500/5 border border-pink-500/20">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Bảng Giá Hôm Nay</h2>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Tỉ lệ: 1.000 VND = 1 XU</p>
+                    </div>
                 </div>
+                <!-- Pulsing live rate tag -->
+                <span class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wider uppercase">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Live Rates
+                </span>
             </div>
-            <div>
-                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Số Serial</label>
-                <input id="ex-serial" type="text" required class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 font-mono" />
+
+            <div class="overflow-x-auto border border-slate-800/80 rounded-2xl bg-slate-950/40 backdrop-blur-md max-h-[380px] overflow-y-auto custom-scrollbar relative z-10">
+                <table class="min-w-full text-left whitespace-nowrap">
+                    <thead class="bg-slate-900/80 text-slate-400 text-[10px] font-bold uppercase tracking-wider border-b border-slate-800/80 sticky top-0 z-10">
+                        <tr>
+                            <th class="px-4 py-3">Nhà mạng</th>
+                            <th class="px-4 py-3 text-right">Mệnh giá</th>
+                            <th class="px-4 py-3 text-right">Chiết khấu</th>
+                            <th class="px-4 py-3 text-right text-cyan-400">Thực nhận</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rates-body" class="divide-y divide-slate-800/50 text-xs">
+                        <tr>
+                            <td colspan="4" class="px-4 py-12 text-center text-slate-500">
+                                <i class="fas fa-spinner fa-spin text-lg mb-2 block text-cyan-500"></i>
+                                Đang tải bảng giá chiết khấu...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div>
-                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mã thẻ</label>
-                <input id="ex-code" type="text" required class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:outline-none focus:border-cyan-500 text-slate-200 font-mono" />
-            </div>
-            <div class="p-4 bg-darkbg border border-borderbg rounded-xl flex justify-between items-center">
-                <p class="text-xs text-slate-500 font-medium">Chiết khấu: <span id="ex-discount" class="text-white font-bold">0%</span></p>
-                <div class="text-right">
-                    <p class="text-xs text-slate-500 font-medium">Nhận được</p>
-                    <p class="text-xl font-bold text-cyan-400" id="ex-receive">0 XU</p>
-                </div>
-            </div>
-            <button id="ex-submit-btn" type="submit" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
-                <i class="fas fa-paper-plane mr-2"></i>Gửi thẻ
-            </button>
-        </form>
-    </section>
-    <aside id="exchange-result" class="hidden"></aside>
+        </div>
+    </div>
 </div>

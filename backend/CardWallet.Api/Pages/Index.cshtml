@@ -1,9 +1,465 @@
 @page
 @model CardWallet.Api.Pages.IndexModel
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = "Trang chủ - Đổi thẻ cào, ví xu và KYC";
+    Layout = "_PublicLayout";
+    ViewData["Title"] = "Trang Chủ - Đổi Thẻ Cào Uy Tín";
 }
 
-<partial name="Public/Home/_Hero" />
-<partial name="Public/Home/_Features" />
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        .defi-body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif; }
+
+        /* Floating green dots animation */
+        .floating-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #4ADE80;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatDot 8s ease-in-out infinite;
+        }
+        .floating-dot:nth-child(2) { animation-delay: -2s; animation-duration: 10s; }
+        .floating-dot:nth-child(3) { animation-delay: -4s; animation-duration: 12s; }
+        .floating-dot:nth-child(4) { animation-delay: -1s; animation-duration: 9s; }
+        .floating-dot:nth-child(5) { animation-delay: -3s; animation-duration: 11s; }
+        .floating-dot:nth-child(6) { animation-delay: -5s; animation-duration: 7s; }
+        .floating-dot:nth-child(7) { animation-delay: -6s; animation-duration: 13s; }
+        .floating-dot:nth-child(8) { animation-delay: -7s; animation-duration: 10s; }
+
+        @@keyframes floatDot {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+            25% { transform: translateY(-20px) translateX(10px); opacity: 0.7; }
+            50% { transform: translateY(-10px) translateX(-15px); opacity: 0.3; }
+            75% { transform: translateY(-25px) translateX(5px); opacity: 0.6; }
+        }
+
+        /* Green ambient glow */
+        .green-glow {
+            background: radial-gradient(ellipse at top right, rgba(74, 222, 128, 0.12) 0%, transparent 60%);
+        }
+
+        /* Feature card hover */
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(74, 222, 128, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Step card with tilt */
+        .step-card-left {
+            transform: rotate(-3deg);
+            transition: transform 0.4s ease;
+        }
+        .step-card-left:hover { transform: rotate(0deg); }
+        .step-card-right {
+            transform: rotate(3deg);
+            transition: transform 0.4s ease;
+        }
+        .step-card-right:hover { transform: rotate(0deg); }
+
+        /* Mint diagonal stripes for How it Works background */
+        .mint-stripes {
+            background-image:
+                linear-gradient(135deg, rgba(74, 222, 128, 0.08) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(74, 222, 128, 0.08) 25%, transparent 25%);
+            background-size: 200px 200px;
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+}
+
+<!-- ===================== HERO SECTION ===================== -->
+<div class="defi-body">
+    <section class="relative bg-[#060606] overflow-hidden">
+        <!-- Green ambient glow at top right -->
+        <div class="green-glow absolute inset-0 pointer-events-none"></div>
+
+        <!-- Floating green dots -->
+        <div class="floating-dot" style="top: 12%; left: 8%;"></div>
+        <div class="floating-dot" style="top: 35%; left: 45%;"></div>
+        <div class="floating-dot" style="top: 60%; right: 15%;"></div>
+        <div class="floating-dot" style="top: 25%; right: 30%;"></div>
+        <div class="floating-dot" style="top: 80%; left: 25%;"></div>
+        <div class="floating-dot" style="top: 50%; left: 65%;"></div>
+        <div class="floating-dot" style="top: 70%; right: 40%;"></div>
+        <div class="floating-dot" style="top: 15%; left: 55%;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-24 sm:pt-28 sm:pb-32 lg:pt-36 lg:pb-40">
+            <!-- Tagline -->
+            <p class="text-emerald-400 text-xs sm:text-sm font-bold tracking-[0.25em] uppercase mb-6">
+                AN TOÀN / BẢO MẬT / UY TÍN
+            </p>
+
+            <!-- Main heading -->
+            <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-8 max-w-2xl">
+                Nền tảng đổi thẻ cào
+                <br />hàng đầu Việt Nam
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-gray-400 text-base sm:text-lg max-w-lg mb-10 leading-relaxed">
+                Quy đổi thẻ cào điện thoại thành tiền mặt nhanh chóng, an toàn và hoàn toàn tự động với chiết khấu tốt nhất thị trường.
+            </p>
+
+            <!-- CTA buttons -->
+            <div class="flex flex-wrap gap-4">
+                <a href="/register"
+                   class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-400/20 hover:shadow-emerald-400/30">
+                    BẮT ĐẦU NGAY
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="#features"
+                   class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-gray-600 hover:border-gray-400 text-white font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-white/5">
+                    TÌM HIỂU THÊM
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PARTNER LOGOS STRIP ===================== -->
+    <section class="bg-[#060606] border-t border-gray-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-40 grayscale hover:opacity-60 transition-opacity duration-500">
+                <div class="flex items-center gap-2 text-gray-400">
+                    <i class="fas fa-mountain text-xl"></i>
+                    <span class="text-sm font-bold uppercase tracking-widest">Viettel</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400">
+                    <i class="fas fa-chart-bar text-xl"></i>
+                    <span class="text-sm font-bold uppercase tracking-widest">Mobifone</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400">
+                    <i class="fas fa-snowflake text-xl"></i>
+                    <span class="text-sm font-bold uppercase tracking-widest">Vinaphone</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400">
+                    <i class="fas fa-bolt text-xl"></i>
+                    <span class="text-sm font-bold uppercase tracking-widest">Vietnamobile</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400">
+                    <i class="fas fa-map-pin text-xl"></i>
+                    <span class="text-sm font-bold uppercase tracking-widest">Garena</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== POWERFUL FEATURES SECTION ===================== -->
+    <section id="features" class="bg-[#060606] relative overflow-hidden">
+        <!-- Floating dots in this section too -->
+        <div class="floating-dot" style="top: 20%; right: 5%;"></div>
+        <div class="floating-dot" style="top: 70%; left: 10%;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative z-10">
+            <!-- Section Header: Title on left, first 2 feature cards on right -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <!-- Title column -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">
+                        Tính năng<br />vượt trội
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-sm">
+                        Hệ thống đổi thẻ cào tự động với công nghệ tiên tiến, đảm bảo an toàn và nhanh chóng cho mọi giao dịch.
+                    </p>
+                </div>
+
+                <!-- Feature 1 -->
+                <div class="feature-card p-7 rounded-2xl bg-[#0D0D0D] border border-gray-800/60 group">
+                    <div class="w-12 h-12 rounded-xl border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center text-emerald-400 text-lg mb-5 group-hover:bg-emerald-500/10 transition-colors">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Bảo mật tuyệt đối</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Mọi giao dịch được mã hóa đầu cuối. Thông tin thẻ cào được xử lý và xóa ngay sau khi hoàn tất.
+                    </p>
+                    <a href="/guide" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Tìm hiểu thêm »
+                    </a>
+                </div>
+
+                <!-- Feature 2 (highlighted with slightly different border) -->
+                <div class="feature-card p-7 rounded-2xl bg-[#0D0D0D] border border-emerald-500/20 group">
+                    <div class="w-12 h-12 rounded-xl border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center text-emerald-400 text-lg mb-5 group-hover:bg-emerald-500/10 transition-colors">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Đã kiểm chứng</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Hệ thống đã xử lý hơn hàng nghìn giao dịch thành công. Uy tín được xây dựng qua từng đơn hàng.
+                    </p>
+                    <a href="/guide" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Tìm hiểu thêm »
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom row: 3 more feature cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 3 -->
+                <div class="feature-card p-7 rounded-2xl bg-[#0D0D0D] border border-gray-800/60 group">
+                    <div class="w-12 h-12 rounded-xl border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center text-emerald-400 text-lg mb-5 group-hover:bg-emerald-500/10 transition-colors">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Công nghệ tự động</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Thẻ cào được xác minh tự động qua API nhà mạng, giảm thiểu sai sót và tăng tốc độ xử lý.
+                    </p>
+                    <a href="/guide" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Tìm hiểu thêm »
+                    </a>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card p-7 rounded-2xl bg-[#0D0D0D] border border-gray-800/60 group">
+                    <div class="w-12 h-12 rounded-xl border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center text-emerald-400 text-lg mb-5 group-hover:bg-emerald-500/10 transition-colors">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Đa nhà mạng</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Hỗ trợ tất cả nhà mạng lớn tại Việt Nam: Viettel, Mobifone, Vinaphone, Vietnamobile và thẻ game.
+                    </p>
+                    <a href="/cardrates" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Tìm hiểu thêm »
+                    </a>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card p-7 rounded-2xl bg-[#0D0D0D] border border-gray-800/60 group">
+                    <div class="w-12 h-12 rounded-xl border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center text-emerald-400 text-lg mb-5 group-hover:bg-emerald-500/10 transition-colors">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Thanh toán tức thì</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Quy đổi thẻ cào thành xu và rút tiền về tài khoản ngân hàng 24/7, xử lý chỉ trong vài phút.
+                    </p>
+                    <a href="/guide" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Tìm hiểu thêm »
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS SECTION ===================== -->
+    <section class="bg-[#F0F5F3] mint-stripes relative overflow-hidden py-20 sm:py-28">
+        <!-- Floating dots on light bg -->
+        <div class="floating-dot" style="top: 15%; left: 20%; background: #4ADE80; opacity: 0.3;"></div>
+        <div class="floating-dot" style="top: 50%; left: 40%; background: #4ADE80; opacity: 0.25;"></div>
+        <div class="floating-dot" style="top: 80%; right: 20%; background: #4ADE80; opacity: 0.3;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section title -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">Cách hoạt động</h2>
+                <p class="text-gray-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                    Chỉ cần 4 bước đơn giản để chuyển đổi thẻ cào thành tiền mặt trong tài khoản ngân hàng của bạn.
+                </p>
+            </div>
+
+            <!-- Steps grid: 2 columns, zigzag layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8 max-w-4xl mx-auto">
+                <!-- Step 1 (Left) -->
+                <div class="flex flex-col items-start">
+                    <div class="w-14 h-14 rounded-lg bg-emerald-400 text-black font-bold text-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-400/30">
+                        1
+                    </div>
+                    <div class="step-card-left bg-[#1A1A2E] rounded-2xl p-6 sm:p-7 shadow-xl w-full">
+                        <p class="text-white text-sm sm:text-base leading-relaxed">
+                            <strong class="text-emerald-400">Đăng ký</strong> – Tạo tài khoản miễn phí chỉ với email hoặc số điện thoại. Xác minh danh tính nhanh chóng để bắt đầu giao dịch.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 (Right, offset) -->
+                <div class="flex flex-col items-end md:mt-16">
+                    <div class="w-14 h-14 rounded-lg bg-emerald-400 text-black font-bold text-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-400/30">
+                        2
+                    </div>
+                    <div class="step-card-right bg-[#1A1A2E] rounded-2xl p-6 sm:p-7 shadow-xl w-full">
+                        <p class="text-white text-sm sm:text-base leading-relaxed">
+                            <strong class="text-emerald-400">Nạp thẻ</strong> – Chọn nhà mạng, nhập mệnh giá, Serial và mã thẻ cào. Hệ thống xác minh tự động trong vài giây.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 (Left) -->
+                <div class="flex flex-col items-start">
+                    <div class="w-14 h-14 rounded-lg bg-emerald-400 text-black font-bold text-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-400/30">
+                        3
+                    </div>
+                    <div class="step-card-left bg-[#1A1A2E] rounded-2xl p-6 sm:p-7 shadow-xl w-full">
+                        <p class="text-white text-sm sm:text-base leading-relaxed">
+                            <strong class="text-emerald-400">Nhận xu</strong> – Thẻ hợp lệ sẽ được quy đổi thành xu theo bảng chiết khấu. Xu được cộng vào ví tức thì.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 (Right, offset) -->
+                <div class="flex flex-col items-end md:mt-16">
+                    <div class="w-14 h-14 rounded-lg bg-emerald-400 text-black font-bold text-xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-400/30">
+                        4
+                    </div>
+                    <div class="step-card-right bg-[#1A1A2E] rounded-2xl p-6 sm:p-7 shadow-xl w-full">
+                        <p class="text-white text-sm sm:text-base leading-relaxed">
+                            <strong class="text-emerald-400">Rút tiền</strong> – Đặt lệnh rút tiền về tài khoản ngân hàng. Xử lý nhanh chóng 24/7, không giới hạn số lần rút.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== LIVE RATES PREVIEW SECTION ===================== -->
+    <section class="bg-[#060606] relative overflow-hidden py-20 sm:py-28">
+        <div class="floating-dot" style="top: 30%; left: 10%;"></div>
+        <div class="floating-dot" style="top: 60%; right: 12%;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-14">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Bảng giá trực tuyến</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">Chiết khấu hấp dẫn</h2>
+                <p class="text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                    Xem bảng chiết khấu cập nhật theo thời gian thực. Mức chiết khấu tốt nhất cho mọi nhà mạng.
+                </p>
+            </div>
+
+            <!-- Rates Table -->
+            <div class="max-w-4xl mx-auto rounded-2xl bg-[#0D0D0D] border border-gray-800/60 overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-800/80">
+                                <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Nhà Mạng</th>
+                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Mệnh Giá</th>
+                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Chiết Khấu</th>
+                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Thực Nhận</th>
+                            </tr>
+                        </thead>
+                        <tbody id="public-rates-body" class="divide-y divide-gray-800/50">
+                            <tr>
+                                <td colspan="4" class="px-6 py-8 text-center text-gray-500">Đang tải bảng giá...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-800/60 text-center">
+                    <a href="/cardrates" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Xem toàn bộ bảng giá
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CTA FOOTER SECTION ===================== -->
+    <section class="bg-[#060606] relative overflow-hidden py-20 sm:py-28">
+        <div class="floating-dot" style="top: 40%; left: 15%;"></div>
+        <div class="floating-dot" style="top: 20%; right: 25%;"></div>
+        <div class="floating-dot" style="top: 75%; right: 10%;"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <p class="text-emerald-400 text-xs font-bold tracking-[0.25em] uppercase mb-5">
+                AN TOÀN / BẢO MẬT / UY TÍN
+            </p>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-5">
+                Bắt đầu đổi thẻ ngay hôm nay
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+                Đăng ký tài khoản miễn phí và tận hưởng mức chiết khấu tốt nhất. Hệ thống xử lý tự động 24/7, rút tiền nhanh chóng về tài khoản ngân hàng.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/register"
+                   class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-400/20 hover:shadow-emerald-400/30">
+                    ĐĂNG KÝ MIỄN PHÍ
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="/contact"
+                   class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-gray-600 hover:border-gray-400 text-white font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-white/5">
+                    LIÊN HỆ HỖ TRỢ
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-[#060606] border-t border-gray-800/60 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="/" class="font-bold text-white text-lg flex items-center gap-2 mb-4">
+                        <i class="fas fa-wallet text-emerald-400"></i>
+                        CardWallet<span class="text-emerald-400">.</span>
+                    </a>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Nền tảng đổi thẻ cào uy tín hàng đầu Việt Nam. An toàn, nhanh chóng và tự động hoàn toàn.
+                    </p>
+                </div>
+
+                <!-- Quick links -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Liên kết</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/cardrates" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Bảng giá chiết khấu</a></li>
+                        <li><a href="/guide" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Hướng dẫn sử dụng</a></li>
+                        <li><a href="/policy" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Chính sách bảo mật</a></li>
+                        <li><a href="/contact" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Dịch vụ</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/user/exchange" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Đổi thẻ cào</a></li>
+                        <li><a href="/user/wallet" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Ví xu của tôi</a></li>
+                        <li><a href="/user/withdraw" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Rút tiền</a></li>
+                        <li><a href="/affiliate" class="text-gray-400 text-sm hover:text-emerald-400 transition-colors">Chương trình Affiliate</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Hỗ trợ</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-gray-400 text-sm">
+                            <i class="fab fa-telegram text-sky-400"></i> Telegram: @@CardWallet_Support
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-400 text-sm">
+                            <i class="fas fa-comment-dots text-blue-400"></i> Zalo: CardWallet
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-400 text-sm">
+                            <i class="fas fa-envelope text-emerald-400"></i> support@@cardwallet.vn
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-800/60 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-xs">
+                    © 2024 CardWallet. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-gray-500 hover:text-emerald-400 transition-colors"><i class="fab fa-facebook text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-emerald-400 transition-colors"><i class="fab fa-telegram text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-emerald-400 transition-colors"><i class="fab fa-youtube text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

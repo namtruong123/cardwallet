@@ -26,20 +26,6 @@ public class SubdomainRoutingMiddleware
 
         if (isAdminSubdomain)
         {
-            // Redirect login requests on the admin subdomain to the main domain's unified login page
-            if (path == "/login" || path == "/admin/login")
-            {
-                string mainHost = host;
-                if (host.StartsWith("app.localhost")) mainHost = "localhost";
-                else if (host.StartsWith("app.lvh.me")) mainHost = "lvh.me";
-                else mainHost = host.Replace("app.", "");
-                
-                string portString = context.Request.Host.Port.HasValue ? $":{context.Request.Host.Port}" : "";
-                string redirectUrl = $"{context.Request.Scheme}://{mainHost}{portString}/login";
-                context.Response.Redirect(redirectUrl);
-                return;
-            }
-
             // Skip rewriting for APIs, Swagger, static files and direct requests with extensions
             bool isResourceOrApi = path.StartsWith("/api") || 
                                    path.StartsWith("/swagger") || 
@@ -54,6 +40,10 @@ public class SubdomainRoutingMiddleware
                 if (path == "/auth-sso")
                 {
                     context.Request.Path = "/admin/sso";
+                }
+                else if (path == "/login" || path == "/admin/login")
+                {
+                    context.Request.Path = "/admin/login";
                 }
                 else
                 {

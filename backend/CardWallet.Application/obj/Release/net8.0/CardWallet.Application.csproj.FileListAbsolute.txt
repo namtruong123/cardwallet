@@ -1,0 +1,16 @@
+D:\card-wallet-platform\backend\CardWallet.Application\bin\Release\net8.0\CardWallet.Application.deps.json
+D:\card-wallet-platform\backend\CardWallet.Application\bin\Release\net8.0\CardWallet.Application.dll
+D:\card-wallet-platform\backend\CardWallet.Application\bin\Release\net8.0\CardWallet.Application.pdb
+D:\card-wallet-platform\backend\CardWallet.Application\bin\Release\net8.0\CardWallet.Domain.dll
+D:\card-wallet-platform\backend\CardWallet.Application\bin\Release\net8.0\CardWallet.Domain.pdb
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.csproj.AssemblyReference.cache
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.AssemblyInfoInputs.cache
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.AssemblyInfo.cs
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.csproj.CoreCompileInputs.cache
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.sourcelink.json
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWall.AB158858.Up2Date
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.dll
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\refint\CardWallet.Application.dll
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\CardWallet.Application.pdb
+D:\card-wallet-platform\backend\CardWallet.Application\obj\Release\net8.0\ref\CardWallet.Application.dll
