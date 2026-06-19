@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "Castle.Core/5.1.1": {
@@ -6053,7 +6053,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tanna\\.nuget\\packages\\": {}
+    "C:\\Users\\boy_m\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -6061,11 +6061,11 @@
       "projectUniqueName": "D:\\card-wallet-platform\\tests\\CardWallet.Application.Tests\\CardWallet.Application.Tests.csproj",
       "projectName": "CardWallet.Application.Tests",
       "projectPath": "D:\\card-wallet-platform\\tests\\CardWallet.Application.Tests\\CardWallet.Application.Tests.csproj",
-      "packagesPath": "C:\\Users\\tanna\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\boy_m\\.nuget\\packages\\",
       "outputPath": "D:\\card-wallet-platform\\tests\\CardWallet.Application.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tanna\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\boy_m\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -6075,6 +6075,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
             "D:\\card-wallet-platform\\backend\\CardWallet.Application\\CardWallet.Application.csproj": {
@@ -6095,10 +6096,12 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
@@ -6134,7 +6137,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
