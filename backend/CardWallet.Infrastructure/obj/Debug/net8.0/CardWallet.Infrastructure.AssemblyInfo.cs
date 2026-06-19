@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CardWallet.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58d9e3baddc35fefafc6a1425f480a03a50e8970")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1b9932ce51eee0b184561ec2ecce553381d5db4")]
 [assembly: System.Reflection.AssemblyProductAttribute("CardWallet.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CardWallet.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

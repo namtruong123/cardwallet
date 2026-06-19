@@ -8,6 +8,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script>
+        (function () {
+            if (sessionStorage.getItem('adminSessionActive') !== '1') {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                document.cookie = 'adminAccessToken=; Path=/; Max-Age=0; SameSite=Lax';
+                window.location.replace('/login');
+                return;
+            }
+        })();
+
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -144,6 +154,9 @@
             overlay?.addEventListener('click', closeMenu);
             sidebar?.querySelectorAll('a[href]').forEach(link => link.addEventListener('click', closeMenu));
             document.getElementById('admin-logout-btn')?.addEventListener('click', () => {
+                sessionStorage.removeItem('adminSessionActive');
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
                 document.cookie = 'adminAccessToken=; Path=/; Max-Age=0; SameSite=Lax';
             });
         })();

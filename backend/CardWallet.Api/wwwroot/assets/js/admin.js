@@ -40,13 +40,24 @@
         document.cookie = `adminAccessToken=${encodeURIComponent(token)}; Path=/; SameSite=Lax${secure}`;
     }
 
+    function hasActiveAdminTabSession() {
+        return sessionStorage.getItem('adminSessionActive') === '1';
+    }
+
     function clearAdminSession() {
+        sessionStorage.removeItem('adminSessionActive');
         localStorage.removeItem('adminToken');
         localStorage.removeItem('adminUser');
         document.cookie = 'adminAccessToken=; Path=/; Max-Age=0; SameSite=Lax';
     }
 
     async function apiFetch(url, options = {}) {
+        if (!hasActiveAdminTabSession()) {
+            clearAdminSession();
+            redirectToMainLogin();
+            return null;
+        }
+
         const token = localStorage.getItem('adminToken') || getAdminSessionCookie();
         if (token && !localStorage.getItem('adminToken')) {
             localStorage.setItem('adminToken', token);
@@ -991,6 +1002,7 @@
                         phoneNumber: data.phoneNumber,
                         role: data.role
                     }));
+                    sessionStorage.setItem('adminSessionActive', '1');
                     setAdminSessionCookie(data.accessToken);
                     window.location.href = '/';
                 } else {
@@ -1010,12 +1022,16 @@
 
     // Init
     const path = window.location.pathname.toLowerCase();
-    const token = localStorage.getItem('adminToken') || getAdminSessionCookie();
-    if (token && !localStorage.getItem('adminToken')) {
+    const isAuthPage = path.includes('/login') || path.includes('/auth-sso');
+    const token = hasActiveAdminTabSession()
+        ? (localStorage.getItem('adminToken') || getAdminSessionCookie())
+        : '';
+    if (!isAuthPage && token && !localStorage.getItem('adminToken')) {
         localStorage.setItem('adminToken', token);
     }
     
-    if (!token && !path.includes('/login') && !path.includes('/auth-sso')) {
+    if ((!hasActiveAdminTabSession() || !token) && !isAuthPage) {
+        clearAdminSession();
         redirectToMainLogin(); return;
     }
 

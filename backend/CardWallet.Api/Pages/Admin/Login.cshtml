@@ -58,6 +58,7 @@
             }
 
             function clearAdminSession() {
+                sessionStorage.removeItem('adminSessionActive');
                 localStorage.removeItem('adminToken');
                 localStorage.removeItem('adminUser');
                 document.cookie = 'adminAccessToken=; Path=/; Max-Age=0; SameSite=Lax';
@@ -114,6 +115,7 @@
                         phoneNumber: data.phoneNumber,
                         role: data.role
                     }));
+                    sessionStorage.setItem('adminSessionActive', '1');
                     setAdminSessionCookie(data.accessToken);
                     window.location.href = '/';
                 } catch {
