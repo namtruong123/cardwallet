@@ -13,37 +13,153 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div class="bg-cardbg border border-borderbg rounded-2xl p-8">
             <h3 class="text-xl font-bold text-white mb-6">Gửi tin nhắn</h3>
-            <form class="space-y-5">
+            <form id="contact-form" class="space-y-5">
                 <div>
                     <label class="block text-sm font-medium text-slate-400 mb-1.5">Họ và tên</label>
-                    <input type="text" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200" placeholder="Tên của bạn" />
+                    <input type="text" name="full_name" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200" placeholder="Tên của bạn" required />
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-400 mb-1.5">Email liên hệ</label>
-                    <input type="email" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200" placeholder="Email của bạn" />
+                    <input type="email" name="contact_email" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200" placeholder="Email của bạn" required />
                 </div>
+                <div class="block text-sm font-medium text-slate-400 mb-1.5">Chúng tôi có thể giúp gì cho bạn?</div>
+                    <div>
+                        <div class="relative">
+                            <select
+                                id="support-group"
+                                name="support_topic"
+                                class="contact-select w-full px-4 py-3 pr-11 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200 cursor-pointer appearance-none"
+                                required>
+
+                                <option value="">-- Chọn loại hỗ trợ --</option>
+
+                                <option value="account">
+                                    Vấn đề về tài khoản
+                                </option>
+
+                                <option value="card">
+                                    Vấn đề về thẻ cào
+                                </option>
+
+                                <option value="partner">
+                                    Hợp tác
+                                </option>
+                            </select>
+
+                            <i class="fas fa-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                        </div>
+                    </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-400 mb-1.5">Nội dung</label>
-                    <textarea rows="4" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200 resize-none" placeholder="Bạn cần hỗ trợ gì?"></textarea>
+                    <textarea name="message" rows="4" class="w-full px-4 py-3 bg-darkbg border border-borderbg rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none text-slate-200 resize-none" placeholder="Bạn cần hỗ trợ gì?" required></textarea>
                 </div>
-                <button type="button" onclick="alert('Tính năng đang phát triển!')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5">Hình ảnh đính kèm</label>
+                    <label class="flex min-h-28 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-borderbg bg-darkbg px-4 py-5 text-center hover:border-cyan-500/60 hover:bg-white/[0.03] transition-all">
+                        <i class="fas fa-image text-2xl text-cyan-400 mb-2"></i>
+                        <span class="text-sm font-semibold text-slate-200" id="contact-attachment-name">Chọn ảnh JPG, PNG hoặc WEBP</span>
+                        <span class="text-xs text-slate-500 mt-1">Tối đa 10 ảnh, dùng cho ảnh lỗi giao dịch hoặc biên lai</span>
+                        <input type="file" name="attachments" id="contact-attachment" class="hidden" accept="image/jpeg,image/png,image/webp" multiple />
+                    </label>
+                </div>
+                <div id="contact-form-status" class="hidden rounded-xl border px-4 py-3 text-sm"></div>
+                <button type="submit" id="contact-submit-button" class="w-full bg-cyan-600 hover:bg-cyan-500 disabled:cursor-not-allowed disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20">
                     Gửi Tin Nhắn
                 </button>
             </form>
         </div>
 
         <div class="space-y-6">
-            <div class="bg-cardbg border border-borderbg rounded-2xl p-6 flex items-start gap-4">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@cardwallet.com" target="_blank" rel="noopener noreferrer" class="bg-cardbg border border-borderbg rounded-2xl p-6 flex items-start gap-4 hover:border-cyan-500/50 hover:bg-white/[0.03] transition-all">
                 <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl shrink-0"><i class="fas fa-envelope"></i></div>
                 <div><h4 class="text-white font-bold text-lg mb-1">Email Hỗ Trợ</h4><p class="text-slate-400">support@cardwallet.com</p></div>
-            </div>
-            <div class="bg-cardbg border border-borderbg rounded-2xl p-6 flex items-start gap-4">
+            </a>
+            <a href="https://t.me/CardWallet_Support" target="_blank" rel="noopener noreferrer" class="bg-cardbg border border-borderbg rounded-2xl p-6 flex items-start gap-4 hover:border-emerald-500/50 hover:bg-white/[0.03] transition-all">
                 <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl shrink-0"><i class="fab fa-telegram-plane"></i></div>
                 <div><h4 class="text-white font-bold text-lg mb-1">Telegram (Phản hồi nhanh)</h4><p class="text-slate-400">@@CardWallet_Support</p></div>
-            </div>
+            </a>
             <div class="bg-darkbg border border-borderbg rounded-2xl p-6 mt-4 opacity-70">
                 <p class="text-sm text-slate-400 leading-relaxed">Chúng tôi cam kết phản hồi các yêu cầu kiểm tra thẻ lỗi, đối soát điểm trong vòng tối đa 24 giờ làm việc.</p>
             </div>
         </div>
     </div>
 </div>
+
+@section Styles {
+    <style>
+        .contact-select option {
+            background-color: #060606;
+            color: #e2e8f0;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const contactStatus = document.getElementById('contact-form-status');
+        const contactSubmitButton = document.getElementById('contact-submit-button');
+        const contactAttachment = document.getElementById('contact-attachment');
+        const contactAttachmentName = document.getElementById('contact-attachment-name');
+        
+
+        contactAttachment?.addEventListener('change', function () {
+
+            if (!this.files || this.files.length === 0) {
+                contactAttachmentName.textContent =
+                    'Chọn ảnh JPG, PNG hoặc WEBP';
+                return;
+            }
+
+            contactAttachmentName.textContent =
+                `Đã chọn ${this.files.length} ảnh`;
+        });
+
+        function showContactStatus(message, isSuccess) {
+            contactStatus.textContent = message;
+            contactStatus.className = isSuccess
+                ? 'rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200'
+                : 'rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200';
+        }
+
+        contactForm?.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            if (!this.reportValidity()) {
+                return;
+            }
+
+            const formData = new FormData(this);
+            const groupSelect = document.getElementById('support-group');
+            formData.set(
+                'support_topic_text',
+                groupSelect.selectedOptions[0]?.textContent.trim() || ''
+            );
+
+            contactSubmitButton.disabled = true;
+            contactSubmitButton.textContent = 'Đang gửi...';
+            contactStatus.className = 'hidden';
+
+            try {
+                const response = await fetch('/api/contact/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Không thể gửi tin nhắn. Vui lòng thử lại.');
+                }
+
+                showContactStatus(result.message || 'Tin nhắn đã được gửi thành công.', true);
+                this.reset();
+                contactAttachmentName.textContent = 'Chọn ảnh JPG, PNG hoặc WEBP';
+            } catch (error) {
+                showContactStatus(error.message || 'Không thể gửi tin nhắn. Vui lòng thử lại.', false);
+            } finally {
+                contactSubmitButton.disabled = false;
+                contactSubmitButton.textContent = 'Gửi Tin Nhắn';
+            }
+        });
+    </script>
+}
