@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Admin Transactions - Card Wallet</title>
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+    <link href="../assets/css/font-awesome-all.css" rel="stylesheet">
+    <link href="../assets/css/flaticon.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <div class="boxed_wrapper">
+        <header class="main-header">
+            <div class="header-lower">
+                <div class="outer-container">
+                    <div class="outer-box">
+                        <div class="logo-box">
+                            <figure class="logo"><a href="index.html"><img src="../assets/images/logo.png" alt="Card Wallet"></a></figure>
+                        </div>
+                        <div class="menu-area clearfix">
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li><a href="index.html">Dashboard</a></li>
+                                        <li><a href="users.html">Users</a></li>
+                                        <li><a href="wallets.html">Wallets</a></li>
+                                        <li><a href="cardrates.html">Card Rates</a></li>
+                                        <li class="current"><a href="transactions.html">Transactions</a></li>
+                                        <li><a href="../trangchu.html">Back Home</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="services-section" style="padding:80px 0; background:#f8fafc;">
+            <div class="auto-container">
+                <div class="sec-title centered">
+                    <span class="sub-title">Admin Transactions</span>
+                    <h2>Quản lý giao dịch</h2>
+                    <p>Lọc và kiểm soát giao dịch theo user, trạng thái, loại và thời gian.</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="service-block-one">
+                            <div class="inner-box">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 form-group">
+                                        <input type="text" name="search" placeholder="Tìm kiếm User ID / Wallet ID">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 form-group">
+                                        <select class="nice-select wide">
+                                            <option data-display="Tất cả" value="all">Tất cả</option>
+                                            <option value="success">Thành công</option>
+                                            <option value="failed">Thất bại</option>
+                                            <option value="pending">Đang chờ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 form-group">
+                                        <select class="nice-select wide">
+                                            <option data-display="Loại giao dịch" value="all">Tất cả</option>
+                                            <option value="deposit">Nạp tiền</option>
+                                            <option value="withdraw">Rút tiền</option>
+                                            <option value="exchange">Đổi thẻ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 form-group">
+                                        <button class="theme-btn btn-one"><span>Lọc</span></button>
+                                    </div>
+                                </div>
+                                <div class="table-outer" style="margin-top:30px;">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Txn ID</th>
+                                                <th>User ID</th>
+                                                <th>Wallet ID</th>
+                                                <th>Type</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>T-1001</td>
+                                                <td>1</td>
+                                                <td>W-001</td>
+                                                <td>Nạp</td>
+                                                <td>500,000 VND</td>
+                                                <td>Thành công</td>
+                                                <td>10/06/2026</td>
+                                            </tr>
+                                            <tr>
+                                                <td>T-1002</td>
+                                                <td>2</td>
+                                                <td>W-002</td>
+                                                <td>Rút</td>
+                                                <td>200,000 VND</td>
+                                                <td>Đang chờ</td>
+                                                <td>09/06/2026</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="main-footer" style="background:#020d1f; padding:40px 0; color:#a6b8d8;">
+            <div class="auto-container text-center">
+                <p>© 2026 Card Wallet Admin - Transactions</p>
+            </div>
+        </footer>
+    </div>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/wow.js"></script>
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
