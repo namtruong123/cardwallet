@@ -40,13 +40,18 @@ public class UserRepository : IUserRepository
             x.Email.ToLower() == normalizedEmail || x.PhoneNumber == normalizedLogin);
     }
 
-    public async Task<(IEnumerable<User> Users, int TotalCount)> GetPagedUsersAsync(string keyword, string status, bool? phoneVerified, bool? emailVerified, int page, int pageSize)
+    public async Task<(IEnumerable<User> Users, int TotalCount)> GetPagedUsersAsync(string keyword, string status, bool? phoneVerified, bool? emailVerified, int page, int pageSize, Guid? parentUserId = null)
     {
         var query = _context.Users.AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(keyword))
         {
             query = query.Where(u => u.FullName.Contains(keyword) || u.Email.Contains(keyword) || u.PhoneNumber.Contains(keyword));
+        }
+
+        if (parentUserId.HasValue)
+        {
+            query = query.Where(u => u.ParentUserId == parentUserId.Value);
         }
 
         if (!string.IsNullOrWhiteSpace(status))

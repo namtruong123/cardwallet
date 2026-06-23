@@ -57,6 +57,7 @@ builder.Services.AddScoped<IValidator<DepositRequest>, DepositRequestValidator>(
 builder.Services.AddScoped<IValidator<WithdrawRequest>, WithdrawRequestValidator>();
 builder.Services.AddScoped<IValidator<CreateCardRateRequest>, CreateCardRateRequestValidator>();
 builder.Services.AddScoped<IValidator<UpdateCardRateRequest>, UpdateCardRateRequestValidator>();
+
 builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
@@ -66,6 +67,11 @@ builder.Services.AddScoped<ICardRateService, CardRateService>();
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<ISearchAliasRepository, SearchAliasRepository>();
 builder.Services.AddScoped<IAdminSearchAliasService, AdminSearchAliasService>();
+builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IPartnerTaskRepository, PartnerTaskRepository>();
+builder.Services.AddScoped<ITaskSubmissionRepository, TaskSubmissionRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<CardWallet.Application.Interfaces.ICardTransactionRepository, CardWallet.Infrastructure.Repositories.CardTransactionRepository>();
 builder.Services.AddScoped<CardWallet.Application.Interfaces.IParentCardApiClient, CardWallet.Api.Clients.ParentCardApiClient>();
 builder.Services.AddScoped<CardWallet.Application.Interfaces.ICardExchangeService, CardWallet.Application.Services.CardExchangeService>();
@@ -104,8 +110,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
     options.AddPolicy("CanManageUsers", policy => policy.RequireAssertion(context =>
         context.User.IsInRole("Admin") || context.User.HasClaim("canManageUsers", "True")));
-    options.AddPolicy("CanTransferPoints", policy => policy.RequireAssertion(context =>
-        context.User.IsInRole("Admin") || context.User.HasClaim("canTransferPoints", "True")));
+    options.AddPolicy("CanTransferPoints", policy => policy.RequireRole("Admin"));
     options.AddPolicy("CanApproveKycWithdraw", policy => policy.RequireAssertion(context =>
         context.User.IsInRole("Admin") || context.User.HasClaim("canApproveKycWithdraw", "True")));
 });

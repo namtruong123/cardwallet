@@ -10,10 +10,12 @@ namespace CardWallet.Application.Services;
 public class WalletService : IWalletService
 {
     private readonly IWalletRepository _walletRepository;
+    private readonly IUserRepository _userRepository;
 
-    public WalletService(IWalletRepository walletRepository)
+    public WalletService(IWalletRepository walletRepository, IUserRepository userRepository)
     {
         _walletRepository = walletRepository;
+        _userRepository = userRepository;
     }
 
     public async Task CreateWalletForUserAsync(Guid userId)
@@ -124,6 +126,10 @@ public class WalletService : IWalletService
 
     public async Task<WalletTransactionDto> AdminTransferAsync(Guid targetUserId, long amount, string reason, Guid adminUserId)
     {
+        var senderUser = await _userRepository.GetByIdAsync(adminUserId);
+        if (senderUser == null || senderUser.Role != "Admin")
+            throw new BadRequestException("Chỉ có ADMIN mới được phép thực hiện chuyển xu thủ công.");
+
         var transferAmount = Math.Abs(amount);
         if (transferAmount <= 0)
             throw new BadRequestException("Số điểm chuyển phải lớn hơn 0.");

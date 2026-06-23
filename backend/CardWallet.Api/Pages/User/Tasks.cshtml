@@ -5,169 +5,355 @@
     ViewData["Title"] = "Nhiệm vụ CTV";
 }
 
-<div class="mb-6">
-    <h1 class="text-2xl font-bold text-white tracking-tight">Nhiệm vụ cộng tác viên</h1>
-    <p class="text-slate-400 text-sm mt-1">Xem danh sách nhiệm vụ chung của Web và nhiệm vụ riêng từ Đối tác/Tổ chức quản lý của bạn.</p>
+<div class="mb-6 flex justify-between items-start">
+    <div>
+        <h1 class="text-2xl font-bold text-white tracking-tight">Nhiệm vụ cộng tác viên</h1>
+        <p class="text-slate-400 text-sm mt-1">Xem danh sách nhiệm vụ và nộp bằng chứng hoàn thành để nhận thưởng xu.</p>
+    </div>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Tasks list area -->
-    <div class="lg:col-span-2 space-y-6">
-        <!-- Tabs headers -->
-        <div class="border-b border-borderbg flex gap-6 text-sm font-semibold">
-            <button class="border-b-2 border-cyan-400 text-white pb-3 px-1" id="tab-system-btn">Nhiệm vụ chung của Web</button>
-            <button class="text-slate-400 hover:text-white pb-3 px-1" id="tab-partner-btn">Nhiệm vụ của Đối tác/Tổ chức</button>
+    <div class="lg:col-span-2 space-y-5">
+        <!-- Tab headers -->
+        <div class="border-b border-borderbg flex gap-2">
+            <button id="tab-available-btn" class="border-b-2 border-cyan-400 text-white pb-3 px-3 text-sm font-semibold transition-colors">
+                <i class="fas fa-list-check mr-1.5"></i>Nhiệm vụ có sẵn
+            </button>
+            <button id="tab-my-submissions-btn" class="text-slate-400 hover:text-white pb-3 px-3 text-sm font-medium transition-colors">
+                <i class="fas fa-clock-rotate-left mr-1.5"></i>Lịch sử nộp
+                <span id="pending-sub-badge" class="ml-1 bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+            </button>
         </div>
 
-        <!-- System Tasks List -->
-        <div class="space-y-4" id="system-tasks-list">
-            <!-- Task Item 1 -->
-            <div class="bg-cardbg border border-borderbg rounded-xl p-5 hover:border-cyan-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Hệ thống</span>
-                        <h3 class="text-white font-bold text-base">Chia sẻ ứng dụng lên mạng xã hội</h3>
-                    </div>
-                    <p class="text-slate-400 text-sm">Chia sẻ liên kết giới thiệu của bạn lên Facebook, Zalo hoặc Telegram ở chế độ công khai kèm hashtag #CardWallet.</p>
-                    <div class="flex gap-4 text-xs text-slate-500">
-                        <span><i class="fas fa-coins mr-1 text-cyan-400"></i> Thưởng: 1,000 XU</span>
-                        <span><i class="fas fa-clock mr-1"></i> Hạn: Không giới hạn</span>
-                    </div>
-                </div>
-                <button onclick="acceptTask('task-sys-1', 'Chia sẻ ứng dụng')" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition-colors shrink-0">
-                    Nhận Task
-                </button>
+        <!-- Available Tasks -->
+        <div id="panel-available" class="space-y-3">
+            <div class="flex gap-2 flex-wrap">
+                <button id="filter-all" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-slate-900">Tất cả</button>
+                <button id="filter-system" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800">Hệ thống</button>
+                <button id="filter-partner" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800">Đối tác</button>
             </div>
-
-            <!-- Task Item 2 -->
-            <div class="bg-cardbg border border-borderbg rounded-xl p-5 hover:border-cyan-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Hệ thống</span>
-                        <h3 class="text-white font-bold text-base">Hoàn thành 3 giao dịch đổi thẻ cào</h3>
-                    </div>
-                    <p class="text-slate-400 text-sm">Thực hiện đổi thành công tối thiểu 3 thẻ cào (mệnh giá từ 50,000đ trở lên) trên hệ thống.</p>
-                    <div class="flex gap-4 text-xs text-slate-500">
-                        <span><i class="fas fa-coins mr-1 text-cyan-400"></i> Thưởng: 3,000 XU</span>
-                        <span><i class="fas fa-clock mr-1"></i> Hạn: Hết ngày 30/06</span>
-                    </div>
-                </div>
-                <button onclick="acceptTask('task-sys-2', 'Hoàn thành 3 GD')" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition-colors shrink-0">
-                    Nhận Task
-                </button>
+            <div id="tasks-container">
+                <div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải nhiệm vụ...</div>
             </div>
         </div>
 
-        <!-- Partner Tasks List (Hidden by default) -->
-        <div class="space-y-4 hidden" id="partner-tasks-list">
-            <!-- Partner Task Item 1 -->
-            <div class="bg-cardbg border border-borderbg rounded-xl p-5 hover:border-teal-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">Tổ chức</span>
-                        <h3 class="text-white font-bold text-base">Tuyển dụng 5 CTV con cho nhóm</h3>
-                    </div>
-                    <p class="text-slate-400 text-sm">Giới thiệu thành công 5 thành viên mới đăng ký tài khoản qua liên kết giới thiệu trực thuộc nhóm của tổ chức.</p>
-                    <div class="flex gap-4 text-xs text-slate-500">
-                        <span><i class="fas fa-coins mr-1 text-teal-400"></i> Thưởng: 5,000 XU</span>
-                        <span><i class="fas fa-clock mr-1"></i> Hạn: Theo chiến dịch</span>
-                    </div>
-                </div>
-                <button onclick="acceptTask('task-part-1', 'Tuyển dụng 5 CTV')" class="bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition-colors shrink-0">
-                    Nhận Task
-                </button>
+        <!-- My Submissions -->
+        <div id="panel-submissions" class="space-y-3 hidden">
+            <div id="submissions-container">
+                <div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>
             </div>
         </div>
     </div>
 
-    <!-- Submit Report Area -->
-    <div class="space-y-6">
-        <div class="bg-cardbg border border-borderbg rounded-2xl p-6 shadow-xl space-y-4">
-            <h3 class="text-white font-bold text-lg">Báo cáo hoàn thành nhiệm vụ</h3>
-            <p class="text-xs text-slate-400">Nếu bạn đã hoàn thành nhiệm vụ được giao, vui lòng gửi đơn kèm bằng chứng hình ảnh/đường dẫn chứng minh bên dưới để được phê duyệt.</p>
+    <!-- Submit Report -->
+    <div class="space-y-4">
+        <!-- Submit form -->
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-5 shadow-xl space-y-4" id="submit-panel">
+            <div>
+                <h3 class="text-white font-bold text-base">Nộp bằng chứng hoàn thành</h3>
+                <p class="text-xs text-slate-400 mt-1">Chọn nhiệm vụ, cung cấp link bằng chứng để Quản lý xét duyệt và cộng xu cho bạn.</p>
+            </div>
             
-            <form id="submit-task-form" class="space-y-4">
+            <form id="submit-task-form" class="space-y-3">
                 <div>
-                    <label for="task-select" class="block text-xs font-semibold text-slate-300 mb-2">Chọn nhiệm vụ đã nhận</label>
-                    <select id="task-select" required class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 text-sm">
-                        <option value="">-- Chưa nhận nhiệm vụ nào --</option>
+                    <label for="task-select" class="block text-xs font-semibold text-slate-300 mb-1.5">Chọn nhiệm vụ <span class="text-rose-400">*</span></label>
+                    <select id="task-select" required class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-2.5 text-white outline-none focus:border-cyan-400 text-sm">
+                        <option value="">-- Đang tải nhiệm vụ... --</option>
                     </select>
                 </div>
                 <div>
-                    <label for="proof-link" class="block text-xs font-semibold text-slate-300 mb-2">Đường dẫn bằng chứng (URL)</label>
-                    <input id="proof-link" type="url" placeholder="https://facebook.com/..." class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 text-sm" />
+                    <label for="proof-link" class="block text-xs font-semibold text-slate-300 mb-1.5">Link bằng chứng (URL) <span class="text-rose-400">*</span></label>
+                    <input id="proof-link" type="url" placeholder="https://facebook.com/..." class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-2.5 text-white outline-none focus:border-cyan-400 text-sm" />
                 </div>
                 <div>
-                    <label for="proof-note" class="block text-xs font-semibold text-slate-300 mb-2">Mô tả / Ghi chú</label>
-                    <textarea id="proof-note" rows="3" placeholder="Ghi chú thêm..." class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-3 text-white outline-none focus:border-cyan-400 text-sm"></textarea>
+                    <label for="proof-note" class="block text-xs font-semibold text-slate-300 mb-1.5">Ghi chú (tuỳ chọn)</label>
+                    <textarea id="proof-note" rows="3" placeholder="Mô tả thêm..." class="w-full rounded-xl border border-borderbg bg-darkbg px-4 py-2.5 text-white outline-none focus:border-cyan-400 text-sm resize-none"></textarea>
                 </div>
-                <button type="submit" class="w-full rounded-xl bg-cyan-500 py-3 font-bold text-slate-900 hover:bg-cyan-400 transition-colors text-sm">
-                    Nộp đơn hoàn thành
+                <button type="submit" id="btn-submit-task" class="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 py-3 font-bold text-white text-sm transition-all shadow-lg shadow-cyan-500/20">
+                    <i class="fas fa-paper-plane mr-2"></i>Nộp đơn hoàn thành
                 </button>
             </form>
+
+            <div class="text-xs text-slate-500 bg-darkbg rounded-lg p-3 flex items-start gap-2">
+                <i class="fas fa-info-circle text-cyan-400 mt-0.5 shrink-0"></i>
+                <span>Sau khi nộp, Quản lý sẽ xét duyệt. Nếu được duyệt, hệ thống tự động cộng xu vào ví của bạn.</span>
+            </div>
+        </div>
+
+        <!-- Reward Info -->
+        <div class="bg-cardbg border border-borderbg rounded-2xl p-5 space-y-3">
+            <h3 class="text-white font-bold text-sm">Hướng dẫn nộp task</h3>
+            <div class="space-y-2 text-xs text-slate-400">
+                <div class="flex items-start gap-2">
+                    <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">1</span>
+                    <span>Xem danh sách nhiệm vụ và chọn nhiệm vụ bạn có thể thực hiện</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">2</span>
+                    <span>Thực hiện nhiệm vụ và chuẩn bị bằng chứng (ảnh chụp màn hình, link bài viết...)</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">3</span>
+                    <span>Nộp đơn kèm link bằng chứng tại form bên trên</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+                    <span>Sau khi Quản lý duyệt, xu sẽ tự động được cộng vào ví</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Toast -->
+<div id="task-toast" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm"></div>
+
 @section Scripts {
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const systemTab = document.getElementById('tab-system-btn');
-            const partnerTab = document.getElementById('tab-partner-btn');
-            const systemList = document.getElementById('system-tasks-list');
-            const partnerList = document.getElementById('partner-tasks-list');
-            const taskSelect = document.getElementById('task-select');
+<script>
+(function() {
+    const API = '/api';
+    let token = null;
+    let allTasks = [];
+    let currentFilter = 'all';
 
-            systemTab?.addEventListener('click', () => {
-                systemTab.className = "border-b-2 border-cyan-400 text-white pb-3 px-1";
-                partnerTab.className = "text-slate-400 hover:text-white pb-3 px-1";
-                systemList.classList.remove('hidden');
-                partnerList.classList.add('hidden');
-            });
+    function getToken() {
+        try { return JSON.parse(localStorage.getItem('authData') || '{}').accessToken || null; }
+        catch { return null; }
+    }
 
-            partnerTab?.addEventListener('click', () => {
-                partnerTab.className = "border-b-2 border-teal-400 text-white pb-3 px-1";
-                systemTab.className = "text-slate-400 hover:text-white pb-3 px-1";
-                partnerList.classList.remove('hidden');
-                systemList.classList.add('hidden');
-            });
+    async function apiFetch(url, opts = {}) {
+        return fetch(API + url, {
+            ...opts,
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', ...(opts.headers||{}) }
+        });
+    }
 
-            const acceptedTasks = [];
+    function toast(msg, type = 'success') {
+        const c = document.getElementById('task-toast');
+        const t = document.createElement('div');
+        const color = type==='success'?'bg-emerald-600':type==='error'?'bg-rose-600':'bg-amber-600';
+        t.className = `${color} text-white text-sm px-4 py-3 rounded-lg shadow-xl flex items-center gap-2`;
+        t.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':type==='error'?'times-circle':'info-circle'}"></i>${msg}`;
+        c.appendChild(t);
+        setTimeout(() => t.remove(), 4000);
+    }
 
-            window.acceptTask = function(id, name) {
-                if (acceptedTasks.some(t => t.id === id)) {
-                    alert("Bạn đã nhận nhiệm vụ này rồi!");
-                    return;
-                }
-                acceptedTasks.push({ id, name });
-                updateTaskSelect();
-                alert(`Đã nhận nhiệm vụ: ${name}. Hãy thực hiện và nộp báo cáo hoàn thành.`);
-            };
+    function formatCoins(n) { return Number(n).toLocaleString('vi-VN'); }
+    function formatDate(d) {
+        if (!d) return 'Không giới hạn';
+        return new Date(d).toLocaleDateString('vi-VN');
+    }
 
-            function updateTaskSelect() {
-                if (acceptedTasks.length === 0) {
-                    taskSelect.innerHTML = '<option value="">-- Chưa nhận nhiệm vụ nào --</option>';
-                    return;
-                }
-                taskSelect.innerHTML = '<option value="">-- Chọn nhiệm vụ để báo cáo --</option>' + 
-                    acceptedTasks.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+    function statusBadge(s) {
+        const map = { 'Pending':'bg-amber-500/10 text-amber-400 border border-amber-500/30 Chờ duyệt',
+            'Approved':'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 Đã duyệt',
+            'Rejected':'bg-rose-500/10 text-rose-400 border border-rose-500/30 Đã từ chối' };
+        const [cls, label] = (map[s] || 'bg-slate-800 text-slate-400 ' + s).split(' ').reduce((a, v, i, arr) => {
+            if (i < arr.length-1) a[0] += (i?.' ':'')+v; else a[1] = v; return a;
+        }, ['','']);
+        return `<span class="inline-flex px-2 py-0.5 text-[10px] font-bold uppercase rounded-full ${map[s]?.split(' ').slice(0,-1).join(' ')||'bg-slate-800 text-slate-400'}">${map[s]?.split(' ').slice(-1)[0]||s}</span>`;
+    }
+
+    // Simpler badge function
+    function sbadge(s) {
+        const cfg = {
+            'Pending': ['bg-amber-500/10 text-amber-400 border border-amber-500/20','Chờ duyệt'],
+            'Approved': ['bg-emerald-500/10 text-emerald-400 border border-emerald-500/20','Đã duyệt'],
+            'Rejected': ['bg-rose-500/10 text-rose-400 border border-rose-500/20','Từ chối'],
+        };
+        const [cls, lbl] = cfg[s] || ['bg-slate-800 text-slate-400', s];
+        return `<span class="inline-flex px-2 py-0.5 text-[10px] font-bold uppercase rounded-full ${cls}">${lbl}</span>`;
+    }
+
+    // Load tasks
+    async function loadTasks() {
+        const container = document.getElementById('tasks-container');
+        try {
+            const res = await apiFetch('/tasks');
+            if (!res.ok) throw new Error();
+            allTasks = await res.json();
+            renderTasks(currentFilter);
+            populateTaskSelect();
+        } catch {
+            container.innerHTML = '<div class="text-center py-8 text-rose-400"><i class="fas fa-exclamation-triangle mr-2"></i>Không thể tải nhiệm vụ</div>';
+        }
+    }
+
+    function renderTasks(filter) {
+        currentFilter = filter;
+        const container = document.getElementById('tasks-container');
+        let tasks = allTasks;
+        if (filter === 'system') tasks = tasks.filter(t => t.scope === 'System');
+        if (filter === 'partner') tasks = tasks.filter(t => t.scope === 'Partner');
+
+        // Update filter buttons
+        document.querySelectorAll('.task-filter-btn').forEach(b => {
+            const isActive = (b.id === 'filter-' + filter) || (filter==='all' && b.id==='filter-all');
+            b.className = `task-filter-btn px-3 py-1.5 rounded-lg text-xs font-${isActive?'semibold':'medium'} ${isActive?'bg-cyan-500 text-slate-900':'text-slate-400 hover:text-white bg-slate-800'}`;
+        });
+
+        if (!tasks.length) {
+            container.innerHTML = '<div class="text-center py-10 text-slate-500"><i class="fas fa-inbox text-3xl mb-3 block"></i>Không có nhiệm vụ nào.</div>';
+            return;
+        }
+
+        container.innerHTML = tasks.map(t => {
+            const isPartner = t.scope === 'Partner';
+            const scopeColor = isPartner ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20';
+            const scopeLabel = isPartner ? 'Đối tác' : 'Hệ thống';
+            const deadlinePast = t.deadline && new Date(t.deadline) < new Date();
+            return `
+            <div class="bg-cardbg border border-borderbg rounded-xl p-4 hover:border-cyan-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${deadlinePast?'opacity-60':''}">
+                <div class="flex-1 space-y-2">
+                    <div class="flex items-center flex-wrap gap-2">
+                        <span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full ${scopeColor}">${scopeLabel}</span>
+                        ${!t.isActive ? '<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-slate-700 text-slate-400">Đã đóng</span>' : ''}
+                        ${deadlinePast ? '<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20">Hết hạn</span>' : ''}
+                        <h3 class="font-bold text-white text-sm">${t.title}</h3>
+                    </div>
+                    <p class="text-xs text-slate-400">${t.description}</p>
+                    <div class="flex flex-wrap gap-4 text-xs text-slate-500">
+                        <span><i class="fas fa-coins mr-1 text-cyan-400"></i><span class="font-semibold text-cyan-400">${formatCoins(t.rewardCoins)} xu</span></span>
+                        <span><i class="fas fa-clock mr-1"></i>Hạn: ${formatDate(t.deadline)}</span>
+                    </div>
+                </div>
+                ${t.isActive && !deadlinePast ? `
+                <button onclick="quickSelectTask('${t.id}')" class="shrink-0 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-4 py-2 rounded-lg text-xs transition-colors">
+                    <i class="fas fa-check mr-1"></i>Chọn nộp
+                </button>` : ''}
+            </div>`;
+        }).join('');
+    }
+
+    function populateTaskSelect() {
+        const sel = document.getElementById('task-select');
+        const active = allTasks.filter(t => t.isActive && (!t.deadline || new Date(t.deadline) >= new Date()));
+        if (!active.length) {
+            sel.innerHTML = '<option value="">-- Chưa có nhiệm vụ nào để nộp --</option>';
+            return;
+        }
+        sel.innerHTML = '<option value="">-- Chọn nhiệm vụ --</option>' +
+            active.map(t => `<option value="${t.id}">${t.title} (${formatCoins(t.rewardCoins)} xu)</option>`).join('');
+    }
+
+    window.quickSelectTask = function(id) {
+        document.getElementById('task-select').value = id;
+        document.getElementById('submit-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        document.getElementById('proof-link').focus();
+    };
+
+    // Load my submissions
+    async function loadMySubmissions() {
+        const container = document.getElementById('submissions-container');
+        container.innerHTML = '<div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>';
+
+        try {
+            const res = await apiFetch('/tasks/submissions');
+            if (!res.ok) throw new Error();
+            const subs = await res.json();
+
+            const pendingCount = subs.filter(s => s.status === 'Pending').length;
+            const badge = document.getElementById('pending-sub-badge');
+            if (pendingCount > 0) { badge.textContent = pendingCount; badge.classList.remove('hidden'); }
+            else badge.classList.add('hidden');
+
+            if (!subs.length) {
+                container.innerHTML = '<div class="text-center py-10 text-slate-500"><i class="fas fa-box-open text-3xl mb-3 block"></i>Bạn chưa nộp đơn nào.</div>';
+                return;
             }
 
-            document.getElementById('submit-task-form')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const selectedId = taskSelect.value;
-                if (!selectedId) {
-                    alert("Vui lòng chọn nhiệm vụ cần báo cáo!");
-                    return;
-                }
-                alert("Nộp đơn hoàn thành nhiệm vụ thành công! Đang chờ Quản lý duyệt.");
-                document.getElementById('submit-task-form').reset();
-                
-                // Remove from accepted list
-                const idx = acceptedTasks.findIndex(t => t.id === selectedId);
-                if (idx > -1) acceptedTasks.splice(idx, 1);
-                updateTaskSelect();
+            container.innerHTML = subs.map(s => `
+                <div class="bg-cardbg border border-borderbg rounded-xl p-4 space-y-2 hover:border-slate-600 transition-colors">
+                    <div class="flex items-start justify-between gap-2">
+                        <h3 class="font-semibold text-white text-sm">${s.taskTitle}</h3>
+                        <div class="flex items-center gap-2 shrink-0">
+                            ${sbadge(s.status)}
+                            <span class="text-xs font-bold text-cyan-400">${formatCoins(s.taskRewardCoins)} xu</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500">Link bằng chứng: <a href="${s.proofUrl}" target="_blank" class="text-indigo-400 hover:text-indigo-300">${s.proofUrl.substring(0,60)}${s.proofUrl.length>60?'...':''}</a></p>
+                    ${s.note ? `<p class="text-xs text-slate-500">Ghi chú: ${s.note}</p>` : ''}
+                    ${s.status==='Rejected'&&s.rejectReason ? `<p class="text-xs text-rose-400"><i class="fas fa-ban mr-1"></i>${s.rejectReason}</p>` : ''}
+                    <p class="text-xs text-slate-600">Nộp: ${new Date(s.submittedAt).toLocaleDateString('vi-VN')}</p>
+                </div>
+            `).join('');
+        } catch {
+            container.innerHTML = '<div class="text-center py-8 text-rose-400"><i class="fas fa-exclamation-triangle mr-2"></i>Lỗi tải lịch sử</div>';
+        }
+    }
+
+    // Tab switching
+    const tabAvailable = document.getElementById('tab-available-btn');
+    const tabSubs = document.getElementById('tab-my-submissions-btn');
+    const panelAvailable = document.getElementById('panel-available');
+    const panelSubs = document.getElementById('panel-submissions');
+
+    tabAvailable.addEventListener('click', () => {
+        tabAvailable.className = 'border-b-2 border-cyan-400 text-white pb-3 px-3 text-sm font-semibold transition-colors';
+        tabSubs.className = 'text-slate-400 hover:text-white pb-3 px-3 text-sm font-medium transition-colors';
+        panelAvailable.classList.remove('hidden');
+        panelSubs.classList.add('hidden');
+    });
+
+    tabSubs.addEventListener('click', () => {
+        tabSubs.className = 'border-b-2 border-cyan-400 text-white pb-3 px-3 text-sm font-semibold transition-colors';
+        tabAvailable.className = 'text-slate-400 hover:text-white pb-3 px-3 text-sm font-medium transition-colors';
+        panelSubs.classList.remove('hidden');
+        panelAvailable.classList.add('hidden');
+        loadMySubmissions();
+    });
+
+    // Filter buttons
+    document.getElementById('filter-all').addEventListener('click', () => renderTasks('all'));
+    document.getElementById('filter-system').addEventListener('click', () => renderTasks('system'));
+    document.getElementById('filter-partner').addEventListener('click', () => renderTasks('partner'));
+
+    // Submit form
+    document.getElementById('submit-task-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btn-submit-task');
+        const taskId = document.getElementById('task-select').value;
+        const proofUrl = document.getElementById('proof-link').value.trim();
+        const note = document.getElementById('proof-note').value.trim();
+
+        if (!taskId) { toast('Vui lòng chọn nhiệm vụ', 'warning'); return; }
+        if (!proofUrl) { toast('Vui lòng nhập link bằng chứng', 'warning'); return; }
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang nộp...';
+
+        try {
+            const res = await apiFetch('/tasks/submit', {
+                method: 'POST',
+                body: JSON.stringify({ taskId, proofUrl, note: note || null })
             });
-        });
-    </script>
+            if (!res.ok) { const err = await res.json(); throw new Error(err.message || 'Lỗi'); }
+            toast('Nộp đơn thành công! Đang chờ Quản lý duyệt 🎉', 'success');
+            document.getElementById('submit-task-form').reset();
+            populateTaskSelect();
+            // Show pending badge
+            const badge = document.getElementById('pending-sub-badge');
+            const cur = parseInt(badge.textContent || '0') + 1;
+            badge.textContent = cur;
+            badge.classList.remove('hidden');
+        } catch(err) {
+            toast(err.message || 'Không thể nộp đơn. Thử lại sau.', 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Nộp đơn hoàn thành';
+        }
+    });
+
+    // Init
+    async function init() {
+        token = getToken();
+        if (!token) { window.location.href = '/login'; return; }
+        await loadTasks();
+        await loadMySubmissions();
+    }
+
+    init();
+})();
+</script>
 }

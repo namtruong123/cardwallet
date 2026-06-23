@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\card-wallet-platform\\backend\\CardWallet.Application\\CardWallet.Application.csproj",
         "projectName": "CardWallet.Application",
         "projectPath": "D:\\card-wallet-platform\\backend\\CardWallet.Application\\CardWallet.Application.csproj",
-        "packagesPath": "C:\\Users\\boy_m\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\tanna\\.nuget\\packages\\",
         "outputPath": "D:\\card-wallet-platform\\backend\\CardWallet.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\boy_m\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\tanna\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -24,7 +24,6 @@
         },
         "frameworks": {
           "net8.0": {
-            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
               "D:\\card-wallet-platform\\backend\\CardWallet.Domain\\CardWallet.Domain.csproj": {
@@ -42,12 +41,10 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "FluentValidation": {
@@ -79,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -89,11 +86,11 @@
         "projectUniqueName": "D:\\card-wallet-platform\\backend\\CardWallet.Domain\\CardWallet.Domain.csproj",
         "projectName": "CardWallet.Domain",
         "projectPath": "D:\\card-wallet-platform\\backend\\CardWallet.Domain\\CardWallet.Domain.csproj",
-        "packagesPath": "C:\\Users\\boy_m\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\tanna\\.nuget\\packages\\",
         "outputPath": "D:\\card-wallet-platform\\backend\\CardWallet.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\boy_m\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\tanna\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -103,7 +100,6 @@
         },
         "frameworks": {
           "net8.0": {
-            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -117,12 +113,10 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -140,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

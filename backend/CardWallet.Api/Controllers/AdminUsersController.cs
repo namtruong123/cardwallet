@@ -29,28 +29,28 @@ namespace CardWallet.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery] string? keyword = "", [FromQuery] string? status = "", [FromQuery] bool? phoneVerified = null, [FromQuery] bool? emailVerified = null, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
         {
-            var result = await _adminUserService.GetUsersAsync(keyword ?? "", status ?? "", phoneVerified, emailVerified, page, pageSize);
+            var result = await _adminUserService.GetUsersAsync(keyword ?? "", status ?? "", phoneVerified, emailVerified, page, pageSize, GetCurrentUserId());
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserDetail(Guid id)
         {
-            var result = await _adminUserService.GetUserDetailAsync(id);
+            var result = await _adminUserService.GetUserDetailAsync(id, GetCurrentUserId());
             return Ok(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] AdminCreateUserRequest request)
         {
-            var result = await _adminUserService.CreateUserAsync(request);
+            var result = await _adminUserService.CreateUserAsync(request, GetCurrentUserId());
             return CreatedAtAction(nameof(GetUserDetail), new { id = result.Id }, result);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] AdminUpdateUserRequest request)
         {
-            await _adminUserService.UpdateUserAsync(id, request);
+            await _adminUserService.UpdateUserAsync(id, request, GetCurrentUserId());
             return NoContent();
         }
 
@@ -71,18 +71,18 @@ namespace CardWallet.Api.Controllers
         [HttpPost("{id}/unlock")]
         public async Task<IActionResult> UnlockUser(Guid id)
         {
-            await _adminUserService.UnlockUserAsync(id);
+            await _adminUserService.UnlockUserAsync(id, GetCurrentUserId());
             return NoContent();
         }
 
         [HttpPost("{id}/verify-phone")]
-        public async Task<IActionResult> VerifyPhone(Guid id, [FromBody] AdminVerifyRequest req) { await _adminUserService.VerifyPhoneAsync(id, req.IsVerified); return NoContent(); }
+        public async Task<IActionResult> VerifyPhone(Guid id, [FromBody] AdminVerifyRequest req) { await _adminUserService.VerifyPhoneAsync(id, req.IsVerified, GetCurrentUserId()); return NoContent(); }
 
         [HttpPost("{id}/verify-email")]
-        public async Task<IActionResult> VerifyEmail(Guid id, [FromBody] AdminVerifyRequest req) { await _adminUserService.VerifyEmailAsync(id, req.IsVerified); return NoContent(); }
+        public async Task<IActionResult> VerifyEmail(Guid id, [FromBody] AdminVerifyRequest req) { await _adminUserService.VerifyEmailAsync(id, req.IsVerified, GetCurrentUserId()); return NoContent(); }
 
         [HttpPost("{id}/reset-password")]
-        public async Task<IActionResult> ResetPassword(Guid id, [FromBody] AdminResetPasswordRequest request) { await _adminUserService.ResetPasswordAsync(id, request.NewPassword); return NoContent(); }
+        public async Task<IActionResult> ResetPassword(Guid id, [FromBody] AdminResetPasswordRequest request) { await _adminUserService.ResetPasswordAsync(id, request.NewPassword, GetCurrentUserId()); return NoContent(); }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)

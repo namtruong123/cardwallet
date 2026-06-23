@@ -10,9 +10,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý hệ thống - CardWallet</title>
+    <meta name="description" content="Trang quản lý dành cho QL tập trung và Đối tác/Tổ chức của CardWallet." />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -26,9 +27,33 @@
     </script>
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .nav-item { display: flex; align-items: center; padding: 0.625rem 0.75rem; font-size: 0.875rem; font-weight: 500; color: rgb(148 163 184); border-radius: 0.5rem; transition: all 0.15s; width: 100%; text-align: left; background: transparent; border: none; cursor: pointer; }
+        .nav-item:hover { color: rgb(248 250 252); background: rgba(30 41 59 / 0.5); }
+        .nav-item.active { color: rgb(129 140 248); background: rgba(30 41 59 / 0.8); }
+        .section-panel { display: none; }
+        .section-panel.active { display: block; }
+        .badge-pending { background: rgba(245 158 11 / 0.1); color: rgb(251 191 36); border: 1px solid rgba(245 158 11 / 0.3); }
+        .badge-approved { background: rgba(16 185 129 / 0.1); color: rgb(52 211 153); border: 1px solid rgba(16 185 129 / 0.3); }
+        .badge-rejected { background: rgba(244 63 94 / 0.1); color: rgb(251 113 133); border: 1px solid rgba(244 63 94 / 0.3); }
+        .badge-active { background: rgba(6 182 212 / 0.1); color: rgb(34 211 238); border: 1px solid rgba(6 182 212 / 0.3); }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 50; display: none; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
+        .modal-overlay.open { display: flex; }
+        .stat-card { background: #0f172a; border-radius: 0.75rem; border: 1px solid #1e293b; padding: 1.25rem; }
+        .btn-primary { background: linear-gradient(to right, #4f46e5, #9333ea); color: white; font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; border: none; cursor: pointer; transition: all 0.15s; box-shadow: 0 4px 6px rgba(99 102 241 / 0.2); }
+        .btn-primary:hover { background: linear-gradient(to right, #4338ca, #7e22ce); }
+        .btn-danger { background: rgba(244 63 94 / 0.1); color: rgb(251 113 133); border: 1px solid rgba(244 63 94 / 0.2); font-weight: 500; padding: 0.375rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; cursor: pointer; transition: all 0.15s; }
+        .btn-danger:hover { background: rgba(244 63 94 / 0.2); }
+        .btn-success { background: rgba(16 185 129 / 0.1); color: rgb(52 211 153); border: 1px solid rgba(16 185 129 / 0.2); font-weight: 500; padding: 0.375rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; cursor: pointer; transition: all 0.15s; }
+        .btn-success:hover { background: rgba(16 185 129 / 0.2); }
+        .table-th { padding: 0.75rem 1rem; font-weight: 600; color: rgb(148 163 184); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .table-td { padding: 0.75rem 1rem; font-size: 0.875rem; }
     </style>
 </head>
-<body class="bg-darkbg text-slate-300 flex h-screen overflow-hidden selection:bg-indigo-500/30">
+<body class="bg-darkbg text-slate-300 flex h-screen overflow-hidden">
     <!-- Mobile Overlay -->
     <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/60 md:hidden"></div>
 
@@ -42,21 +67,22 @@
         </div>
 
         <nav class="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
-            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-semibold text-indigo-400 bg-slate-800/80 rounded-lg group">
-                <i class="fas fa-home w-5 mr-3 text-indigo-400"></i> Dashboard
-            </a>
-            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
-                <i class="fas fa-users w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Quản lý CTV
-            </a>
-            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
-                <i class="fas fa-tasks w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Duyệt nhiệm vụ
-            </a>
-            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
-                <i class="fas fa-right-left w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Chuyển điểm
-            </a>
-            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-lg transition-colors group">
-                <i class="fas fa-blog w-5 mr-3 text-slate-500 group-hover:text-indigo-400 transition-colors"></i> Quản lý Blog
-            </a>
+            <button data-section="dashboard" class="nav-item active w-full text-left" id="nav-dashboard">
+                <i class="fas fa-home w-5 mr-3"></i> Dashboard
+            </button>
+            <button data-section="ctv" class="nav-item w-full text-left" id="nav-ctv">
+                <i class="fas fa-users w-5 mr-3"></i> Quản lý CTV
+            </button>
+            <button data-section="tasks" class="nav-item w-full text-left" id="nav-tasks">
+                <i class="fas fa-tasks w-5 mr-3"></i> Nhiệm vụ
+            </button>
+            <button data-section="submissions" class="nav-item w-full text-left" id="nav-submissions">
+                <i class="fas fa-check-double w-5 mr-3"></i> Duyệt nộp task
+                <span id="pending-badge" class="ml-auto bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+            </button>
+            <button data-section="blog" class="nav-item w-full text-left" id="nav-blog">
+                <i class="fas fa-blog w-5 mr-3"></i> Quản lý Blog
+            </button>
         </nav>
 
         <div class="p-4 border-t border-borderbg">
@@ -66,206 +92,790 @@
         </div>
     </aside>
 
-    <!-- Main Content Area -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
         <header class="h-16 bg-cardbg/80 backdrop-blur-md border-b border-borderbg flex items-center justify-between px-4 sm:px-6 z-10">
             <div class="flex min-w-0 items-center">
                 <button id="menu-button" type="button" class="md:hidden shrink-0 text-slate-400 hover:text-white mr-4">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
-                <h1 class="text-base sm:text-lg font-semibold text-white truncate">Tổng quan Quản lý</h1>
+                <h1 class="text-base sm:text-lg font-semibold text-white truncate" id="page-title">Tổng quan</h1>
             </div>
-            
             <div class="flex shrink-0 items-center space-x-3 sm:space-x-4">
                 <div class="flex items-center border-l border-borderbg pl-3 sm:pl-4">
                     <img id="user-avatar" src="https://ui-avatars.com/api/?name=Manager&background=6366F1&color=fff" alt="Manager" class="w-8 h-8 rounded-full border border-slate-700">
                     <div class="ml-2 hidden sm:block leading-tight text-left">
                         <span id="manager-name" class="block text-sm font-medium text-slate-200">Quản lý</span>
-                        <span class="block text-[10px] uppercase tracking-wide text-indigo-400">Central Manager</span>
+                        <span id="manager-role-label" class="block text-[10px] uppercase tracking-wide text-indigo-400">Manager</span>
                     </div>
                 </div>
             </div>
         </header>
 
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-darkbg p-3 sm:p-6 lg:p-8">
-            <div class="max-w-7xl mx-auto space-y-6">
-                <!-- Welcome Section -->
-                <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/20 to-transparent rounded-2xl border border-indigo-500/20 p-6 shadow-xl">
-                    <h2 class="text-xl font-bold text-white tracking-tight">Chào mừng quay trở lại, <span id="welcome-name" class="text-indigo-400">Quản lý</span>!</h2>
-                    <p class="text-slate-400 text-sm mt-1">Dưới đây là bảng quản lý dành riêng cho điều hành viên. Bạn có thể sử dụng các chức năng được cấp phép bên dưới.</p>
+            <div class="max-w-7xl mx-auto">
+
+                <!-- SECTION: Dashboard -->
+                <div id="section-dashboard" class="section-panel active space-y-6">
+                    <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/20 to-transparent rounded-2xl border border-indigo-500/20 p-6 shadow-xl">
+                        <h2 class="text-xl font-bold text-white">Chào mừng, <span id="welcome-name" class="text-indigo-400">Quản lý</span>!</h2>
+                        <p class="text-slate-400 text-sm mt-1">Bảng quản lý dành riêng cho điều hành viên. Chỉ CTV thuộc ref của bạn mới được quản lý.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="stat-card flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">CTV trực thuộc</p>
+                                <h3 class="text-2xl font-bold text-white" id="stat-ctv-count">—</h3>
+                            </div>
+                            <i class="fas fa-users text-indigo-400 text-2xl"></i>
+                        </div>
+                        <div class="stat-card flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Nhiệm vụ đang mở</p>
+                                <h3 class="text-2xl font-bold text-white" id="stat-task-count">—</h3>
+                            </div>
+                            <i class="fas fa-tasks text-cyan-400 text-2xl"></i>
+                        </div>
+                        <div class="stat-card flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Chờ duyệt task</p>
+                                <h3 class="text-2xl font-bold text-amber-400" id="stat-pending-count">—</h3>
+                            </div>
+                            <i class="fas fa-hourglass-half text-amber-400 text-2xl"></i>
+                        </div>
+                        <div class="stat-card flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Bài blog (chờ duyệt)</p>
+                                <h3 class="text-2xl font-bold text-purple-400" id="stat-blog-count">—</h3>
+                            </div>
+                            <i class="fas fa-blog text-purple-400 text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <button data-section="ctv" class="quick-nav rounded-xl bg-cardbg border border-borderbg p-5 hover:border-indigo-500/50 transition-all text-left group">
+                            <i class="fas fa-users text-indigo-400 text-xl mb-3"></i>
+                            <h4 class="font-bold text-white">Quản lý CTV</h4>
+                            <p class="text-xs text-slate-400 mt-1">Xem và quản lý CTV trực thuộc ref của bạn.</p>
+                        </button>
+                        <button data-section="tasks" class="quick-nav rounded-xl bg-cardbg border border-borderbg p-5 hover:border-cyan-500/50 transition-all text-left group">
+                            <i class="fas fa-plus-circle text-cyan-400 text-xl mb-3"></i>
+                            <h4 class="font-bold text-white">Tạo nhiệm vụ</h4>
+                            <p class="text-xs text-slate-400 mt-1">Tạo task mới cho CTV trong nhóm của bạn.</p>
+                        </button>
+                        <button data-section="submissions" class="quick-nav rounded-xl bg-cardbg border border-borderbg p-5 hover:border-amber-500/50 transition-all text-left group">
+                            <i class="fas fa-check-double text-amber-400 text-xl mb-3"></i>
+                            <h4 class="font-bold text-white">Duyệt hoàn thành</h4>
+                            <p class="text-xs text-slate-400 mt-1">Phê duyệt và tự động cộng xu cho CTV.</p>
+                        </button>
+                        <button data-section="blog" class="quick-nav rounded-xl bg-cardbg border border-borderbg p-5 hover:border-purple-500/50 transition-all text-left group">
+                            <i class="fas fa-pen text-purple-400 text-xl mb-3"></i>
+                            <h4 class="font-bold text-white">Viết bài Blog</h4>
+                            <p class="text-xs text-slate-400 mt-1">Viết bài mới và chờ Admin duyệt đăng.</p>
+                        </button>
+                        <div class="rounded-xl bg-darkbg border border-dashed border-borderbg p-5 opacity-50">
+                            <i class="fas fa-lock text-slate-500 text-xl mb-3"></i>
+                            <h4 class="font-bold text-slate-500">Chuyển xu (Bị khóa)</h4>
+                            <p class="text-xs text-slate-500 mt-1">Chỉ Admin mới được chuyển xu để tránh gian lận.</p>
+                        </div>
+                        <div class="rounded-xl bg-darkbg border border-dashed border-borderbg p-5 opacity-50">
+                            <i class="fas fa-shield-alt text-slate-500 text-xl mb-3"></i>
+                            <h4 class="font-bold text-slate-500">Module Admin (Bị khóa)</h4>
+                            <p class="text-xs text-slate-500 mt-1">KYC, rút xu, cài đặt hệ thống chỉ dành cho Admin.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-cardbg rounded-xl border border-borderbg p-5 flex items-center justify-between">
+                <!-- SECTION: CTV Management -->
+                <div id="section-ctv" class="section-panel space-y-5">
+                    <div class="flex justify-between items-center">
                         <div>
-                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Quyền hạn</p>
-                            <h3 class="text-lg font-bold text-white">QL tập trung (Nhóm 1)</h3>
+                            <h2 class="text-2xl font-bold text-white">Quản lý CTV trực thuộc</h2>
+                            <p class="text-slate-400 text-sm mt-1">Chỉ hiển thị CTV thuộc ref của bạn. Bạn không thể quản lý CTV của QL khác.</p>
                         </div>
-                        <i class="fas fa-user-shield text-indigo-400 text-2xl"></i>
                     </div>
-                    <div class="bg-cardbg rounded-xl border border-borderbg p-5 flex items-center justify-between">
-                        <div>
-                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Trạng thái tài khoản</p>
-                            <h3 class="text-lg font-bold text-emerald-400">Đang hoạt động</h3>
+
+                    <div class="bg-cardbg rounded-xl border border-borderbg p-4">
+                        <div class="flex gap-3 flex-wrap">
+                            <input id="ctv-search" type="text" placeholder="Tìm tên, email, SĐT..." class="flex-1 min-w-[200px] px-3 py-2 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-indigo-500">
+                            <select id="ctv-status-filter" class="px-3 py-2 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-indigo-500">
+                                <option value="">Trạng thái (Tất cả)</option>
+                                <option value="Active">Đang hoạt động</option>
+                                <option value="Inactive">Tạm ngưng</option>
+                                <option value="Locked">Đã khóa</option>
+                            </select>
+                            <button id="ctv-search-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm transition-colors">
+                                <i class="fas fa-search mr-1"></i> Tìm
+                            </button>
                         </div>
-                        <i class="fas fa-check-circle text-emerald-400 text-2xl"></i>
                     </div>
-                    <div class="bg-cardbg rounded-xl border border-borderbg p-5 flex items-center justify-between">
-                        <div>
-                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Dòng tiền chuyển điểm</p>
-                            <h3 class="text-lg font-bold text-indigo-400">Được phép chuyển</h3>
+
+                    <div class="bg-cardbg rounded-xl border border-borderbg overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-borderbg text-left">
+                                <thead class="bg-darkbg">
+                                    <tr>
+                                        <th class="table-th">Tên / Email</th>
+                                        <th class="table-th">Số điện thoại</th>
+                                        <th class="table-th text-right">Số dư ví</th>
+                                        <th class="table-th text-center">Trạng thái</th>
+                                        <th class="table-th">Ngày tạo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ctv-table-body" class="divide-y divide-borderbg">
+                                    <tr><td colspan="5" class="px-4 py-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <i class="fas fa-right-left text-indigo-400 text-2xl"></i>
+                        <div class="px-4 py-3 border-t border-borderbg flex items-center justify-between">
+                            <span class="text-sm text-slate-400" id="ctv-pagination-info">Hiển thị 0</span>
+                            <div class="flex gap-1" id="ctv-pagination"></div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Detailed Features Container -->
-                <section class="bg-cardbg rounded-xl border border-borderbg overflow-hidden p-6">
-                    <h3 class="font-bold text-white text-lg border-b border-borderbg pb-3">Các phân hệ quản lý của bạn</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
-                            <h4 class="font-bold text-white flex items-center gap-2">
-                                <i class="fas fa-users text-indigo-400"></i> Quản lý thành viên CTV
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-2">Duyệt thông tin, theo dõi danh sách cộng tác viên trực thuộc và lịch sử.</p>
+                <!-- SECTION: Tasks Management -->
+                <div id="section-tasks" class="section-panel space-y-5">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">Quản lý Nhiệm vụ</h2>
+                            <p class="text-slate-400 text-sm mt-1">Tạo và quản lý nhiệm vụ dành cho CTV trong nhóm của bạn.</p>
                         </div>
-                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
-                            <h4 class="font-bold text-white flex items-center gap-2">
-                                <i class="fas fa-tasks text-indigo-400"></i> Quản lý nhiệm vụ
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-2">Theo dõi, tạo lập và phân phối nhiệm vụ cho các cộng tác viên.</p>
-                        </div>
-                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
-                            <h4 class="font-bold text-white flex items-center gap-2">
-                                <i class="fas fa-check-double text-indigo-400"></i> Duyệt hoàn thành nhiệm vụ
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-2">Phê duyệt hoặc bác bỏ các yêu cầu hoàn thành nhiệm vụ của cộng tác viên.</p>
-                        </div>
-                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
-                            <h4 class="font-bold text-white flex items-center gap-2">
-                                <i class="fas fa-right-left text-indigo-400"></i> Chuyển điểm
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-2">Thực hiện phân phối, chuyển quỹ điểm cho các cộng tác viên trực thuộc hệ thống quản lý.</p>
-                        </div>
-                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 hover:border-indigo-500/50 transition-colors">
-                            <h4 class="font-bold text-white flex items-center gap-2">
-                                <i class="fas fa-blog text-indigo-400"></i> Viết bài / Quản lý Blog
-                            </h4>
-                            <p class="text-xs text-slate-400 mt-2">Cập nhật tin tức, viết bài hướng dẫn và thông tin chính sách trên trang tin của CardWallet.</p>
-                        </div>
-                        <div class="rounded-lg bg-darkbg border border-borderbg p-4 opacity-50 border-dashed">
-                            <h4 class="font-bold text-slate-500 flex items-center gap-2">
-                                <i class="fas fa-ban"></i> Module Admin (Bị khóa)
-                            </h4>
-                            <p class="text-xs text-slate-500 mt-2">Các tính năng Admin cấp cao như cài đặt hệ thống, duyệt KYC và rút xu chỉ hiển thị trên app.mmohub.xyz.</p>
-                        </div>
+                        <button onclick="openCreateTaskModal()" class="btn-primary">
+                            <i class="fas fa-plus mr-2"></i>Tạo nhiệm vụ mới
+                        </button>
                     </div>
-                </section>
+
+                    <div id="tasks-list" class="space-y-3">
+                        <div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Submissions Review -->
+                <div id="section-submissions" class="section-panel space-y-5">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Duyệt Nộp Nhiệm vụ</h2>
+                        <p class="text-slate-400 text-sm mt-1">Phê duyệt kết quả CTV nộp — hệ thống tự động cộng xu vào ví khi bạn duyệt.</p>
+                    </div>
+
+                    <div class="flex gap-2 border-b border-borderbg pb-2 flex-wrap">
+                        <button class="submission-tab-btn px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white" data-status="">Tất cả</button>
+                        <button class="submission-tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white" data-status="Pending">Chờ duyệt</button>
+                        <button class="submission-tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white" data-status="Approved">Đã duyệt</button>
+                        <button class="submission-tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white" data-status="Rejected">Đã từ chối</button>
+                    </div>
+
+                    <div id="submissions-list" class="space-y-3">
+                        <div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Blog Management -->
+                <div id="section-blog" class="section-panel space-y-5">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">Quản lý Blog</h2>
+                            <p class="text-slate-400 text-sm mt-1">Viết và quản lý bài viết. Bài viết cần Admin duyệt trước khi xuất bản.</p>
+                        </div>
+                        <button onclick="openCreateBlogModal()" class="btn-primary">
+                            <i class="fas fa-pen mr-2"></i>Viết bài mới
+                        </button>
+                    </div>
+
+                    <div id="blog-list" class="space-y-3">
+                        <div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
 
-    <!-- Script for validation, menu toggle, logout -->
+    <!-- Toast -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-[60] flex flex-col gap-2 max-w-sm"></div>
+
+    <!-- Modal: Create Task -->
+    <div id="modal-create-task" class="modal-overlay">
+        <div class="bg-cardbg border border-borderbg rounded-2xl w-full max-w-lg shadow-2xl relative">
+            <div class="p-5 border-b border-borderbg flex justify-between items-center">
+                <h3 class="text-lg font-bold text-white">Tạo nhiệm vụ mới</h3>
+                <button onclick="closeModal('modal-create-task')" class="text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="form-create-task" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Tiêu đề nhiệm vụ <span class="text-rose-400">*</span></label>
+                    <input id="task-title" type="text" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-indigo-500" placeholder="VD: Chia sẻ bài viết trên Facebook...">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Mô tả chi tiết <span class="text-rose-400">*</span></label>
+                    <textarea id="task-description" rows="3" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-indigo-500 resize-none" placeholder="Hướng dẫn cụ thể cho CTV..."></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Thưởng (xu) <span class="text-rose-400">*</span></label>
+                        <input id="task-reward" type="number" min="1" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-indigo-500" placeholder="VD: 1000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Hạn chót (tuỳ chọn)</label>
+                        <input id="task-deadline" type="date" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500"><i class="fas fa-info-circle mr-1 text-indigo-400"></i>Nhiệm vụ sẽ chỉ hiển thị với CTV thuộc nhóm ref của bạn (Phạm vi: Partner).</p>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeModal('modal-create-task')" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm transition-colors">Huỷ</button>
+                    <button type="submit" class="flex-1 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-lg text-sm transition-all" id="btn-create-task">
+                        <i class="fas fa-plus mr-2"></i>Tạo nhiệm vụ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Reject Submission -->
+    <div id="modal-reject-submission" class="modal-overlay">
+        <div class="bg-cardbg border border-borderbg rounded-2xl w-full max-w-md shadow-2xl">
+            <div class="p-5 border-b border-borderbg flex justify-between items-center">
+                <h3 class="text-lg font-bold text-white">Từ chối nhiệm vụ</h3>
+                <button onclick="closeModal('modal-reject-submission')" class="text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="p-5 space-y-4">
+                <p class="text-sm text-slate-400">Vui lòng nhập lý do từ chối để CTV biết cần cải thiện.</p>
+                <textarea id="reject-reason-input" rows="3" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-rose-500 resize-none" placeholder="Lý do từ chối..."></textarea>
+                <div class="flex gap-3">
+                    <button onclick="closeModal('modal-reject-submission')" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm">Huỷ</button>
+                    <button id="btn-confirm-reject" class="flex-1 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-lg text-sm transition-colors">
+                        <i class="fas fa-times-circle mr-2"></i>Xác nhận từ chối
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Create Blog -->
+    <div id="modal-create-blog" class="modal-overlay">
+        <div class="bg-cardbg border border-borderbg rounded-2xl w-full max-w-2xl shadow-2xl relative my-4 max-h-screen overflow-y-auto">
+            <div class="p-5 border-b border-borderbg flex justify-between items-center sticky top-0 bg-cardbg z-10">
+                <h3 class="text-lg font-bold text-white" id="blog-modal-title">Viết bài mới</h3>
+                <button onclick="closeModal('modal-create-blog')" class="text-slate-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form id="form-create-blog" class="p-5 space-y-4">
+                <input type="hidden" id="blog-edit-id" value="">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Tiêu đề bài viết <span class="text-rose-400">*</span></label>
+                    <input id="blog-title-input" type="text" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-purple-500" placeholder="Nhập tiêu đề bài viết...">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nội dung <span class="text-rose-400">*</span></label>
+                    <textarea id="blog-content-input" rows="8" class="w-full px-3 py-2.5 bg-darkbg border border-borderbg rounded-lg text-slate-200 text-sm focus:outline-none focus:border-purple-500 resize-y" placeholder="Viết nội dung bài..."></textarea>
+                </div>
+                <p class="text-xs text-amber-400/80"><i class="fas fa-clock mr-1"></i>Bài viết sẽ ở trạng thái <b>Chờ duyệt</b> cho đến khi Admin phê duyệt.</p>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeModal('modal-create-blog')" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm transition-colors">Huỷ</button>
+                    <button type="submit" id="btn-create-blog" class="flex-1 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold rounded-lg text-sm transition-all">
+                        <i class="fas fa-paper-plane mr-2"></i>Gửi bài
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const apiBase = '/api';
+    (function() {
+        const API = '/api';
+        let token = null;
+        let currentUser = null;
+        let currentSubmissionId = null;
+        let ctvPage = 1;
 
-            // Sidebar toggling
-            const sidebar = document.getElementById('manager-sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            const menuBtn = document.getElementById('menu-button');
+        // ─── Helpers ─────────────────────────────
+        function getToken() {
+            try { return JSON.parse(localStorage.getItem('authData') || '{}').accessToken || null; }
+            catch { return null; }
+        }
 
-            function toggleMenu() {
-                sidebar.classList.toggle('hidden');
-                sidebar.classList.toggle('flex');
-                overlay.classList.toggle('hidden');
-            }
-
-            menuBtn?.addEventListener('click', toggleMenu);
-            overlay?.addEventListener('click', toggleMenu);
-
-            // Fetch Token helper
-            function getToken() {
-                const raw = localStorage.getItem('authData');
-                if (raw) {
-                    try {
-                        const auth = JSON.parse(raw);
-                        return auth.accessToken || auth.token || null;
-                    } catch {
-                        return null;
-                    }
-                }
-                return null;
-            }
-
-            const token = getToken();
-            if (!token) {
-                redirectToLogin();
-                return;
-            }
-
-            // Verify role via API call to /users/me
-            try {
-                const response = await fetch(`${apiBase}/users/me`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
-                if (!response.ok) {
-                    redirectToLogin();
-                    return;
-                }
-
-                const user = await response.json();
-                if (user.role !== 'CentralManager') {
-                    redirectToLogin();
-                    return;
-                }
-
-                // Hydrate Profile Details
-                const displayName = user.fullName || user.email || 'Quản lý';
-                document.getElementById('manager-name').textContent = displayName;
-                document.getElementById('welcome-name').textContent = displayName;
-                document.getElementById('user-avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=6366F1&color=fff`;
-
-            } catch (err) {
-                console.error("Lỗi xác thực quản lý:", err);
-                redirectToLogin();
-            }
-
-            // Logout action
-            document.getElementById('logout-btn')?.addEventListener('click', async () => {
-                const raw = localStorage.getItem('authData');
-                if (raw) {
-                    try {
-                        const auth = JSON.parse(raw);
-                        if (auth.refreshToken) {
-                            await fetch(`${apiBase}/auth/logout`, {
-                                method: 'POST',
-                                headers: { 
-                                    'Content-Type': 'application/json',
-                                    'Authorization': `Bearer ${token}`
-                                },
-                                body: JSON.stringify({ refreshToken: auth.refreshToken })
-                            });
-                        }
-                    } catch (e) {}
-                }
-                localStorage.removeItem('authData');
-                redirectToLogin();
+        async function apiFetch(url, opts = {}) {
+            return fetch(API + url, {
+                ...opts,
+                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', ...(opts.headers || {}) }
             });
+        }
 
-            function redirectToLogin() {
-                const host = window.location.host;
-                let loginUrl = "";
-                if (host.includes("localhost") || host.includes("127.0.0.1")) {
-                    loginUrl = window.location.protocol + "//localhost:" + window.location.port + "/login";
-                } else {
-                    loginUrl = window.location.protocol + "//mmohub.xyz/login";
+        function toast(msg, type = 'success') {
+            const c = document.getElementById('toast-container');
+            const t = document.createElement('div');
+            const color = type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-rose-600' : 'bg-amber-600';
+            t.className = `${color} text-white text-sm px-4 py-3 rounded-lg shadow-xl flex items-center gap-3 transform translate-y-2 opacity-0 transition-all duration-300`;
+            t.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':type==='error'?'times-circle':'exclamation-circle'}"></i><span>${msg}</span>`;
+            c.appendChild(t);
+            requestAnimationFrame(() => { t.classList.remove('translate-y-2','opacity-0'); });
+            setTimeout(() => { t.classList.add('translate-y-2','opacity-0'); setTimeout(() => t.remove(), 300); }, 3500);
+        }
+
+        function statusBadge(s) {
+            const map = { 'Active':'badge-active','Inactive':'bg-slate-500/10 text-slate-400 border border-slate-500/30',
+                'Locked':'bg-rose-500/10 text-rose-400 border border-rose-500/30','Pending':'badge-pending',
+                'PendingApproval':'badge-pending','Approved':'badge-approved','Rejected':'badge-rejected','Completed':'badge-approved' };
+            const label = { 'Active':'Hoạt động','Inactive':'Tạm ngưng','Locked':'Bị khóa',
+                'Pending':'Chờ duyệt','PendingApproval':'Chờ duyệt','Approved':'Đã duyệt','Rejected':'Đã từ chối','Completed':'Hoàn thành' };
+            return `<span class="inline-flex px-2.5 py-1 text-[10px] font-bold uppercase rounded-full ${map[s]||'bg-slate-800 text-slate-400'}">${label[s]||s}</span>`;
+        }
+
+        function formatDate(d) {
+            if (!d) return '—';
+            return new Date(d).toLocaleDateString('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' });
+        }
+
+        function formatCoins(n) {
+            return Number(n).toLocaleString('vi-VN');
+        }
+
+        // ─── Navigation ──────────────────────────
+        const sections = ['dashboard','ctv','tasks','submissions','blog'];
+        const pageTitles = { dashboard:'Tổng quan', ctv:'Quản lý CTV', tasks:'Nhiệm vụ', submissions:'Duyệt Nộp Task', blog:'Quản lý Blog' };
+        const navButtons = document.querySelectorAll('[data-section]');
+
+        function showSection(name) {
+            sections.forEach(s => {
+                document.getElementById(`section-${s}`)?.classList.remove('active');
+                document.getElementById(`nav-${s}`)?.classList.remove('active');
+            });
+            document.getElementById(`section-${name}`)?.classList.add('active');
+            document.getElementById(`nav-${name}`)?.classList.add('active');
+            document.getElementById('page-title').textContent = pageTitles[name] || name;
+
+            if (name === 'ctv') loadCTV();
+            if (name === 'tasks') loadTasks();
+            if (name === 'submissions') loadSubmissions();
+            if (name === 'blog') loadBlogs();
+            if (name === 'dashboard') loadDashboardStats();
+        }
+
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => showSection(btn.dataset.section));
+        });
+
+        // ─── Modal helpers ────────────────────────
+        window.openModal = function(id) { document.getElementById(id)?.classList.add('open'); };
+        window.closeModal = function(id) { document.getElementById(id)?.classList.remove('open'); };
+        document.querySelectorAll('.modal-overlay').forEach(m => {
+            m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+        });
+
+        // ─── LOAD Dashboard stats ─────────────────
+        async function loadDashboardStats() {
+            try {
+                const [tasksRes, subsRes, blogsRes] = await Promise.all([
+                    apiFetch('/tasks'),
+                    apiFetch('/tasks/submissions'),
+                    apiFetch('/blogs')
+                ]);
+                const tasks = tasksRes.ok ? await tasksRes.json() : [];
+                const subs = subsRes.ok ? await subsRes.json() : [];
+                const blogs = blogsRes.ok ? await blogsRes.json() : [];
+
+                document.getElementById('stat-task-count').textContent = tasks.filter(t => t.isActive).length;
+                document.getElementById('stat-pending-count').textContent = subs.filter(s => s.status === 'Pending').length;
+                const pendingCount = subs.filter(s => s.status === 'Pending').length;
+                const badge = document.getElementById('pending-badge');
+                if (pendingCount > 0) { badge.textContent = pendingCount; badge.classList.remove('hidden'); }
+                document.getElementById('stat-blog-count').textContent = blogs.filter(b => b.status === 'PendingApproval').length;
+
+                // Load CTV count
+                const ctvRes = await apiFetch('/admin/users?pageSize=1&page=1');
+                if (ctvRes.ok) {
+                    const data = await ctvRes.json();
+                    document.getElementById('stat-ctv-count').textContent = data.totalCount ?? '—';
                 }
-                window.location.href = loginUrl;
+            } catch(e) { console.error(e); }
+        }
+
+        // ─── LOAD CTV ─────────────────────────────
+        async function loadCTV(page = 1) {
+            ctvPage = page;
+            const keyword = document.getElementById('ctv-search').value;
+            const status = document.getElementById('ctv-status-filter').value;
+            const body = document.getElementById('ctv-table-body');
+            body.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</td></tr>';
+
+            try {
+                const params = new URLSearchParams({ page, pageSize: 15 });
+                if (keyword) params.set('keyword', keyword);
+                if (status) params.set('status', status);
+
+                const res = await apiFetch(`/admin/users?${params}`);
+                if (!res.ok) throw new Error('Lỗi tải CTV');
+                const data = await res.json();
+                const users = data.users || data.items || data || [];
+                const total = data.totalCount ?? users.length;
+
+                if (!users.length) {
+                    body.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-slate-500">Chưa có CTV nào trực thuộc</td></tr>';
+                    document.getElementById('ctv-pagination-info').textContent = 'Không có dữ liệu';
+                    document.getElementById('ctv-pagination').innerHTML = '';
+                    return;
+                }
+
+                body.innerHTML = users.map(u => `
+                    <tr class="hover:bg-slate-800/30 transition-colors">
+                        <td class="table-td">
+                            <div class="flex items-center gap-3">
+                                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(u.fullName||'?')}&background=6366F1&color=fff" class="w-8 h-8 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-white">${u.fullName || '—'}</p>
+                                    <p class="text-xs text-slate-500">${u.email || ''}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="table-td text-slate-400">${u.phoneNumber || '—'}</td>
+                        <td class="table-td text-right font-semibold text-cyan-400">${formatCoins(u.walletBalance ?? 0)} xu</td>
+                        <td class="table-td text-center">${statusBadge(u.status)}</td>
+                        <td class="table-td text-slate-400">${formatDate(u.createdAt)}</td>
+                    </tr>
+                `).join('');
+
+                document.getElementById('ctv-pagination-info').textContent = `Hiển thị ${users.length} / ${total}`;
+                renderPagination('ctv-pagination', Math.ceil(total/15), page, loadCTV);
+            } catch(e) {
+                body.innerHTML = '<tr><td colspan="5" class="px-4 py-6 text-center text-rose-400"><i class="fas fa-exclamation-triangle mr-2"></i>Lỗi tải dữ liệu</td></tr>';
+                toast('Không thể tải danh sách CTV', 'error');
+            }
+        }
+
+        document.getElementById('ctv-search-btn').addEventListener('click', () => loadCTV(1));
+        document.getElementById('ctv-search').addEventListener('keypress', e => { if(e.key==='Enter') loadCTV(1); });
+
+        function renderPagination(containerId, totalPages, current, callback) {
+            const c = document.getElementById(containerId);
+            if (!c || totalPages <= 1) { if(c) c.innerHTML = ''; return; }
+            let html = '';
+            for (let i = 1; i <= Math.min(totalPages, 10); i++) {
+                html += `<button onclick="(${callback.name})(${i})" class="w-8 h-8 rounded-lg text-xs font-semibold ${i===current?'bg-indigo-600 text-white':'bg-slate-800 text-slate-400 hover:bg-slate-700'}">${i}</button>`;
+            }
+            c.innerHTML = html;
+        }
+
+        // ─── LOAD Tasks ───────────────────────────
+        async function loadTasks() {
+            const container = document.getElementById('tasks-list');
+            container.innerHTML = '<div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>';
+
+            try {
+                const res = await apiFetch('/tasks');
+                if (!res.ok) throw new Error();
+                const tasks = await res.json();
+
+                if (!tasks.length) {
+                    container.innerHTML = '<div class="text-center py-10 text-slate-500"><i class="fas fa-inbox text-3xl mb-3 block"></i>Chưa có nhiệm vụ nào. Bấm "Tạo nhiệm vụ mới" để bắt đầu.</div>';
+                    return;
+                }
+
+                container.innerHTML = tasks.map(t => `
+                    <div class="bg-cardbg border border-borderbg rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-indigo-500/30 transition-all">
+                        <div class="flex-1 space-y-2">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full ${t.scope==='System'?'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20':'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'}">${t.scope==='System'?'Hệ thống':'Đối tác'}</span>
+                                ${t.isActive?'<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full badge-active">Đang mở</span>':'<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-slate-800 text-slate-500">Đã đóng</span>'}
+                                <h3 class="font-bold text-white">${t.title}</h3>
+                            </div>
+                            <p class="text-sm text-slate-400 line-clamp-2">${t.description}</p>
+                            <div class="flex gap-4 text-xs text-slate-500">
+                                <span><i class="fas fa-coins mr-1 text-cyan-400"></i>Thưởng: <span class="font-semibold text-cyan-400">${formatCoins(t.rewardCoins)} xu</span></span>
+                                ${t.deadline ? `<span><i class="fas fa-clock mr-1"></i>Hạn: ${formatDate(t.deadline)}</span>` : '<span><i class="fas fa-infinity mr-1"></i>Không giới hạn</span>'}
+                            </div>
+                        </div>
+                        <button onclick="deleteTask('${t.id}')" class="btn-danger shrink-0"><i class="fas fa-trash-alt mr-1"></i>Xoá</button>
+                    </div>
+                `).join('');
+            } catch(e) {
+                container.innerHTML = '<div class="text-center py-8 text-rose-400"><i class="fas fa-exclamation-triangle mr-2"></i>Lỗi tải nhiệm vụ</div>';
+            }
+        }
+
+        window.deleteTask = async function(id) {
+            if (!confirm('Xác nhận xoá nhiệm vụ này?')) return;
+            try {
+                const res = await apiFetch(`/tasks/${id}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error();
+                toast('Đã xoá nhiệm vụ');
+                loadTasks();
+            } catch { toast('Không thể xoá nhiệm vụ', 'error'); }
+        };
+
+        window.openCreateTaskModal = function() { openModal('modal-create-task'); };
+
+        document.getElementById('form-create-task').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-create-task');
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang tạo...';
+
+            const payload = {
+                title: document.getElementById('task-title').value.trim(),
+                description: document.getElementById('task-description').value.trim(),
+                rewardCoins: parseInt(document.getElementById('task-reward').value),
+                scope: 'Partner',
+                deadline: document.getElementById('task-deadline').value || null
+            };
+
+            try {
+                const res = await apiFetch('/tasks', { method: 'POST', body: JSON.stringify(payload) });
+                if (!res.ok) { const err = await res.json(); throw new Error(err.message || 'Lỗi'); }
+                toast('Tạo nhiệm vụ thành công!');
+                closeModal('modal-create-task');
+                document.getElementById('form-create-task').reset();
+                loadTasks();
+            } catch(err) {
+                toast(err.message || 'Không thể tạo nhiệm vụ', 'error');
+            } finally {
+                btn.disabled = false; btn.innerHTML = '<i class="fas fa-plus mr-2"></i>Tạo nhiệm vụ';
             }
         });
+
+        // ─── LOAD Submissions ─────────────────────
+        let currentSubmissionStatus = '';
+
+        async function loadSubmissions(status = currentSubmissionStatus) {
+            currentSubmissionStatus = status;
+            const container = document.getElementById('submissions-list');
+            container.innerHTML = '<div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>';
+
+            document.querySelectorAll('.submission-tab-btn').forEach(b => {
+                const isActive = b.dataset.status === status;
+                b.className = `submission-tab-btn px-4 py-2 rounded-lg text-sm font-${isActive?'semibold':'medium'} ${isActive?'bg-indigo-600 text-white':'text-slate-400 hover:text-white'}`;
+            });
+
+            try {
+                const params = status ? `?status=${status}` : '';
+                const res = await apiFetch(`/tasks/submissions${params}`);
+                if (!res.ok) throw new Error();
+                const subs = await res.json();
+
+                // Update pending badge
+                const pending = subs.filter(s => s.status === 'Pending').length;
+                const badge = document.getElementById('pending-badge');
+                if (pending > 0) { badge.textContent = pending; badge.classList.remove('hidden'); }
+                else badge.classList.add('hidden');
+
+                if (!subs.length) {
+                    container.innerHTML = '<div class="text-center py-10 text-slate-500"><i class="fas fa-box-open text-3xl mb-3 block"></i>Không có đơn nộp nào.</div>';
+                    return;
+                }
+
+                container.innerHTML = subs.map(s => `
+                    <div class="bg-cardbg border ${s.status==='Pending'?'border-amber-500/30':'border-borderbg'} rounded-xl p-5 space-y-3">
+                        <div class="flex items-start justify-between flex-wrap gap-3">
+                            <div>
+                                <p class="font-bold text-white">${s.taskTitle}</p>
+                                <p class="text-xs text-slate-400 mt-0.5">CTV: <span class="text-indigo-300 font-medium">${s.collaboratorName}</span></p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                ${statusBadge(s.status)}
+                                <span class="text-sm font-bold text-cyan-400">${formatCoins(s.taskRewardCoins)} xu</span>
+                            </div>
+                        </div>
+                        <div class="bg-darkbg rounded-lg p-3 space-y-1">
+                            <p class="text-xs text-slate-400">Bằng chứng:</p>
+                            <a href="${s.proofUrl}" target="_blank" class="text-sm text-indigo-400 hover:text-indigo-300 break-all">${s.proofUrl}</a>
+                            ${s.note ? `<p class="text-xs text-slate-400 mt-1">Ghi chú: ${s.note}</p>` : ''}
+                        </div>
+                        ${s.status==='Rejected'&&s.rejectReason?`<p class="text-xs text-rose-400"><i class="fas fa-ban mr-1"></i>Lý do từ chối: ${s.rejectReason}</p>`:''}
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-slate-500">Nộp lúc: ${formatDate(s.submittedAt)}</p>
+                            ${s.status==='Pending' ? `
+                            <div class="flex gap-2">
+                                <button onclick="rejectSubmission('${s.id}')" class="btn-danger"><i class="fas fa-times mr-1"></i>Từ chối</button>
+                                <button onclick="approveSubmission('${s.id}')" class="btn-success"><i class="fas fa-check mr-1"></i>Duyệt & Cộng ${formatCoins(s.taskRewardCoins)} xu</button>
+                            </div>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            } catch {
+                container.innerHTML = '<div class="text-center py-8 text-rose-400"><i class="fas fa-exclamation-triangle mr-2"></i>Lỗi tải dữ liệu</div>';
+            }
+        }
+
+        document.querySelectorAll('.submission-tab-btn').forEach(b => {
+            b.addEventListener('click', () => loadSubmissions(b.dataset.status));
+        });
+
+        window.approveSubmission = async function(id) {
+            if (!confirm('Xác nhận duyệt? Hệ thống sẽ tự động cộng xu vào ví CTV.')) return;
+            try {
+                const res = await apiFetch(`/tasks/submissions/${id}/approve`, { method: 'POST' });
+                if (!res.ok) { const err = await res.json(); throw new Error(err.message || 'Lỗi'); }
+                toast('Đã duyệt và cộng xu thành công! 🎉', 'success');
+                loadSubmissions(currentSubmissionStatus);
+                loadDashboardStats();
+            } catch(err) { toast(err.message || 'Lỗi khi duyệt', 'error'); }
+        };
+
+        window.rejectSubmission = function(id) {
+            currentSubmissionId = id;
+            document.getElementById('reject-reason-input').value = '';
+            openModal('modal-reject-submission');
+        };
+
+        document.getElementById('btn-confirm-reject').addEventListener('click', async () => {
+            const reason = document.getElementById('reject-reason-input').value.trim();
+            if (!reason) { toast('Vui lòng nhập lý do từ chối', 'warning'); return; }
+
+            try {
+                const res = await apiFetch(`/tasks/submissions/${currentSubmissionId}/reject`, {
+                    method: 'POST', body: JSON.stringify({ rejectReason: reason })
+                });
+                if (!res.ok) throw new Error();
+                toast('Đã từ chối đơn nộp');
+                closeModal('modal-reject-submission');
+                loadSubmissions(currentSubmissionStatus);
+            } catch { toast('Lỗi khi từ chối', 'error'); }
+        });
+
+        // ─── LOAD Blog ────────────────────────────
+        async function loadBlogs() {
+            const container = document.getElementById('blog-list');
+            container.innerHTML = '<div class="text-center py-8 text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i>Đang tải...</div>';
+
+            try {
+                const res = await apiFetch('/blogs');
+                if (!res.ok) throw new Error();
+                const blogs = await res.json();
+
+                if (!blogs.length) {
+                    container.innerHTML = '<div class="text-center py-10 text-slate-500"><i class="fas fa-file-alt text-3xl mb-3 block"></i>Chưa có bài viết nào. Bấm "Viết bài mới" để bắt đầu.</div>';
+                    return;
+                }
+
+                container.innerHTML = blogs.map(b => `
+                    <div class="bg-cardbg border border-borderbg rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-purple-500/30 transition-all">
+                        <div class="flex-1 space-y-1.5">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                ${statusBadge(b.status)}
+                                <h3 class="font-bold text-white">${b.title}</h3>
+                            </div>
+                            <p class="text-sm text-slate-400 line-clamp-2">${b.content.replace(/<[^>]*>/g,'').substring(0,120)}...</p>
+                            ${b.status==='Rejected'&&b.rejectReason ? `<p class="text-xs text-rose-400"><i class="fas fa-ban mr-1"></i>${b.rejectReason}</p>` : ''}
+                            <p class="text-xs text-slate-500">Tác giả: ${b.authorName} · ${formatDate(b.createdAt)}</p>
+                        </div>
+                        <div class="flex gap-2 shrink-0">
+                            <button onclick="editBlog('${b.id}','${encodeURIComponent(b.title)}',\`${btoa(unescape(encodeURIComponent(b.content)))}\`)" class="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/20 rounded-lg text-xs font-medium transition-all">
+                                <i class="fas fa-edit mr-1"></i>Sửa
+                            </button>
+                            <button onclick="deleteBlog('${b.id}')" class="btn-danger"><i class="fas fa-trash-alt mr-1"></i>Xoá</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch {
+                container.innerHTML = '<div class="text-center py-8 text-rose-400"><i class="fas fa-exclamation-triangle mr-2"></i>Lỗi tải bài viết</div>';
+            }
+        }
+
+        window.openCreateBlogModal = function() {
+            document.getElementById('blog-modal-title').textContent = 'Viết bài mới';
+            document.getElementById('blog-edit-id').value = '';
+            document.getElementById('blog-title-input').value = '';
+            document.getElementById('blog-content-input').value = '';
+            document.getElementById('btn-create-blog').innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Gửi bài';
+            openModal('modal-create-blog');
+        };
+
+        window.editBlog = function(id, encodedTitle, encodedContent) {
+            document.getElementById('blog-modal-title').textContent = 'Chỉnh sửa bài viết';
+            document.getElementById('blog-edit-id').value = id;
+            document.getElementById('blog-title-input').value = decodeURIComponent(encodedTitle);
+            document.getElementById('blog-content-input').value = decodeURIComponent(escape(atob(encodedContent)));
+            document.getElementById('btn-create-blog').innerHTML = '<i class="fas fa-save mr-2"></i>Lưu thay đổi';
+            openModal('modal-create-blog');
+        };
+
+        document.getElementById('form-create-blog').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-create-blog');
+            const editId = document.getElementById('blog-edit-id').value;
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang gửi...';
+
+            const payload = {
+                title: document.getElementById('blog-title-input').value.trim(),
+                content: document.getElementById('blog-content-input').value.trim()
+            };
+
+            try {
+                const url = editId ? `/blogs/${editId}` : '/blogs';
+                const method = editId ? 'PUT' : 'POST';
+                const res = await apiFetch(url, { method, body: JSON.stringify(payload) });
+                if (!res.ok) { const err = await res.json(); throw new Error(err.message || 'Lỗi'); }
+                toast(editId ? 'Đã cập nhật bài viết!' : 'Đã gửi bài! Chờ Admin duyệt.', 'success');
+                closeModal('modal-create-blog');
+                loadBlogs();
+            } catch(err) {
+                toast(err.message || 'Không thể lưu bài viết', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = document.getElementById('blog-edit-id').value ? '<i class="fas fa-save mr-2"></i>Lưu thay đổi' : '<i class="fas fa-paper-plane mr-2"></i>Gửi bài';
+            }
+        });
+
+        window.deleteBlog = async function(id) {
+            if (!confirm('Xác nhận xoá bài viết này?')) return;
+            try {
+                const res = await apiFetch(`/blogs/${id}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error();
+                toast('Đã xoá bài viết');
+                loadBlogs();
+            } catch { toast('Không thể xoá bài viết', 'error'); }
+        };
+
+        // ─── Mobile sidebar ───────────────────────
+        const sidebar = document.getElementById('manager-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        document.getElementById('menu-button')?.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden'); sidebar.classList.toggle('flex');
+            overlay.classList.toggle('hidden');
+        });
+        overlay?.addEventListener('click', () => {
+            sidebar.classList.add('hidden'); sidebar.classList.remove('flex');
+            overlay.classList.add('hidden');
+        });
+
+        // ─── Logout ───────────────────────────────
+        document.getElementById('logout-btn')?.addEventListener('click', async () => {
+            try {
+                const auth = JSON.parse(localStorage.getItem('authData') || '{}');
+                if (auth.refreshToken) {
+                    await fetch(`${API}/auth/logout`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                        body: JSON.stringify({ refreshToken: auth.refreshToken })
+                    });
+                }
+            } catch {}
+            localStorage.removeItem('authData');
+            window.location.href = '/login';
+        });
+
+        // ─── Auth + Init ──────────────────────────
+        async function init() {
+            token = getToken();
+            if (!token) { window.location.href = '/login'; return; }
+
+            try {
+                const res = await fetch(`${API}/users/me`, { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) { window.location.href = '/login'; return; }
+                currentUser = await res.json();
+
+                const allowedRoles = ['CentralManager', 'PartnerOrg', 'Admin'];
+                if (!allowedRoles.includes(currentUser.role)) { window.location.href = '/login'; return; }
+
+                const name = currentUser.fullName || currentUser.email || 'Quản lý';
+                document.getElementById('manager-name').textContent = name;
+                document.getElementById('welcome-name').textContent = name;
+                document.getElementById('manager-role-label').textContent = currentUser.role === 'CentralManager' ? 'QL Tập trung' : currentUser.role === 'PartnerOrg' ? 'Đối tác/Tổ chức' : 'Admin';
+                document.getElementById('user-avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=6366F1&color=fff`;
+
+                loadDashboardStats();
+            } catch { window.location.href = '/login'; }
+        }
+
+        init();
+    })();
     </script>
 </body>
 </html>

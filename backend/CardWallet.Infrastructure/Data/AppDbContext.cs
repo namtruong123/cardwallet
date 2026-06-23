@@ -20,6 +20,9 @@ public class AppDbContext : DbContext
     public DbSet<KycRequest> KycRequests { get; set; } = null!;
     public DbSet<WithdrawalRequest> WithdrawalRequests { get; set; } = null!;
     public DbSet<SystemSetting> SystemSettings { get; set; } = null!;
+    public DbSet<BlogPost> BlogPosts { get; set; } = null!;
+    public DbSet<PartnerTask> PartnerTasks { get; set; } = null!;
+    public DbSet<TaskSubmission> TaskSubmissions { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -306,5 +309,27 @@ public class AppDbContext : DbContext
         systemSetting.Property(x => x.Description).HasMaxLength(500);
         systemSetting.Property(x => x.CreatedAt).IsRequired();
         systemSetting.HasIndex(x => x.Key).IsUnique();
+
+        var blogPost = modelBuilder.Entity<BlogPost>();
+        blogPost.ToTable("blog_posts");
+        blogPost.HasKey(x => x.Id);
+        blogPost.Property(x => x.Title).HasMaxLength(250).IsRequired();
+        blogPost.Property(x => x.Content).HasColumnType("longtext").IsRequired();
+        blogPost.Property(x => x.Status).HasMaxLength(30).IsRequired();
+
+        var partnerTask = modelBuilder.Entity<PartnerTask>();
+        partnerTask.ToTable("partner_tasks");
+        partnerTask.HasKey(x => x.Id);
+        partnerTask.Property(x => x.Title).HasMaxLength(250).IsRequired();
+        partnerTask.Property(x => x.Description).HasColumnType("longtext").IsRequired();
+        partnerTask.Property(x => x.Scope).HasMaxLength(20).IsRequired();
+
+        var taskSubmission = modelBuilder.Entity<TaskSubmission>();
+        taskSubmission.ToTable("task_submissions");
+        taskSubmission.HasKey(x => x.Id);
+        taskSubmission.Property(x => x.ProofUrl).HasMaxLength(500).IsRequired();
+        taskSubmission.Property(x => x.Status).HasMaxLength(30).IsRequired();
+        taskSubmission.HasOne(x => x.Task).WithMany().HasForeignKey(x => x.TaskId).OnDelete(DeleteBehavior.Cascade);
+        taskSubmission.HasOne(x => x.Collaborator).WithMany().HasForeignKey(x => x.CollaboratorId).OnDelete(DeleteBehavior.Cascade);
     }
 }

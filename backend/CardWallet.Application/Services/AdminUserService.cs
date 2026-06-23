@@ -29,8 +29,32 @@ public class AdminUserService : IAdminUserService
         _aliasRepository = aliasRepository;
     }
 
-    public async Task<PagedResult<AdminUserListItemDto>> GetUsersAsync(string keyword, string status, bool? phoneVerified, bool? emailVerified, int page, int pageSize)
+    private async Task<User> GetActorAndValidateAsync(Guid currentUserId, Guid? targetUserId = null)
     {
+        var actor = await _userRepository.GetByIdAsync(currentUserId);
+        if (actor == null)
+            throw new UnauthorizedException("Phiên làm việc không hợp lệ.");
+
+        if (actor.Role == "Admin")
+            return actor;
+
+        if (targetUserId.HasValue)
+        {
+            var target = await _userRepository.GetByIdAsync(targetUserId.Value);
+            if (target == null || target.ParentUserId != currentUserId || (target.Role != "Collaborator" && target.Role != "Customer"))
+            {
+                throw new BadRequestException("Bạn không có quyền quản lý tài khoản này.");
+            }
+        }
+
+        return actor;
+    }
+
+    public async Task<PagedResult<AdminUserListItemDto>> GetUsersAsync(string keyword, string status, bool? phoneVerified, bool? emailVerified, int page, int pageSize, Guid currentUserId)
+    {
+        var actor = await GetActorAndValidateAsync(currentUserId);
+        Guid? parentFilter = actor.Role == "Admin" ? null : currentUserId;
+
         var finalKeyword = keyword;
         if (!string.IsNullOrWhiteSpace(keyword))
         {
@@ -38,7 +62,7 @@ public class AdminUserService : IAdminUserService
             if (alias != null) finalKeyword = alias.Target;
         }
 
-        var (users, totalCount) = await _userRepository.GetPagedUsersAsync(finalKeyword, status, phoneVerified, emailVerified, page, pageSize);
+        var (users, totalCount) = await _userRepository.GetPagedUsersAsync(finalKeyword, status, phoneVerified, emailVerified, page, pageSize, parentFilter);
         var userList = users.ToList();
         var parentIds = userList
             .Where(u => u.ParentUserId.HasValue)
@@ -92,10 +116,16 @@ public class AdminUserService : IAdminUserService
         };
     }
 
-    public async Task<AdminUserDetailDto> GetUserDetailAsync(Guid id)
+    public async Task<AdminUserDetailDto> GetUserDetailAsync(Guid id, Guid currentUserId)
     {
+        var actor = await GetActorAndValidateAsync(currentUserId);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
+
+        if (actor.Role != "Admin" && (user.ParentUserId != currentUserId || (user.Role != "Collaborator" && user.Role != "Customer")))
+        {
+            throw new BadRequestException("Bạn không có quyền truy cập thông tin tài khoản này.");
+        }
 
         var wallet = await _walletRepository.GetByUserIdAsync(id);
         User? parent = null;
@@ -132,14 +162,25 @@ public class AdminUserService : IAdminUserService
         };
     }
 
-    public async Task<AdminUserDetailDto> CreateUserAsync(AdminCreateUserRequest request)
+    public async Task<AdminUserDetailDto> CreateUserAsync(AdminCreateUserRequest request, Guid currentUserId)
     {
+        var actor = await GetActorAndValidateAsync(currentUserId);
         var fullName = request.FullName.Trim();
         var email = request.Email.Trim().ToLowerInvariant();
         var phoneNumber = request.PhoneNumber.Trim();
         var password = request.Password;
         var status = string.IsNullOrWhiteSpace(request.Status) ? "Active" : request.Status.Trim();
         var role = NormalizeRole(request.Role);
+        Guid? parentUserId = request.ParentUserId;
+
+        if (actor.Role != "Admin")
+        {
+            if (role != "Collaborator" && role != "Customer")
+            {
+                throw new BadRequestException("Bạn chỉ được phép tạo tài khoản CTV.");
+            }
+            parentUserId = currentUserId;
+        }
 
         ValidateUserInput(fullName, email, phoneNumber, password, requirePassword: true);
 
@@ -159,7 +200,7 @@ public class AdminUserService : IAdminUserService
             PasswordHash = _passwordHasher.Hash(password),
             Status = status,
             Role = role,
-            ParentUserId = request.ParentUserId,
+            ParentUserId = parentUserId,
             CanManageUsers = permissions.CanManageUsers,
             CanManageTasks = permissions.CanManageTasks,
             CanApproveTasks = permissions.CanApproveTasks,
@@ -185,11 +226,12 @@ public class AdminUserService : IAdminUserService
         await _walletRepository.AddAsync(wallet);
         await _userRepository.SaveChangesAsync();
 
-        return await GetUserDetailAsync(user.Id);
+        return await GetUserDetailAsync(user.Id, currentUserId);
     }
 
-    public async Task UpdateUserAsync(Guid id, AdminUpdateUserRequest request)
+    public async Task UpdateUserAsync(Guid id, AdminUpdateUserRequest request, Guid currentUserId)
     {
+        var actor = await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
 
@@ -197,6 +239,16 @@ public class AdminUserService : IAdminUserService
         var email = request.Email.Trim().ToLowerInvariant();
         var phoneNumber = request.PhoneNumber.Trim();
         var role = NormalizeRole(request.Role);
+        Guid? parentUserId = request.ParentUserId;
+
+        if (actor.Role != "Admin")
+        {
+            if (role != "Collaborator" && role != "Customer")
+            {
+                throw new BadRequestException("Bạn chỉ được phép cập nhật tài khoản CTV.");
+            }
+            parentUserId = currentUserId;
+        }
 
         ValidateUserInput(fullName, email, phoneNumber, password: string.Empty, requirePassword: false);
 
@@ -213,7 +265,7 @@ public class AdminUserService : IAdminUserService
         user.PhoneNumber = phoneNumber;
         user.Status = string.IsNullOrWhiteSpace(request.Status) ? user.Status : request.Status.Trim();
         user.Role = role;
-        user.ParentUserId = request.ParentUserId;
+        user.ParentUserId = parentUserId;
         user.CanManageUsers = permissions.CanManageUsers;
         user.CanManageTasks = permissions.CanManageTasks;
         user.CanApproveTasks = permissions.CanApproveTasks;
@@ -231,6 +283,7 @@ public class AdminUserService : IAdminUserService
     public async Task UpdateStatusAsync(Guid id, string status, Guid currentUserId)
     {
         if (id == currentUserId) throw new BadRequestException("Không thể tự đổi trạng thái tài khoản của chính mình");
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
         user.Status = status;
@@ -241,6 +294,7 @@ public class AdminUserService : IAdminUserService
     public async Task LockUserAsync(Guid id, Guid currentUserId)
     {
         if (id == currentUserId) throw new BadRequestException("Không thể tự khóa tài khoản của chính mình");
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
         user.Status = "Locked";
@@ -248,8 +302,9 @@ public class AdminUserService : IAdminUserService
         await _userRepository.UpdateAsync(user);
     }
 
-    public async Task UnlockUserAsync(Guid id)
+    public async Task UnlockUserAsync(Guid id, Guid currentUserId)
     {
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
         user.Status = "Active";
@@ -258,8 +313,9 @@ public class AdminUserService : IAdminUserService
         await _userRepository.UpdateAsync(user);
     }
 
-    public async Task VerifyPhoneAsync(Guid id, bool isVerified)
+    public async Task VerifyPhoneAsync(Guid id, bool isVerified, Guid currentUserId)
     {
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user != null)
         {
@@ -268,8 +324,9 @@ public class AdminUserService : IAdminUserService
         }
     }
 
-    public async Task VerifyEmailAsync(Guid id, bool isVerified)
+    public async Task VerifyEmailAsync(Guid id, bool isVerified, Guid currentUserId)
     {
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user != null)
         {
@@ -278,8 +335,9 @@ public class AdminUserService : IAdminUserService
         }
     }
 
-    public async Task ResetPasswordAsync(Guid id, string newPassword)
+    public async Task ResetPasswordAsync(Guid id, string newPassword, Guid currentUserId)
     {
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
         if (string.IsNullOrWhiteSpace(newPassword) || newPassword.Length < 6)
@@ -295,6 +353,7 @@ public class AdminUserService : IAdminUserService
     public async Task SoftDeleteUserAsync(Guid id, Guid currentUserId)
     {
         if (id == currentUserId) throw new BadRequestException("Không thể tự vô hiệu hóa tài khoản của chính mình");
+        await GetActorAndValidateAsync(currentUserId, id);
         var user = await _userRepository.GetByIdAsync(id);
         if (user == null) throw new NotFoundException("Không tìm thấy người dùng");
         user.Status = "Deleted";

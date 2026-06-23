@@ -9,7 +9,7 @@ public interface IUserRepository
     Task<User?> GetByEmailAsync(string email);
     Task<User?> GetByPhoneAsync(string phoneNumber);
     Task<User?> GetByEmailOrPhoneAsync(string login);
-    Task<(IEnumerable<User> Users, int TotalCount)> GetPagedUsersAsync(string keyword, string status, bool? phoneVerified, bool? emailVerified, int page, int pageSize);
+    Task<(IEnumerable<User> Users, int TotalCount)> GetPagedUsersAsync(string keyword, string status, bool? phoneVerified, bool? emailVerified, int page, int pageSize, Guid? parentUserId = null);
     Task<bool> ExistsByEmailAsync(string email);
     Task<bool> ExistsByPhoneAsync(string phoneNumber);
     Task AddAsync(User user);
