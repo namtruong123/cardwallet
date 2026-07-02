@@ -124,32 +124,217 @@
     </section>
 
     <!-- ===================== PARTNER LOGOS STRIP ===================== -->
-    <section class="bg-[#060606] border-t border-gray-900 py-10">
+    <section class="bg-[#060606] border-t border-gray-900 py-5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-40 grayscale hover:opacity-60 transition-opacity duration-500">
-                <div class="flex items-center gap-2 text-gray-400">
+            <div id="public-provider-filters" class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                <button type="button" data-provider="Viettel" aria-pressed="false" class="public-provider-filter flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-gray-400 opacity-45 grayscale transition-all duration-300 hover:border-emerald-400/30 hover:text-emerald-300 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
                     <i class="fas fa-mountain text-xl"></i>
                     <span class="text-sm font-bold uppercase tracking-widest">Viettel</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-400">
+                </button>
+                <button type="button" data-provider="Mobifone" aria-pressed="false" class="public-provider-filter flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-gray-400 opacity-45 grayscale transition-all duration-300 hover:border-emerald-400/30 hover:text-emerald-300 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
                     <i class="fas fa-chart-bar text-xl"></i>
                     <span class="text-sm font-bold uppercase tracking-widest">Mobifone</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-400">
+                </button>
+                <button type="button" data-provider="Vinaphone" aria-pressed="false" class="public-provider-filter flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-gray-400 opacity-45 grayscale transition-all duration-300 hover:border-emerald-400/30 hover:text-emerald-300 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
                     <i class="fas fa-snowflake text-xl"></i>
                     <span class="text-sm font-bold uppercase tracking-widest">Vinaphone</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-400">
+                </button>
+                <button type="button" data-provider="Vietnamobile" aria-pressed="false" class="public-provider-filter flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-gray-400 opacity-45 grayscale transition-all duration-300 hover:border-emerald-400/30 hover:text-emerald-300 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
                     <i class="fas fa-bolt text-xl"></i>
                     <span class="text-sm font-bold uppercase tracking-widest">Vietnamobile</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-400">
+                </button>
+                <button type="button" data-provider="Garena" aria-pressed="false" class="public-provider-filter flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-gray-400 opacity-45 grayscale transition-all duration-300 hover:border-emerald-400/30 hover:text-emerald-300 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
                     <i class="fas fa-map-pin text-xl"></i>
                     <span class="text-sm font-bold uppercase tracking-widest">Garena</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== LIVE RATES PREVIEW SECTION ===================== -->
+    <section class="bg-[#060606] relative overflow-hidden py-20 sm:py-28" style="padding-top:0;">
+        <div class="floating-dot" style="top: 30%; left: 10%;"></div>
+        <div class="floating-dot" style="top: 60%; right: 12%;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-5">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Bảng giá trực tuyến</span>
+                </div>
+                <p class="text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                   Mức chiết khấu tốt nhất theo thời gian thực cho mọi nhà mạng.
+                </p>
+            </div>
+
+            <!-- Rates Table -->
+            <div class="max-w-4xl mx-auto rounded-2xl bg-[#0D0D0D] border border-gray-800/60 overflow-hidden shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-800/80">
+                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Mệnh Giá</th>
+                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Chiết Khấu</th>
+                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Thực Nhận</th>
+                            </tr>
+                        </thead>
+                        <tbody id="public-rates-body" class="divide-y divide-gray-800/50">
+                            <tr>
+                                <td colspan="3" class="px-6 py-8 text-center text-gray-500">Đang tải bảng giá...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-800/60 text-center">
+                    <a href="/cardrates" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
+                        Xem toàn bộ bảng giá
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        (function () {
+            const activeClasses = ['border-emerald-400/60', 'bg-emerald-400/10', 'text-emerald-300', 'opacity-100', 'shadow-lg', 'shadow-emerald-500/10'];
+            const inactiveClasses = ['border-transparent', 'text-gray-400', 'opacity-45', 'grayscale'];
+            const useHardcodedRates = true;
+            const testFaceValues = [10000, 20000, 30000, 50000, 100000, 200000, 300000, 500000, 1000000];
+            const testProviderDiscounts = {
+                Viettel: 20,
+                Mobifone: 22,
+                Vinaphone: 21,
+                Vietnamobile: 18,
+                Garena: 15
+            };
+            const testRates = Object.entries(testProviderDiscounts).flatMap(([provider, discountPercent]) =>
+                testFaceValues.map(faceValue => ({
+                    provider,
+                    faceValue,
+                    discountPercent,
+                    receiveAmount: Math.round(faceValue * (100 - discountPercent) / 100)
+                }))
+            );
+            const state = {
+                rates: [],
+                provider: 'Viettel'
+            };
+
+            function formatMoney(value) {
+                return new Intl.NumberFormat('vi-VN').format(Number(value || 0));
+            }
+
+            function escapeHtml(value) {
+                return String(value ?? '').replace(/[&<>"']/g, char => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                })[char]);
+            }
+
+            function normalizeProvider(value) {
+                return String(value || '').trim().toLowerCase();
+            }
+
+            function setActiveProvider(provider) {
+                state.provider = provider;
+
+                document.querySelectorAll('.public-provider-filter').forEach(button => {
+                    const isActive = button.dataset.provider === provider;
+
+                    button.setAttribute('aria-pressed', String(isActive));
+                    button.classList.toggle('grayscale', !isActive);
+                    button.classList.remove(...(isActive ? inactiveClasses : activeClasses));
+                    button.classList.add(...(isActive ? activeClasses : inactiveClasses));
+                });
+            }
+
+            function renderRates() {
+                const body = document.getElementById('public-rates-body');
+                if (!body) return;
+
+                const providerRates = state.rates.filter(rate => normalizeProvider(rate.provider) === normalizeProvider(state.provider));
+
+                if (providerRates.length === 0) {
+                    body.innerHTML = `
+                        <tr>
+                            <td colspan="3" class="px-6 py-8 text-center text-gray-500">Ch&#432;a c&#243; b&#7843;ng gi&#225; cho ${escapeHtml(state.provider)}.</td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                body.innerHTML = providerRates.map(rate => `
+                    <tr class="hover:bg-gray-800/30 transition-colors">
+                        <td class="px-6 py-4 text-right text-gray-300">${formatMoney(rate.faceValue)} VND</td>
+                        <td class="px-6 py-4 text-right text-emerald-400 font-bold">${formatMoney(rate.discountPercent)}%</td>
+                        <td class="px-6 py-4 text-right text-cyan-400 font-bold">${formatMoney(rate.receiveAmount)} xu</td>
+                    </tr>
+                `).join('');
+            }
+
+            async function loadRates() {
+                const body = document.getElementById('public-rates-body');
+                if (!body) return;
+
+                body.innerHTML = '<tr><td colspan="3" class="px-6 py-8 text-center text-gray-500">&#272;ang t&#7843;i b&#7843;ng gi&#225;...</td></tr>';
+
+                if (useHardcodedRates) {
+                    state.rates = testRates;
+                    setActiveProvider(state.provider);
+                    renderRates();
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/card-rates');
+                    if (!response.ok) throw new Error('Cannot load rates');
+
+                    const rates = await response.json();
+                    state.rates = Array.isArray(rates) && rates.length > 0 ? rates : testRates;
+
+                    if (state.rates.length === 0) {
+                        body.innerHTML = '<tr><td colspan="3" class="px-6 py-8 text-center text-gray-500">Ch&#432;a c&#243; b&#7843;ng gi&#225; &#273;ang ho&#7841;t &#273;&#7897;ng.</td></tr>';
+                        return;
+                    }
+
+                    const hasDefaultProvider = state.rates.some(rate => normalizeProvider(rate.provider) === normalizeProvider(state.provider));
+                    if (!hasDefaultProvider) {
+                        state.provider = state.rates[0].provider || state.provider;
+                    }
+
+                    setActiveProvider(state.provider);
+                    renderRates();
+                } catch {
+                    state.rates = testRates;
+                    setActiveProvider(state.provider);
+                    renderRates();
+                }
+            }
+
+            function initProviderRates() {
+                document.querySelectorAll('.public-provider-filter').forEach(button => {
+                    button.addEventListener('click', () => {
+                        setActiveProvider(button.dataset.provider);
+                        renderRates();
+                    });
+                });
+
+                setActiveProvider(state.provider);
+                loadRates();
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                setTimeout(initProviderRates, 0);
+            });
+        })();
+    </script>
 
     <!-- ===================== POWERFUL FEATURES SECTION ===================== -->
     <section id="features" class="bg-[#060606] relative overflow-hidden">
@@ -315,61 +500,14 @@
         </div>
     </section>
 
-    <!-- ===================== LIVE RATES PREVIEW SECTION ===================== -->
-    <section class="bg-[#060606] relative overflow-hidden py-20 sm:py-28">
-        <div class="floating-dot" style="top: 30%; left: 10%;"></div>
-        <div class="floating-dot" style="top: 60%; right: 12%;"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-14">
-                <div class="inline-flex items-center gap-2 mb-4">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                    </span>
-                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Bảng giá trực tuyến</span>
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">Chiết khấu hấp dẫn</h2>
-                <p class="text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-                    Xem bảng chiết khấu cập nhật theo thời gian thực. Mức chiết khấu tốt nhất cho mọi nhà mạng.
-                </p>
-            </div>
-
-            <!-- Rates Table -->
-            <div class="max-w-4xl mx-auto rounded-2xl bg-[#0D0D0D] border border-gray-800/60 overflow-hidden shadow-2xl">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
-                        <thead>
-                            <tr class="border-b border-gray-800/80">
-                                <th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Nhà Mạng</th>
-                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Mệnh Giá</th>
-                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Chiết Khấu</th>
-                                <th class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Thực Nhận</th>
-                            </tr>
-                        </thead>
-                        <tbody id="public-rates-body" class="divide-y divide-gray-800/50">
-                            <tr>
-                                <td colspan="4" class="px-6 py-8 text-center text-gray-500">Đang tải bảng giá...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="px-6 py-4 border-t border-gray-800/60 text-center">
-                    <a href="/cardrates" class="text-emerald-400 text-sm font-semibold hover:text-emerald-300 inline-flex items-center gap-1 transition-colors">
-                        Xem toàn bộ bảng giá
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- ===================== CTA FOOTER SECTION ===================== -->
     <section class="bg-[#060606] relative overflow-hidden py-20 sm:py-28">
         <div class="floating-dot" style="top: 40%; left: 15%;"></div>
         <div class="floating-dot" style="top: 20%; right: 25%;"></div>
         <div class="floating-dot" style="top: 75%; right: 10%;"></div>
-        
+
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <p class="text-emerald-400 text-xs font-bold tracking-[0.25em] uppercase mb-5">
                 AN TOÀN / BẢO MẬT / UY TÍN
